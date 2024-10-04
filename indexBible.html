@@ -110,6 +110,41 @@
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 999; /* Phía sau modal */
         }
+        #readingContent, #reading1 {
+            font-size: 16px;
+            font-family: Arial, sans-serif; /* Sử dụng font chữ Arial */
+            line-height: 1.5; /* Tăng khoảng cách dòng lên 1.5 lần chiều cao font chữ */
+        }
+       
+/* Các nút điều chỉnh cố định bên trái màn hình */
+.vertical-buttons {
+    position: sticky;   /* Giữ các nút cố định khi cuộn */
+    top: 10px; /* Giữ các nút cách phần trên của màn hình/modal 20px */
+    left: 5px; /* Đặt nút cố định bên trái màn hình */
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* Khoảng cách giữa các nút */
+    z-index: 1001; /* Đảm bảo các nút nằm trên nội dung modal */
+}
+
+
+.icon-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    font:bold;
+    color: #D18A78; /* Màu biểu tượng */
+    border-radius: 50%; /* Hình tròn */
+    transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+    background-color: #F5EAD6; /* Màu nền khi hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng khi hover */
+}
+
 
         /* Hiển thị modal và overlay */
         .modal.show, .overlay.show {
@@ -167,17 +202,30 @@
                 </tbody>
         </table>
 
-        <!--Thẻ để hiển thị bài đọc-->
-        <div id="readingModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span> <!-- Thêm dấu "X" đóng modal với sự kiện -->
-                <h3>Bài Đọc Ngày </h3> <!--có hàm cập nhật-->
-                <div id="readingContent"></div> <!-- Hiển thị nội dung bài đọc chính -->
-                <div id="reading1"></div> <!-- Hiển thị thêm nội dung khác, nếu có -->
-                <button class="close-btn" onclick="closeModal()">Đóng</button> <!-- Một nút "Đóng" -->
-            </div>
-        </div>     
-        <div id="modalOverlay" class="overlay" onclick="closeModal()"></div>
+<!-- Thẻ để hiển thị bài đọc -->
+<div id="readingModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>Bài Đọc Ngày</h3>
+        
+        <!-- Nút cố định dọc bên trái trong modal -->
+        <div class="vertical-buttons">
+            <button class="icon-button" onclick="increaseFontSize()">+</button>
+            <button class="icon-button" onclick="decreaseFontSize()">-</button>
+            <button class="icon-button" onclick="quitModal()">Close</button> <!-- Nút Quit -->
+            <button class="icon-button" onclick="boldText()">B</button> <!-- Nút Bold -->
+            <button class="icon-button" onclick="toggleFullScreen()">&#x2194;</button> <!-- Nút toàn màn hình -->
+        </div>
+       
+
+        <div id="readingContent"></div> <!-- Nội dung bài đọc chính -->
+        <div id="reading1"></div> <!-- Nội dung bổ sung, nếu có -->
+        <button class="close-btn" onclick="closeModal()">Đóng</button> <!-- Nút Đóng -->
+    </div>
+</div>
+
+<div id="modalOverlay" class="overlay" onclick="closeModal()"></div>
+
     
        <script>
 
@@ -586,38 +634,81 @@
                 document.querySelector("#readingModal h3").textContent = `Bài Đọc Ngày: ${day}/${month}/${year} - ${feastName}`;
             }
             function updateModalTitle1(date, secondFeasts, feasts) {
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // Tháng trong JavaScript bắt đầu từ 0
-    const year = date.getFullYear();
+                    const day = date.getDate();
+                    const month = date.getMonth() + 1; // Tháng trong JavaScript bắt đầu từ 0
+                    const year = date.getFullYear();
 
-    // Lấy các lễ vọng
-    const secondFeast1 = calculateSecondFeasts(year); 
+                    // Lấy các lễ vọng
+                    const secondFeast1 = calculateSecondFeasts(year); 
 
-    // Lấy lễ vọng từ danh sách secondFeasts cho ngày hiện tại
-    const secondFeast = getSecondFeastsForDate(date, secondFeast1);
-    console.log('Lễ vọng:', secondFeast); // In ra kiểm tra xem có lấy được lễ vọng không
+                    // Lấy lễ vọng từ danh sách secondFeasts cho ngày hiện tại
+                    const secondFeast = getSecondFeastsForDate(date, secondFeast1);
+                    console.log('Lễ vọng:', secondFeast); // In ra kiểm tra xem có lấy được lễ vọng không
 
-    // Nếu có lễ vọng, lấy tên lễ vọng; nếu không, hiển thị lễ chính
-    let feastName;
-    if (secondFeast && secondFeast.name) {
-        feastName = secondFeast.name; // Lấy tên lễ vọng
-    } else {
-        const feasts = calculateFeasts(year);
-        const feast = getFeastForDay(date, feasts); // Lấy lễ chính nếu không có lễ vọng
-        feastName = feast ? feast.name : 'Không có lễ đặc biệt';
-        feastName = feastName.replace(/Thứ Hai\.|Thứ Ba\.|Thứ Tư\.|Thứ Năm\.|Thứ Sáu\.|Thứ Bảy\./g, '').trim();
+                    // Nếu có lễ vọng, lấy tên lễ vọng; nếu không, hiển thị lễ chính
+                    let feastName;
+                    if (secondFeast && secondFeast.name) {
+                        feastName = secondFeast.name; // Lấy tên lễ vọng
+                    } else {
+                        const feasts = calculateFeasts(year);
+                        const feast = getFeastForDay(date, feasts); // Lấy lễ chính nếu không có lễ vọng
+                        feastName = feast ? feast.name : 'Không có lễ đặc biệt';
+                        feastName = feastName.replace(/Thứ Hai\.|Thứ Ba\.|Thứ Tư\.|Thứ Năm\.|Thứ Sáu\.|Thứ Bảy\./g, '').trim();
 
-        // Thêm chuỗi "Về vị thánh" vào trước tên lễ chính
-        feastName = "Về Lễ " + feastName;
-    }
+                        // Thêm chuỗi "Về vị thánh" vào trước tên lễ chính
+                        feastName = "Về Lễ " + feastName;
+                    }
 
-    // Cập nhật thẻ <h3> trong modal
-    document.querySelector("#readingModal h3").textContent = `Bài Đọc Ngày: ${day}/${month}/${year} - ${feastName}`;
-}
+                    // Cập nhật thẻ <h3> trong modal
+                    document.querySelector("#readingModal h3").textContent = `Bài Đọc Ngày: ${day}/${month}/${year} - ${feastName}`;
+                }
 
-
-
-
+                // Tăng kích thước font
+                function increaseFontSize() {
+                    var content = document.getElementById('readingContent');
+                    var currentSize = window.getComputedStyle(content, null).getPropertyValue('font-size');
+                    var newSize = parseFloat(currentSize) + 2;
+                    content.style.fontSize = newSize + 'px';
+                }
+                
+                // Giảm kích thước font
+                function decreaseFontSize() {
+                    var content = document.getElementById('readingContent');
+                    var currentSize = window.getComputedStyle(content, null).getPropertyValue('font-size');
+                    var newSize = parseFloat(currentSize) - 2;
+                    content.style.fontSize = newSize + 'px';
+                }
+                
+                // Phóng to modal toàn màn hình
+                function toggleFullScreen() {
+                    var modal = document.getElementById('readingModal');
+                    if (!document.fullscreenElement) {
+                        modal.requestFullscreen();
+                    } else {
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        }
+                    }
+                }
+                // Hàm thoát khỏi modal (Quit)
+                function quitModal() {
+                    // Ẩn modal và overlay
+                    document.getElementById('readingModal').style.display = 'none';
+                    document.getElementById('modalOverlay').style.display = 'none';
+                }
+                
+                // Hàm bôi đậm nội dung (Bold)
+                function boldText() {
+                    // Lấy phần nội dung của modal
+                    var content = document.getElementById('readingContent');
+                    
+                    // Kiểm tra nếu nội dung đã được bôi đậm hay chưa
+                    if (content.style.fontWeight === 'bold') {
+                        content.style.fontWeight = 'normal'; // Nếu đã đậm thì chuyển về bình thường
+                    } else {
+                        content.style.fontWeight = 'bold'; // Nếu chưa đậm thì bôi đậm
+                    }
+                }
             // Hàm chuyển chuỗi ngày thành đối tượng ngày
             function parseDate(dateString) {
                 const [day, month, year] = dateString.split('/').map(Number);

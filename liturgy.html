@@ -143,7 +143,6 @@
     .feast-bold {
         font-weight: bold;
     }
-
     .bg-Tr { background-color: white; }  /* Trắng */
     .bg-Tm { background-color: #d8bfd8; } /* Tím nhạt */
     .bg-Đ { background-color: #ff6347; } /* Đỏ nhẹ */
@@ -184,18 +183,7 @@
             text-align: left;
         }
 
-        /* Nút "X" để đóng modal */
-.close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    color: #aaa;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-}
 
-.close:hover,
 .close:focus {
     color: #000;
     text-decoration: none;
@@ -219,6 +207,105 @@
         .modal.show, .overlay.show {
             display: block;
         }
+
+/* Modal container */
+.modal {
+            display: none; /* Modal mặc định ẩn */
+            position: fixed; /* Giữ modal ở giữa màn hình */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000; /* Đảm bảo modal luôn nằm trên các phần tử khác */
+            background-color: #f5f7b3;
+            padding: 20px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            width:100%; /* Điều chỉnh cho modal lớn hơn */
+            max-width: 100%; /* Điều chỉnh giới hạn chiều rộng tối đa */
+            max-height: 100%; /* Giới hạn chiều cao modal */
+            overflow-y: auto; /* Thêm thanh cuộn dọc khi nội dung vượt quá chiều cao */
+        }
+
+        /* Nội dung của modal */
+        .modal-content {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+        /* Overlay nền mờ */
+        .overlay {
+            display: none; /* Ẩn overlay mặc định */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999; /* Phía sau modal */
+        }
+        #readingContent, #reading1 {
+            font-size: 16px;
+            font-family: Arial, sans-serif; /* Sử dụng font chữ Arial */
+            line-height: 1.5; /* Tăng khoảng cách dòng lên 1.5 lần chiều cao font chữ */
+        }
+       
+/* Các nút điều chỉnh cố định bên trái màn hình */
+.vertical-buttons {
+    position: sticky;   /* Giữ các nút cố định khi cuộn */
+    top: 10px; /* Giữ các nút cách phần trên của màn hình/modal 20px */
+    left: 5px; /* Đặt nút cố định bên trái màn hình */
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* Khoảng cách giữa các nút */
+    z-index: 1001; /* Đảm bảo các nút nằm trên nội dung modal */
+}
+
+
+.icon-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    font:bold;
+    color: #D18A78; /* Màu biểu tượng */
+    border-radius: 50%; /* Hình tròn */
+    transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+    background-color: #F5EAD6; /* Màu nền khi hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng khi hover */
+}
+
+
+        /* Hiển thị modal và overlay */
+        .modal.show, .overlay.show {
+            display: block;
+        }
+        br {
+            line-height: 2;
+        }
+        .readable {
+            cursor: pointer; /* Chuyển con trỏ thành dạng pointer khi hover */
+        }
+        .readable {
+            cursor: pointer; /* Con trỏ sẽ thay đổi thành dạng pointer khi hover */
+            transition: color 0.3s ease; /* Tạo hiệu ứng chuyển màu mượt mà */
+        }
+
+        .readable:hover {
+            color: blue; /* Thay đổi màu chữ khi hover, bạn có thể đổi thành màu khác */
+            font-weight: bold; /* Thêm hiệu ứng đậm khi hover */
+        }
+
+
 br {
     line-height: 2;
 }
@@ -267,32 +354,46 @@ br {
 
 <!-- Tích hợp các tệp JS -->
 <script src="js/saintcelebration.js"></script> 
-<script src="js/calculateLunarSolar.js"></script> 
-<script src="js/calculateChasuble.js"></script> 
-<script src="js/calculateFeasts.js"></script> 
-<script src="js/calculateBasic.js"></script> 
-<script src="js/calculatenumberSunday.js"></script> 
-<script src="Reading/Sunday.js"></script> 
-<script src="js/calculatebibleReads.js"></script>
-<script src="Reading/DailySeason.js"></script>
-<script src="Reading/DailyOrdinary1.js"></script>
-<script src="Reading/DailyOrdinary2.js"></script>
-<script src="Reading/SaintsBible.js"></script>
-<script src="js/secondfeast.js"></script> <!-- Thêm secondfeast.js vào -->
+    <script src="js/calculateLunarSolar.js"></script> 
+    <script src="js/calculateChasuble.js"></script> 
+    <script src="js/calculateFeasts.js"></script> 
+    <script src="js/calculateBasic.js"></script> 
+    <script src="js/calculatenumberSunday.js"></script> 
+    <script src="js/calculatenumberSecondary.js"></script>   
+    <script src="js/calculateReading.js"></script>
+    <script src="Reading/Sunday.js"></script> 
+    <script src="js/calculatebibleReads.js"></script>
+    <script src="Reading/DailySeason.js"></script>
+    <script src="Reading/DailyOrdinary1.js"></script>
+    <script src="Reading/DailyOrdinary2.js"></script>
+    <script src="Reading/SaintsBible.js"></script>
+    <script src="Reading/Optionsaint.js"></script>
+    <script src="js/secondfeast.js"></script> <!-- Thêm secondfeast.js vào -->
+    <script src="js/calculateOptionbibleReads.js"></script> 
 
 <body>
 
 <div class="calendar-header">
     Lịch Công Giáo
 </div>
+
+
 <div id="readingModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span> <!-- Thêm dấu "X" đóng modal -->
         <h3>Bài Đọc Ngày Lễ</h3>
+          <!-- Nút cố định dọc bên trái trong modal -->
+           <div class="vertical-buttons">
+            <button class="icon-button" onclick="increaseFontSize()">+</button>
+            <button class="icon-button" onclick="decreaseFontSize()">-</button>
+            <button class="icon-button" onclick="quitModal()">Close</button> <!-- Nút Quit -->
+            <button class="icon-button" onclick="boldText()">B</button> <!-- Nút Bold -->
+        </div>
         <div id="readingContent"></div>
-        <button class="close-btn" onclick="closeModal()">Đóng</button>
     </div>
 </div>
+
+
 
 <div id="modalOverlay" class="overlay" onclick="closeModal()"></div>
 
@@ -379,16 +480,32 @@ function displayDateInfo(date) {
 
     // Lấy thông tin lễ và bài đọc
     const feasts = calculateFeasts(year);
+    const secondFeasts = calculateSecondFeasts(year); // Lấy các lễ vọng
     const feast = getFeastForDay(selectedDate, feasts);
     document.getElementById("feast-info").innerHTML = feast ? formatFeastName(feast.name) : 'Không có lễ đặc biệt';
 
     // Lấy thông tin bài đọc từ hàm showfordayContent với định dạng ngày day/month/year
     const readingContent = showfordayContent(selectedDate)?.split('; ') || [];
-    const info = showfordayContentinfo(selectedDate)
+    const info = showfordayContentinfo(selectedDate);
     
     const solarDate = selectedDate.toISOString();
 
-    // Hiển thị 1 hàng ngang với các phần đậm và không đậm
+    // Hiển thị thông tin bài đọc
+    updateReadingInfo(info, readingContent, solarDate);
+
+                     
+// Tính toán và thêm lễ vọng (second feast)
+const secondFeast = getSecondFeastsForDate(selectedDate, secondFeasts); // Trả về một đối tượng hoặc null
+
+// Kiểm tra nếu secondFeast tồn tại và cập nhật thông tin
+document.getElementById("second-feast-info").innerHTML = secondFeast
+    ? formatFeastName(secondFeast.name) // Nếu có lễ vọng, hiển thị tên
+    : ''; // Nếu không có lễ vọng, trả về chuỗi rỗng
+
+}
+
+// Hàm để cập nhật thông tin bài đọc 
+function updateReadingInfo(info, readingContent, solarDate) {
     if (readingContent.length === 4) {
         document.getElementById("info").innerHTML = `<strong><em>${info}</em></strong>`;
         document.getElementById("reading1").innerHTML = `
@@ -403,28 +520,14 @@ function displayDateInfo(date) {
                 <strong>${readingContent[0] || ''}</strong> ${readingContent[1] || ''} 
                 <strong>${readingContent[2] || ''}
             </div>`;
-    } else {
-        // Trường hợp không có đủ dữ liệu
-        return;
     }
-
-    // Hiển thị các lễ vọng (second feasts)
-    const secondFeasts = getSecondFeastsForDate(day, month, year);
-    document.getElementById("second-feast-info").innerHTML = secondFeasts.length 
-        ? secondFeasts.map(secondFeast => formatFeastName(secondFeast.name)).join('<br>')
-        : '';
 }
 
-// Khi trang được tải, hiển thị thông tin ngày hôm nay
-window.onload = function() {
-    displayDateInfo();
-};
 
 // Khi trang được tải, hiển thị thông tin ngày hôm nay
 window.onload = function() {
     displayDateInfo();
 };
-
 
 // Hàm cập nhật thông tin khi chọn ngày từ input
 function getFeastForSelectedDate() {
@@ -435,23 +538,28 @@ function getFeastForSelectedDate() {
     }
     displayDateInfo(inputDate); // Cập nhật thông tin dựa trên ngày đã chọn
 }
-// hiển thị tuần 
+
+// Hiển thị tuần phụng vụ
 function displayWeekInfo() {
     const today = new Date();
     const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay())); // Chủ Nhật đầu tuần
-    let currentDay = new Date(startOfWeek);
-    let lastWeekNumber = -1; // Để lưu số tuần trước đó
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate() + 6); // Kết thúc vào Thứ Bảy
 
-    // Cập nhật nội dung của <span id="yearDisplay"> để hiển thị thông tin tuần
+    const year = startOfWeek.getFullYear();
+    const feasts = calculateFeasts(year); // Lấy các lễ trong năm
+    const secondFeasts = calculateSecondFeasts(year); // Lấy các lễ vọng
+
+    // Cập nhật hiển thị thông tin tuần
     const yearDisplayElement = document.getElementById('yearDisplay');
     const startDateString = `${startOfWeek.getDate()}/${startOfWeek.getMonth() + 1}/${startOfWeek.getFullYear()}`;
-    const endOfWeek = new Date(startOfWeek);
-    endOfWeek.setDate(startOfWeek.getDate() + 6);
     const endDateString = `${endOfWeek.getDate()}/${endOfWeek.getMonth() + 1}/${endOfWeek.getFullYear()}`;
     yearDisplayElement.textContent = `từ ngày ${startDateString} đến ${endDateString}`;
 
     const reportTableBody = document.getElementById('reportTableBody');
     reportTableBody.innerHTML = ''; // Xóa dữ liệu cũ trong bảng
+
+    let currentDay = new Date(startOfWeek); // Bắt đầu từ Chủ Nhật
 
     // Hiển thị thông tin cho từng ngày trong tuần
     for (let i = 0; i < 7; i++) {
@@ -459,20 +567,45 @@ function displayWeekInfo() {
         const month = currentDay.getMonth() + 1;
         const day = currentDay.getDate();
 
-        const feasts = calculateFeasts(year);
-        const chasuble = calculateChasuble(year).getChasubleForDay(currentDay);
+        // Lấy thông tin lễ, màu áo lễ và bài đọc cho ngày hiện tại
+        let feastAndReadingContent = '';
         const feast = getFeastForDay(currentDay, feasts);
-                // Tính số tuần hiện tại để thêm ngăn cách giữa các tuần
-        const currentWeekNumber = Math.ceil((currentDay.getDate() - currentDay.getDay() + 1) / 7);
-        if (currentWeekNumber !== lastWeekNumber && lastWeekNumber !== -1) {
-            const separatorRow = document.createElement('tr');
-            separatorRow.classList.add('week-separator');
-            const separatorCell = document.createElement('td');
-            separatorCell.colSpan = 4; // Số cột trong bảng
-            separatorRow.appendChild(separatorCell);
-            reportTableBody.appendChild(separatorRow);
+        const chasuble = calculateChasuble(year).getChasubleForDay(currentDay);
+
+        // Thêm thông tin về ngày lễ chính
+        if (feast) {
+            feastAndReadingContent += formatFeastName(feast.name) + '<br>';
+        } else {
+            feastAndReadingContent += 'Không có lễ đặc biệt<br>';
         }
-        lastWeekNumber = currentWeekNumber;
+
+        // Thêm bài đọc vào sau thông tin lễ
+        const readingContent = showfordayContent(currentDay); // Gọi hàm showfordayContent để lấy nội dung bài đọc
+            if (readingContent) {
+                feastAndReadingContent += `<div class="readable" onclick="showReadingContent('${currentDay.toISOString()}')">${readingContent}</div>`;
+            } else {
+                feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc
+                }
+        
+            // Tính toán và thêm lễ vọng (second feast)
+            const secondFeast = getSecondFeastsForDate(currentDay, secondFeasts);
+                if (secondFeast) {
+                feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>';
+                }
+
+            // Thêm bài đọc phụ vào sau phần ngày lễ
+                const reading1 = showOptionContent(currentDay); // Gọi hàm showOptionContent để tên bài đọc
+
+                if (reading1 && reading1 !== "1") {
+                    // Thay vì hiển thị "Click để xem bài đọc phụ", hiển thị tên bài đọc (reading1)
+                    feastAndReadingContent += `
+                        <div class="readable" onclick="showBibleOptionContent('${currentDay.toISOString()}')">
+                            ${reading1}
+                        </div>
+                    `;
+                } else {
+                    feastAndReadingContent += '';  // Nếu không có bài đọc
+                } 
 
         // Tạo hàng mới trong bảng
         const row = document.createElement('tr');
@@ -504,32 +637,12 @@ function displayWeekInfo() {
         chasubleCell.textContent = chasuble || 'Xanh';
         row.appendChild(chasubleCell);
 
-        // Ngày lễ và bài đọc (Feasts & Readings)
+        // Thông tin lễ và bài đọc
         const feastAndReadingCell = document.createElement('td');
-        let feastAndReadingContent = '';
-
-        // Nếu có ngày lễ, hiển thị tên lễ
-        if (feast) {
-            feastAndReadingContent += formatFeastName(feast.name) + '<br>';
-        } else {
-            feastAndReadingContent += 'Không có lễ đặc biệt<br>';
-        }
-        // Thêm bài đọc vào sau phần ngày lễ
-            const readingContent = showfordayContent(currentDay); // Gọi hàm showfordayContent để lấy nội dung bài đọc
-            if (readingContent) {
-                feastAndReadingContent += `<div class="readable" onclick="showReadingContent('${currentDay.toISOString()}')">${readingContent}</div>`;
-            } else {
-                feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc
-                }
-        
-        // Tính toán và thêm lễ vọng (second feast)
-        const secondFeasts = getSecondFeastsForDate(day, month, year);
-        secondFeasts.forEach(secondFeast => {
-            feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>'; 
-        });
         feastAndReadingCell.innerHTML = feastAndReadingContent;
         row.appendChild(feastAndReadingCell);
-             // Thêm hàng vào bảng
+
+        // Thêm hàng vào bảng
         reportTableBody.appendChild(row);
 
         // Chuyển sang ngày tiếp theo
@@ -537,12 +650,14 @@ function displayWeekInfo() {
     }
 }
 
+
 // Hiển thị tháng
 function displayMonthInfo() {
     const today = new Date();
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
     const daysInMonth = new Date(year, month, 0).getDate(); // Số ngày trong tháng
+    const secondFeasts = calculateSecondFeasts(year); // Lấy các lễ vọng
 
     // Cập nhật nội dung của <span id="yearDisplay"> thay vì xóa thẻ <h2>
     const yearDisplayElement = document.getElementById('yearDisplay');
@@ -618,25 +733,38 @@ function displayMonthInfo() {
             feastAndReadingContent += 'Không có lễ đặc biệt<br>';
         }
         // Thêm bài đọc vào sau phần ngày lễ
-            const readingContent = showfordayContent(currentDate); // Gọi hàm showfordayContent để lấy nội dung bài đọc
-  
+        const readingContent = showfordayContent(currentDate); // Gọi hàm showfordayContent để lấy nội dung bài đọc
             if (readingContent) {
                 feastAndReadingContent += `<div class="readable" onclick="showReadingContent('${currentDate.toISOString()}')">${readingContent}</div>`;
             } else {
                 feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc
                 }
         
-        // Tính toán và thêm lễ vọng (second feast)
-        const secondFeasts = getSecondFeastsForDate(day, month, year);
-        secondFeasts.forEach(secondFeast => {
-            feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>'; 
-        });
-        feastAndReadingCell.innerHTML = feastAndReadingContent;
-        row.appendChild(feastAndReadingCell);
-        // Thêm hàng vào bảng
-        reportTableBody.appendChild(row);
-    }
-}
+            // Tính toán và thêm lễ vọng (second feast)
+            const secondFeast = getSecondFeastsForDate(currentDate, secondFeasts);
+                if (secondFeast) {
+                feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>';
+                }
+
+            // Thêm bài đọc phụ vào sau phần ngày lễ
+                const reading1 = showOptionContent(currentDate); // Gọi hàm showOptionContent để tên bài đọc
+
+                if (reading1 && reading1 !== "1") {
+                    // Thay vì hiển thị "Click để xem bài đọc phụ", hiển thị tên bài đọc (reading1)
+                    feastAndReadingContent += `
+                        <div class="readable" onclick="showBibleOptionContent('${currentDate.toISOString()}')">
+                            ${reading1}
+                        </div>
+                    `;
+                } else {
+                    feastAndReadingContent += '';  // Nếu không có bài đọc
+                }  
+            feastAndReadingCell.innerHTML = feastAndReadingContent;
+                row.appendChild(feastAndReadingCell);
+                // Thêm hàng vào bảng
+                reportTableBody.appendChild(row);
+            }
+        }
 
 
 // Hàm để sinh báo cáo cho năm đã nhập
@@ -659,6 +787,7 @@ document.getElementById('yearDisplay').textContent = year + ' Năm ' + (ABC) ;
     // Lấy thông tin lễ và bài đọc
     const chasubleData = calculateChasuble(year); // Gọi hàm calculateChasuble
     const feasts = calculateFeasts(year); // Lấy các ngày lễ
+    const secondFeasts = calculateSecondFeasts(year); // Lấy các lễ vọng
     const feast = getFeastForDay(today, feasts);
     const readingDateString = `${year}-${month}-${day}`;
 
@@ -727,141 +856,200 @@ document.getElementById('yearDisplay').textContent = year + ' Năm ' + (ABC) ;
             if (feast) {
                 feastAndReadingContent += formatFeastName(feast.name) + '<br>';
             }
+       
 
             // Thêm bài đọc vào sau phần ngày lễ
-                const readingContent = showfordayContent(solarDate); // Gọi hàm showfordayContent để lấy nội dung bài đọc
+            const readingContent = showfordayContent(solarDate); // Gọi hàm showfordayContent để lấy nội dung bài đọc
                 if (readingContent) {
                     feastAndReadingContent += `<div class="readable" onclick="showReadingContent('${solarDate.toISOString()}')">${readingContent}</div>`;
                 } else {
                     feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc
                     }
             
-            // Tính toán và thêm lễ vọng (second feast)
-            const secondFeasts = getSecondFeastsForDate(day, month, year);
-            secondFeasts.forEach(secondFeast => {
-                feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>'; 
-            });
-            feastAndReadingCell.innerHTML = feastAndReadingContent;
-            row.appendChild(feastAndReadingCell);
+                // Tính toán và thêm lễ vọng (second feast)
+                const secondFeast = getSecondFeastsForDate(solarDate, secondFeasts);
+                    if (secondFeast) {
+                    feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>';
+                    }
 
-            reportTableBody.appendChild(row);
+                // Thêm bài đọc phụ vào sau phần ngày lễ
+                    const reading1 = showOptionContent(solarDate); // Gọi hàm showOptionContent để tên bài đọc
+
+                    if (reading1 && reading1 !== "1") {
+                        // Thay vì hiển thị "Click để xem bài đọc phụ", hiển thị tên bài đọc (reading1)
+                        feastAndReadingContent += `
+                            <div class="readable" onclick="showBibleOptionContent('${solarDate.toISOString()}')">
+                                ${reading1}
+                            </div>
+                        `;
+                    } else {
+                        feastAndReadingContent += '';  // Nếu không có bài đọc
+                    }         
+          
+                        feastAndReadingCell.innerHTML = feastAndReadingContent;
+
+                        row.appendChild(feastAndReadingCell);
+
+                        reportTableBody.appendChild(row);
+                    }
+                }
+            }
+
+                // các hàm phụ trợ cho hiển thị
+                        // xuống 1.5 hàng khi gặp ký tự trong bài đọc
+                        function formatWithLineBreaks(text) {
+                            if (!text) return ''; // Kiểm tra chuỗi trống
+                            // Sử dụng div với line-height để tạo khoảng cách dòng lớn hơn
+                            return text.replace(/(\r\n|\n|\r)/g, '<div style="line-height: 2;"></div>'); 
+                        }
+
+
+                        // Hàm phụ trợ để định dạng từng bài đọc (bài đọc I, II, Tin Mừng)
+                        function formatReadingPart(title, readingPart) {
+                            if (!readingPart) return `<strong style="color: red;"> ${title}:</strong> Not available<br><br>`;
+                            
+                            return `
+                                <br><strong style="color: red;">${title}:</strong> ${formatWithLineBreaks(readingPart.excerpt)} <br>
+                                <br><em>${formatWithLineBreaks(readingPart.info || '')}</em><br>
+                                <br><strong>${formatWithLineBreaks(readingPart.title || '')}</strong><br>
+                                <br>${formatWithLineBreaks(readingPart.content || '')}<br>
+                                <br><strong>${formatWithLineBreaks(readingPart.end || '')}</strong><br><br>
+                            `;
+                        }
+
+                        // Hàm phụ trợ để định dạng phần Đáp ca
+                        function formatPsalms(psalms) {
+                            if (!psalms) return '<strong>Đáp ca:</strong> Not available<br><br>';
+                            
+                            return `
+                                <strong style="color: red;"> Đáp ca:</strong> ${formatWithLineBreaks(psalms.excerpt)} <br>
+                                <br><strong>${formatWithLineBreaks(psalms.response)}</strong><br>
+                                <br><em>${psalms.verses.map(formatWithLineBreaks).join('<br><br>')}</em><br><br>
+                            `;
+                        }
+
+                        // Hàm phụ trợ để định dạng phần Xướng trước Tin Mừng
+                        function formatAlleluia(alleluia) {
+                            if (!alleluia) return '<strong style="color: red;">Xướng trước Tin Mừng:</strong> Not available<br><br>';
+                            
+                            return `
+                                <strong style="color: red;"> Xướng trước Tin Mừng:</strong> ${formatWithLineBreaks(alleluia.verse)} <br>
+                                <br><strong>${formatWithLineBreaks(alleluia.content)}</strong><br><br>
+                            `;
+                        }
+      
+      // Các Hàm liên quan bài đọc chính
+        // Hàm hiển thị nội dung bài đọc chính
+        function showReadingContent(dateString) {
+            const date = new Date(dateString);  // Chuyển đổi chuỗi thành đối tượng Date
+            const reading = getBibleByFourDigitCode(date);  // Lấy bài đọc
+            const year = date.getFullYear();
+            const feasts = calculateFeasts(year); // Lấy danh sách lễ
+            updateModalTitle(date, feasts); // Cập nhật tiêu đề modal
+            if (reading) {
+                // Biến lưu trữ nội dung bài đọc với các điều kiện kiểm tra từng phần
+                const readingContent = `
+                    ${formatReadingPart('Bài Đọc I', reading.firstReading)}
+                    ${formatPsalms(reading.psalms)}
+                    ${reading.secondReading ? formatReadingPart('Bài Đọc II', reading.secondReading) : ''} 
+                    ${formatAlleluia(reading.alleluia)}
+                    ${formatReadingPart('Tin Mừng', reading.gospel)}
+                `;
+
+                // Hiển thị nội dung bài đọc trong phần tử HTML có ID là "readingContent"
+                document.getElementById("readingContent").innerHTML = readingContent;
+            } else {
+                // Không có bài đọc, hiển thị thông báo
+                document.getElementById("readingContent").innerHTML = "Không có bài đọc.";
+            }
+
+            // Hiển thị modal và overlay
+            document.getElementById("readingModal").style.display = "block"; 
+            document.getElementById("modalOverlay").style.display = "block"; 
+        }
+        // Hàm hiển thị tên bài đọc chính
+        function showfordayContent(date) {
+            const reading = getBibleByFourDigitCode(date); // Gọi hàm để lấy bài đọc
+            if (reading) {
+                // Loại bỏ (Năm I) hoặc (Năm II) bất kể chữ hoa hay chữ thường
+                const reading1 = reading.firstReading ? `${reading.firstReading.excerpt.replace(/\(năm i\)|\(năm ii\)/gi, '').trim()}; ` : 'Không có Bài Đọc I';
+                const psalm = reading.psalms ? `${reading.psalms.excerpt}; ` : 'Không có Thánh Vịnh';
+                const reading2 = reading.secondReading ? `${reading.secondReading.excerpt}; ` : '';
+                const gospel = reading.gospel ? `${reading.gospel.excerpt}` : 'Không có Tin Mừng';
+
+                // Kết hợp tất cả các phần vào một chuỗi
+                const readingContent = `${reading1}${psalm}${reading2}${gospel}`;
+
+
+                // Trả về chuỗi nội dung bài đọc
+                return readingContent;
+            } else {
+                return; // Trả về chuỗi thông báo
         }
     }
-}
+      // Các hàm liên quan bài đọc phụ
+          // Hàm hiển thị nội dung bài đọc phụ
+            function showBibleOptionContent(dateString) {
+                const date = new Date(dateString);
+                const reading = getBibleByOptionDigitCode(date);  // Lấy bài đọc
+                const year = date.getFullYear();
+                const feasts = calculateFeasts(year); // Lấy danh sách lễ
+                updateModalTitle1(date, feasts); // Cập nhật tiêu đề modal
 
-// xuống 1.5 hàng khi gặp ký tự trong bài đọc
-function formatWithLineBreaks(text) {
-    if (!text) return ''; // Kiểm tra chuỗi trống
-    // Sử dụng div với line-height để tạo khoảng cách dòng lớn hơn
-    return text.replace(/(\r\n|\n|\r)/g, '<div style="line-height: 2;"></div>'); 
-}
+                if (reading) {
+                    // Biến lưu trữ nội dung bài đọc với các điều kiện kiểm tra từng phần
+                    const readingContent = `
+                        ${formatReadingPart('Bài Đọc I', reading.firstReading)}
+                        ${formatPsalms(reading.psalms)}
+                        ${reading.secondReading ? formatReadingPart('Bài Đọc II', reading.secondReading) : ''} 
+                        ${formatAlleluia(reading.alleluia)}
+                        ${formatReadingPart('Tin Mừng', reading.gospel)}
+                   `;
 
+                    // Hiển thị nội dung bài đọc trong phần tử HTML có ID là "readingContent"
+                    document.getElementById("readingContent").innerHTML = readingContent;
+                } else {
+                    return "1";
+                }
 
-// Hàm phụ trợ để định dạng từng bài đọc (bài đọc I, II, Tin Mừng)
-function formatReadingPart(title, readingPart) {
-    if (!readingPart) return `<strong style="color: red;"> ${title}:</strong> Not available<br><br>`;
-    
-    return `
-<br><strong style="color: red;">${title}:</strong> ${formatWithLineBreaks(readingPart.excerpt)} <br>
-        <br><em>${formatWithLineBreaks(readingPart.info || '')}</em><br>
-        <br><strong>${formatWithLineBreaks(readingPart.title || '')}</strong><br>
-        <br>${formatWithLineBreaks(readingPart.content || '')}<br>
-        <br><strong>${formatWithLineBreaks(readingPart.end || '')}</strong><br><br>
-    `;
-}
+                // Hiển thị modal và overlay
+                document.getElementById("readingModal").style.display = "block"; 
+                document.getElementById("modalOverlay").style.display = "block"; 
 
-// Hàm phụ trợ để định dạng phần Đáp ca
-function formatPsalms(psalms) {
-    if (!psalms) return '<strong>Đáp ca:</strong> Not available<br><br>';
-    
-    return `
-        <strong style="color: red;"> Đáp ca:</strong> ${formatWithLineBreaks(psalms.excerpt)} <br>
-        <br><strong>${formatWithLineBreaks(psalms.response)}</strong><br>
-        <br><em>${psalms.verses.map(formatWithLineBreaks).join('<br><br>')}</em><br><br>
-    `;
-}
+            }
 
-// Hàm phụ trợ để định dạng phần Xướng trước Tin Mừng
-function formatAlleluia(alleluia) {
-    if (!alleluia) return '<strong style="color: red;">Xướng trước Tin Mừng:</strong> Not available<br><br>';
-    
-    return `
-        <strong style="color: red;"> Xướng trước Tin Mừng:</strong> ${formatWithLineBreaks(alleluia.verse)} <br>
-        <br><strong>${formatWithLineBreaks(alleluia.content)}</strong><br><br>
-    `;
-}
+                // Hàm hiển thị tên bài đọc phụ
+            function showOptionContent(date) {
+                const reading = getBibleByOptionDigitCode(date); // tại sao báo lỗi hàm chưa được định nghĩa???
+               if (reading) {
+                    const reading1 = reading.firstReading ? `${reading.firstReading.excerpt}; ` : 'Không có Bài Đọc I';
+                    const psalm = reading.psalms ? `${reading.psalms.excerpt}; ` : 'Không có Thánh Vịnh';
+                    const reading2 = reading.secondReading ? `${reading.secondReading.excerpt}; ` : '';
+                    const gospel = reading.gospel ? `${reading.gospel.excerpt}` : '';
 
-// Hàm hiển thị nội dung bài đọc
-function showReadingContent(dateString) {
-    const date = new Date(dateString);  // Chuyển đổi chuỗi thành đối tượng Date
-    const reading = getBibleByFourDigitCode(date);  // Lấy bài đọc
-    if (reading) {
-        // Biến lưu trữ nội dung bài đọc với các điều kiện kiểm tra từng phần
-        const readingContent = `
-            ${formatReadingPart('Bài Đọc I', reading.firstReading)}
-            ${formatPsalms(reading.psalms)}
-            ${reading.secondReading ? formatReadingPart('Bài Đọc II', reading.secondReading) : ''} 
-            ${formatAlleluia(reading.alleluia)}
-            ${formatReadingPart('Tin Mừng', reading.gospel)}
-        `;
-
-        // Hiển thị nội dung bài đọc trong phần tử HTML có ID là "readingContent"
-        document.getElementById("readingContent").innerHTML = readingContent;
-    } else {
-        // Không có bài đọc, hiển thị thông báo
-        document.getElementById("readingContent").innerHTML = "Không có bài đọc.";
-    }
-
-    // Hiển thị modal và overlay
-    document.getElementById("readingModal").style.display = "block"; 
-    document.getElementById("modalOverlay").style.display = "block"; 
-}
-// Hàm hiển thị tên bài đọc
-function showfordayContent(date) {
-    const reading = getBibleByFourDigitCode(date); // Gọi hàm để lấy bài đọc
-    if (reading) {
-        // Loại bỏ (Năm I) hoặc (Năm II) bất kể chữ hoa hay chữ thường
-        const reading1 = reading.firstReading ? `${reading.firstReading.excerpt.replace(/\(năm i\)|\(năm ii\)/gi, '').trim()}; ` : 'Không có Bài Đọc I';
-        const psalm = reading.psalms ? `${reading.psalms.excerpt}; ` : 'Không có Thánh Vịnh';
-        const reading2 = reading.secondReading ? `${reading.secondReading.excerpt}; ` : '';
-        const gospel = reading.gospel ? `${reading.gospel.excerpt}` : 'Không có Tin Mừng';
-
-        // Kết hợp tất cả các phần vào một chuỗi
-        const readingContent = `${reading1}${psalm}${reading2}${gospel}`;
+                    // Kết hợp tất cả các phần vào một chuỗi
+                    const readingContent = `${reading1}${psalm}${reading2}${gospel}`;
+                     return readingContent;
+                } else {
+                    return '';
+                }
+            }
 
 
-        // Trả về chuỗi nội dung bài đọc
-        return readingContent;
-    } else {
-        return; // Trả về chuỗi thông báo
-    }
-}
-function showfordayContentinfo(date) {
-    const reading = getBibleByFourDigitCode(date); // Gọi hàm để lấy bài đọc
-    if (reading) {
-       
-        const Infogospel = reading.gospel ? `${reading.gospel.info}` : '';
-         // Trả về chuỗi nội dung bài đọc
-        return Infogospel;
-    } else {
-        return; // Trả về chuỗi thông báo
-    }
-}
 
-        // Hàm đóng modal
-        function closeModal() {
-            document.getElementById("readingModal").style.display = "none";
-            document.getElementById("modalOverlay").style.display = "none";
+        // câu thánh kinh info cho ngày hiển thị
+        function showfordayContentinfo(date) {
+            const reading = getBibleByFourDigitCode(date); // Gọi hàm để lấy bài đọc
+            if (reading) {
+            
+                const Infogospel = reading.gospel ? `${reading.gospel.info}` : '';
+                // Trả về chuỗi nội dung bài đọc
+                return Infogospel;
+            } else {
+                return; // Trả về chuỗi thông báo
+            }
         }
-  // Hàm đóng modal
-  function closeModal() {
-       document.getElementById("readingModal").style.display = "none";
-       document.getElementById("modalOverlay").style.display = "none";
-   }
-// Thêm sự kiện cho nút "X" đóng modal
-document.querySelector('.close').onclick = function() {
-    closeModal();
-}
+
 
         // Hàm định dạng tên lễ theo yêu cầu
         function formatFeastName(feastName) {
@@ -889,7 +1077,7 @@ document.querySelector('.close').onclick = function() {
             return feastName;
         }
 
-                // Hàm chuyển đổi màu Chasuble thành lớp CSS cho màu nền
+        // Hàm chuyển đổi màu Chasuble thành lớp CSS cho màu nền
         function getChasubleClass(chasuble) {
             switch (chasuble) {
                 case 'Tr': return 'bg-Tr'; // Màu trắng
@@ -923,25 +1111,105 @@ document.querySelector('.close').onclick = function() {
             }
             return null;
         }
-        // Hàm lấy lễ vọng từ secondfeast.js
-        function getSecondFeastsForDate(day, month, year) {
-            const secondFeasts = calculateSecondFeasts(year);  // Giả sử hàm này đã có trong secondfeast.js
-            return secondFeasts.filter(feast => 
-                feast.date.getDate() === day && 
-                feast.date.getMonth() + 1 === month
-            );
+        function getSecondFeastsForDate(date, secondFeasts) {
+            for (let secondFeast of secondFeasts) {
+                if (secondFeast.date &&
+                    date.getDate() === secondFeast.date.getDate() &&
+                    date.getMonth() === secondFeast.date.getMonth() &&
+                    date.getFullYear() === secondFeast.date.getFullYear()) {
+                    return secondFeast; // Trả về lễ vọng nếu ngày khớp
+                }
+            }
+            return null; // Trả về null nếu không có lễ vọng
         }
 
-const liturgicalYears = ['A', 'B', 'C'];
+                // Hàm cập nhật thông tin ngày tháng và tên lễ trong modal
+            function updateModalTitle(date, feasts) {
+                const day = date.getDate();
+                const month = date.getMonth() + 1; // Tháng trong JavaScript bắt đầu từ 0
+                const year = date.getFullYear();
 
-// Hàm tính toán và trả về chu kỳ năm phụng vụ (A, B hoặc C)
-function getLiturgicalYear(year) {
-    const startYear = 2020; // Năm bắt đầu cho chu kỳ
-    const cycleLength = 3;  // Chu kỳ lặp lại mỗi 3 năm
-    const yearOffset = year - startYear;
-    const cycle = (yearOffset % cycleLength + cycleLength) % cycleLength;
-    return liturgicalYears[cycle];
+                // Lấy tên lễ từ danh sách feasts cho ngày hiện tại
+                const feast = getFeastForDay(date, feasts);
+                const feastName = feast ? feast.name : 'Không có lễ đặc biệt';
+
+                // Cập nhật thẻ <h3> trong modal
+                document.querySelector("#readingModal h3").textContent = `Bài Đọc Ngày: ${day}/${month}/${year} - ${feastName}`;
+            }
+            function updateModalTitle1(date, secondFeasts, feasts) {
+                    const day = date.getDate();
+                    const month = date.getMonth() + 1; // Tháng trong JavaScript bắt đầu từ 0
+                    const year = date.getFullYear();
+
+                    // Lấy các lễ vọng
+                    const secondFeast1 = calculateSecondFeasts(year); 
+
+                    // Lấy lễ vọng từ danh sách secondFeasts cho ngày hiện tại
+                    const secondFeast = getSecondFeastsForDate(date, secondFeast1);
+                    // Nếu có lễ vọng, lấy tên lễ vọng; nếu không, hiển thị lễ chính
+                    let feastName;
+                    if (secondFeast && secondFeast.name) {
+                        feastName = secondFeast.name; // Lấy tên lễ vọng
+                    } else {
+                        const feasts = calculateFeasts(year);
+                        const feast = getFeastForDay(date, feasts); // Lấy lễ chính nếu không có lễ vọng
+                        feastName = feast ? feast.name : 'Không có lễ đặc biệt';
+                        feastName = feastName.replace(/Thứ Hai\.|Thứ Ba\.|Thứ Tư\.|Thứ Năm\.|Thứ Sáu\.|Thứ Bảy\./g, '').trim();
+
+                        // Thêm chuỗi "Về vị thánh" vào trước tên lễ chính
+                        feastName = "Về Lễ " + feastName;
+                    }
+
+                    // Cập nhật thẻ <h3> trong modal
+                    document.querySelector("#readingModal h3").textContent = `Bài Đọc Ngày: ${day}/${month}/${year} - ${feastName}`;
+                }
+
+// Tăng kích thước font
+function increaseFontSize() {
+    var content = document.getElementById('readingContent');
+    var currentSize = window.getComputedStyle(content, null).getPropertyValue('font-size');
+    var newSize = parseFloat(currentSize) + 2;
+    content.style.fontSize = newSize + 'px';
 }
+
+// Giảm kích thước font
+function decreaseFontSize() {
+    var content = document.getElementById('readingContent');
+    var currentSize = window.getComputedStyle(content, null).getPropertyValue('font-size');
+    var newSize = parseFloat(currentSize) - 2;
+    content.style.fontSize = newSize + 'px';
+}
+
+// Hàm thoát khỏi modal (Quit)
+function quitModal() {
+    // Ẩn modal và overlay
+    document.getElementById('readingModal').style.display = 'none';
+    document.getElementById('modalOverlay').style.display = 'none';
+}
+
+// Hàm bôi đậm nội dung (Bold)
+function boldText() {
+    // Lấy phần nội dung của modal
+    var content = document.getElementById('readingContent');
+    
+    // Kiểm tra nếu nội dung đã được bôi đậm hay chưa
+    if (content.style.fontWeight === 'bold') {
+        content.style.fontWeight = 'normal'; // Nếu đã đậm thì chuyển về bình thường
+    } else {
+        content.style.fontWeight = 'bold'; // Nếu chưa đậm thì bôi đậm
+    }
+}
+
+            const liturgicalYears = ['A', 'B', 'C'];
+
+            // Hàm tính toán và trả về chu kỳ năm phụng vụ (A, B hoặc C)
+            function getLiturgicalYear(year) {
+                const startYear = 2020; // Năm bắt đầu cho chu kỳ
+                const cycleLength = 3;  // Chu kỳ lặp lại mỗi 3 năm
+                const yearOffset = year - startYear;
+                const cycle = (yearOffset % cycleLength + cycleLength) % cycleLength;
+                return liturgicalYears[cycle];
+            }
 
 </script>
 

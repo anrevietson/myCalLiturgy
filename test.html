@@ -237,6 +237,9 @@
         <input type="date" id="datePicker" onchange="selectDay()">
     </div>
 
+    <!-- Nút để mở chế độ toàn màn hình -->
+    <button onclick="openFullscreen()">Chuyển sang Toàn Màn Hình</button>
+
 </div>
 
 <!-- Phần Footer -->
@@ -318,6 +321,20 @@
 
         // Cập nhật các thông tin ngày hiện tại
         selectDay();
+    }
+
+    // Hàm mở chế độ toàn màn hình
+    function openFullscreen() {
+        const elem = document.documentElement; // Chọn toàn bộ tài liệu để full màn hình
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { // Firefox
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { // IE/Edge
+            elem.msRequestFullscreen();
+        }
     }
 
     // Tự động hiển thị ngày hôm nay khi mở trang lần đầu

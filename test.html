@@ -123,6 +123,37 @@
             background-color: #ff9999;
         }
 
+        /* Lịch tháng */
+        .month-calendar {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .month-calendar table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .month-calendar th, .month-calendar td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .month-calendar th {
+            background-color: #ff0000;
+            color: white;
+        }
+
+        .month-calendar td {
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .month-calendar td:hover {
+            background-color: #f0f0f0;
+        }
+
         @media (max-width: 768px) {
             .calendar-wrapper {
                 width: 90%;
@@ -176,30 +207,132 @@
 
 <div class="calendar-wrapper">
 
-    <!-- Hình ảnh và nội dung lịch -->
+    <!-- Nội dung của một trang lịch -->
     <div class="image-container">
         <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu">
     </div>
-    <div class="details">
-        <p><strong>THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>
-        <p><i>Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21</i></p>
-        <p class="scripture">"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng." (Lc 2,9)</p>
+    <div class="details" id="detailsSection">
+        <p><strong id="saintName">THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>
+        <p><i id="readings">Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21</i></p>
+        <p class="scripture" id="scriptureQuote">"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng." (Lc 2,9)</p>
     </div>
     <div class="reading">
-        <div class="weekday">THỨ HAI</div>
-        <div class="lunar-date">AL: 1/2</div>
+        <div class="weekday" id="weekday">THỨ HAI</div>
+        <div class="lunar-date" id="lunarDate">AL: 1/2</div>
     </div>
-    <p class="date-large">1</p>
-    <div class="year-info">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
+    <p class="date-large" id="dateLarge">1</p>
+    <div class="year-info" id="yearInfo">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
+
+    <!-- Lịch tháng -->
+    <div class="month-calendar" id="monthCalendar">
+        <table>
+            <thead>
+                <tr>
+                    <th>CN</th>
+                    <th>T2</th>
+                    <th>T3</th>
+                    <th>T4</th>
+                    <th>T5</th>
+                    <th>T6</th>
+                    <th>T7</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td onclick="selectDay(1)">1</td>
+                    <td onclick="selectDay(2)">2</td>
+                    <td onclick="selectDay(3)">3</td>
+                    <td onclick="selectDay(4)">4</td>
+                    <td onclick="selectDay(5)">5</td>
+                    <td onclick="selectDay(6)">6</td>
+                </tr>
+                <tr>
+                    <td onclick="selectDay(7)">7</td>
+                    <td onclick="selectDay(8)">8</td>
+                    <td onclick="selectDay(9)">9</td>
+                    <td onclick="selectDay(10)">10</td>
+                    <td onclick="selectDay(11)">11</td>
+                    <td onclick="selectDay(12)">12</td>
+                    <td onclick="selectDay(13)">13</td>
+                </tr>
+                <!-- Các hàng khác -->
+            </tbody>
+        </table>
+    </div>
 
 </div>
 
 <!-- Phần Footer -->
 <footer>
-    <button onclick="window.location.href='page1.html'">Trang 1</button>
-    <button onclick="window.location.href='page2.html'">Trang 2</button>
-    <button onclick="window.location.href='page3.html'">Trang 3</button>
+    <button onclick="toggleCalendar()">Chọn Ngày</button>
 </footer>
+
+<script>
+    let isMonthView = false;
+
+    // Hàm để chuyển đổi giữa lịch ngày và lịch tháng
+    function toggleCalendar() {
+        const monthCalendar = document.getElementById("monthCalendar");
+        if (isMonthView) {
+            monthCalendar.style.display = "none"; // Ẩn lịch tháng
+        } else {
+            monthCalendar.style.display = "block"; // Hiển thị lịch tháng
+        }
+        isMonthView = !isMonthView; // Chuyển trạng thái
+    }
+
+    // Hàm để chọn một ngày trong tháng
+    function selectDay(day) {
+        const saintName = document.getElementById("saintName");
+        const readings = document.getElementById("readings");
+        const scriptureQuote = document.getElementById("scriptureQuote");
+        const weekday = document.getElementById("weekday");
+        const lunarDate = document.getElementById("lunarDate");
+        const dateLarge = document.getElementById("dateLarge");
+        const yearInfo = document.getElementById("yearInfo");
+
+        // Giả lập thông tin của các ngày
+        const daysData = {
+            1: {
+                saint: "THÁNH MARIA, MẸ THIÊN CHÚA",
+                readings: "Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21",
+                scripture: '"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng." (Lc 2,9)',
+                weekday: "THỨ HAI",
+                lunarDate: "AL: 1/2",
+                yearInfo: "THÁNG MƯỜI MỘT - NĂM QUÝ MÃO"
+            },
+            2: {
+                saint: "THÁNH PHÊRÔ, TÔNG ĐỒ",
+                readings: "Cv 12,1-11; Tv 34,2-9; 2 Tm 4,6-8.17-18; Mt 16,13-19",
+                scripture: '"Con là Đá, và trên Đá này, Thầy sẽ xây Hội thánh của Thầy." (Mt 16,18)',
+                weekday: "THỨ BA",
+                lunarDate: "AL: 2/2",
+                yearInfo: "THÁNG MƯỜI MỘT - NĂM QUÝ MÃO"
+            },
+            3: {
+                saint: "THÁNH GIOAN, TÔNG ĐỒ",
+                readings: "1 Ga 1,1-4; Tv 96,1-2.5-6.11-12; Ga 20,2-8",
+                scripture: '"Người môn đệ được Chúa Giêsu yêu mến." (Ga 20,2)',
+                weekday: "THỨ TƯ",
+                lunarDate: "AL: 3/2",
+                yearInfo: "THÁNG MƯỜI MỘT - NĂM QUÝ MÃO"
+            }
+        };
+
+        // Cập nhật thông tin hiển thị theo ngày đã chọn
+        saintName.textContent = daysData[day].saint;
+        readings.textContent = daysData[day].readings;
+        scriptureQuote.textContent = daysData[day].scripture;
+        weekday.textContent = daysData[day].weekday;
+        lunarDate.textContent = daysData[day].lunarDate;
+        dateLarge.textContent = day;
+        yearInfo.textContent = daysData[day].yearInfo;
+
+        // Ẩn lịch tháng sau khi chọn ngày
+        toggleCalendar();
+    }
+</script>
 
 </body>
 </html>

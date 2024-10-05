@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Trang 1 - Lịch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .calendar-container {
+            max-width: 380px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            border: 5px solid #0088ff; /* Viền ngoài */
+        }
+
+        header {
+            text-align: center;
+            background-color: #00a2ff;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* Hình ảnh mở rộng kích thước 200x200 px và thêm viền */
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border: 8px solid gold; /* Màu viền vàng */
+        }
+
+        /* Phần thông tin 3 hàng */
+        .details {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        .details strong {
+            font-size: 18px;
+        }
+
+        .scripture {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #87CEEB; /* Nền xanh da trời */
+            color: white;
+            border-radius: 10px;
+            font-style: italic;
+            text-align: justify;
+            font-size: 15px;
+        }
+
+        /* Thứ Hai và ngày Âm lịch căn chỉnh cân đối */
+        .reading {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px; /* Thêm padding để căn giữa đẹp hơn */
+        }
+
+        .weekday {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2196F3; /* Màu xanh cho Thứ Hai */
+        }
+
+        /* Chữ AL: 1/2 (ngày âm lịch) bên phải */
+        .lunar-date {
+            font-size: 20px;
+            font-weight: normal;
+            color: #ff0000;
+        }
+
+        /* Số 01 làm nhỏ lại */
+        .date-large {
+            font-size: 120px; /* Đã làm nhỏ lại */
+            color: red;
+            text-align: center;
+            margin: 0;
+            line-height: 0.9;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Làm chữ số 1 nổi bật */
+        }
+
+        .year-info {
+            font-size: 18px;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* Căn chỉnh THÁNG MƯỜI MỘT và NĂM QUÝ MÃO */
+        .year-info p:first-child {
+            order: 2;
+        }
+
+        .year-info p:last-child {
+            order: 1;
+        }
+
+        /* Footer để chuyển trang */
+        footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        footer button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #2196F3;
+            color: white;
+            cursor: pointer;
+        }
+
+        footer button:hover {
+            background-color: #005f9e;
+        }
+
+        /* Media Queries cho mobile */
+        @media (max-width: 768px) {
+            .calendar-container {
+                width: 90%;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            .details {
+                font-size: 14px;
+            }
+
+            .details strong {
+                font-size: 16px;
+            }
+
+            .scripture {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .reading .weekday, .lunar-date {
+                font-size: 18px;
+            }
+
+            .date-large {
+                font-size: 100px; /* Điều chỉnh cho mobile */
+            }
+
+            .image-container img {
+                width: 150px;
+                height: 150px;
+                border: 6px solid gold; /* Đổi kích thước viền cho màn hình nhỏ */
+            }
+
+            .year-info {
+                font-size: 16px;
+            }
+
+            footer button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Phần Header hiển thị Lịch Phụng Vụ Công Giáo - Năm B -->
+<header>
+    LỊCH PHỤNG VỤ CÔNG GIÁO - Năm B
+</header>
+
+<div class="calendar-container">
+
+    <!-- Hình ảnh 200x200 nằm trên cùng -->
+    <div class="image-container">
+        <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu">
+    </div>
+
+    <!-- Thông tin 3 hàng -->
+    <div class="details">
+        <p><strong>THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>
+        <p><i>Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21</i></p>
+        <!-- Câu có nền xanh da trời -->
+        <p class="scripture">"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng." (Lc 2,9)</p>
+    </div>
+
+    <!-- Thứ Hai và Ngày Âm Lịch (AL: 1/2) cùng hàng -->
+    <div class="reading">
+        <div class="weekday">THỨ HAI</div>
+        <div class="lunar-date">AL: 1/2</div>
+    </div>
+
+    <!-- Số 01 nhỏ hơn nằm dưới AL: 1/2 -->
+    <p class="date-large">1</p>
+
+    <!-- Thông tin năm và tháng đã đổi vị trí -->
+    <div class="year-info">
+        <p>THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</p>
+    </div>
+</div>
+
+<!-- Phần Footer để chọn các trang -->
+<footer>
+    <button onclick="window.location.href='page1.html'">Trang 1</button>
+    <button onclick="window.location.href='page2.html'">Trang 2</button>
+    <button onclick="window.location.href='page3.html'">Trang 3</button>
+</footer>
+
+</body>
+</html>

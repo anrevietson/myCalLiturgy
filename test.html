@@ -21,21 +21,25 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: relative;
-            border: 5px solid #0088ff; /* Viền ngoài */
         }
 
-        header {
+        header, footer {
             text-align: center;
-            background-color: #00a2ff;
+            background-color: #ff0000;
             color: white;
             padding: 10px;
             border-radius: 10px;
-            margin-bottom: 20px;
             font-size: 22px;
             font-weight: bold;
         }
 
-        /* Hình ảnh mở rộng kích thước 200x200 px và thêm viền */
+        /* Ngăn cách chân trang với đầu trang */
+        footer {
+            margin-top: 30px;
+            border-top: 5px solid #cccccc; /* Thêm ngăn cách giữa các phần */
+        }
+
+        /* Hình ảnh không còn bo viền */
         .image-container {
             text-align: center;
             margin-bottom: 20px;
@@ -45,8 +49,7 @@
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            border: 8px solid gold; /* Màu viền vàng */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Không còn viền */
         }
 
         /* Phần thông tin 3 hàng */
@@ -121,25 +124,19 @@
             order: 1;
         }
 
-        /* Footer để chuyển trang */
-        footer {
-            margin-top: 30px;
-            text-align: center;
-        }
-
         footer button {
             padding: 10px 20px;
             margin: 5px;
             font-size: 16px;
             border: none;
             border-radius: 5px;
-            background-color: #2196F3;
-            color: white;
+            background-color: white;
+            color: #ff0000;
             cursor: pointer;
         }
 
         footer button:hover {
-            background-color: #005f9e;
+            background-color: #ff9999;
         }
 
         /* Media Queries cho mobile */
@@ -174,7 +171,7 @@
             .image-container img {
                 width: 150px;
                 height: 150px;
-                border: 6px solid gold; /* Đổi kích thước viền cho màn hình nhỏ */
+                /* Không cần viền */
             }
 
             .year-info {
@@ -197,7 +194,7 @@
 
 <div class="calendar-container">
 
-    <!-- Hình ảnh 200x200 nằm trên cùng -->
+    <!-- Hình ảnh không còn bo viền, kích thước 200x200 -->
     <div class="image-container">
         <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu">
     </div>
@@ -225,7 +222,7 @@
     </div>
 </div>
 
-<!-- Phần Footer để chọn các trang -->
+<!-- Phần Footer giống Header để chọn các trang -->
 <footer>
     <button onclick="window.location.href='page1.html'">Trang 1</button>
     <button onclick="window.location.href='page2.html'">Trang 2</button>

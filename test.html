@@ -7,146 +7,193 @@
     <title>Trang Lịch với Hiệu Ứng</title>
     <style>
         html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Đảm bảo không có thanh cuộn */
-}
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
 
-.container {
-    width: 100%;
-    max-width: 400px;
-    height: 100%;
-    max-height: 90vh;
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
+        /* Thiết lập container chính để bao gồm toàn bộ nội dung */
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 90vh;
+        }
 
-header, footer {
-    text-align: center;
-    background-color: #ff0000;
-    color: white;
-    padding: 10px;
-    font-size: 22px;
-    font-weight: bold;
-    border-radius: 10px;
-}
+        header, footer {
+            text-align: center;
+            background-color: #ff0000;
+            color: white;
+            padding: 8px;
+            font-size: 22px;
+            font-weight: bold;
+        }
 
-footer {
-    border-top: 5px solid #cccccc;
-}
+        /* Giảm chiều cao cho footer */
+        footer {
+            margin-top: auto;
+            border-top: 5px solid #cccccc;
+            padding-bottom: 20px;
+        }
 
-.calendar-wrapper {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+        /* Tối ưu chiều cao nội dung cho di động */
+        @media (max-width: 768px) {
+            .container {
+                min-height: calc(100vh - 60px); /* Giảm 60px cho thanh tiêu đề và trạng thái */
+            }
 
-.image-container img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
+            header {
+                font-size: 18px;
+            }
 
-.details {
-    text-align: center;
-    font-size: 16px;
-    margin-top: 10px;
-}
+            .calendar-wrapper {
+                margin: 0 10px;
+            }
 
-.details strong {
-    font-size: 18px;
-}
+            .details {
+                font-size: 14px;
+            }
 
-.scripture {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #87CEEB;
-    color: white;
-    border-radius: 10px;
-    font-style: italic;
-    text-align: justify;
-    font-size: 15px;
-}
+            .details strong {
+                font-size: 16px;
+            }
 
-.reading {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0 10px;
-}
+            .scripture {
+                font-size: 14px;
+                padding: 8px;
+            }
 
-.weekday {
-    font-size: 20px;
-    font-weight: bold;
-    color: #2196F3;
-}
+            .reading .weekday, .lunar-date {
+                font-size: 18px;
+            }
 
-.lunar-date {
-    font-size: 20px;
-    font-weight: normal;
-    color: #ff0000;
-}
+            .date-large {
+                font-size: 100px;
+            }
 
-.date-large {
-    font-size: 100px;
-    color: red;
-    text-align: center;
-    margin: 0;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
+            .image-container img {
+                width: 150px;
+                height: 150px;
+            }
 
-.year-info {
-    font-size: 18px;
-    text-align: center;
-    margin-top: 10px;
-    font-weight: bold;
-}
+            .year-info {
+                font-size: 16px;
+            }
 
-footer button {
-    padding: 10px 10px;
-    margin: 5px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: white;
-    color: #ff0000;
-    cursor: pointer;
-}
+            footer button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
 
-footer button:hover {
-    background-color: #ff9999;
-}
+        .calendar-wrapper {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
-.date-picker-container {
-    margin: 20px 0;
-    text-align: center;
-}
+        .image-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
 
-.date-picker-container input[type="date"] {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
+        .image-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
 
+        .details {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 5px;
+            padding: 5px;
+        }
+
+        .details strong {
+            font-size: 18px;
+        }
+
+        .scripture {
+            margin-top: 5px;
+            padding: 5px;
+            background-color: #87CEEB;
+            color: white;
+            border-radius: 10px;
+            font-style: italic;
+            text-align: justify;
+            font-size: 15px;
+        }
+
+        .reading {
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .weekday {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2196F3;
+        }
+
+        .lunar-date {
+            font-size: 20px;
+            font-weight: normal;
+            color: #ff0000;
+        }
+
+        .date-large {
+            font-size: 120px;
+            color: red;
+            text-align: center;
+            margin: 0;
+            line-height: 0.9;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .year-info {
+            font-size: 18px;
+            text-align: center;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        footer button {
+            padding: 8px 16px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            color: #ff0000;
+            cursor: pointer;
+        }
+
+        footer button:hover {
+            background-color: #ff9999;
+        }
+
+        /* Date Picker */
+        .date-picker-container {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .date-picker-container input[type="date"] {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
 
     </style>
 </head>
@@ -162,7 +209,7 @@ footer button:hover {
 
         <!-- Nội dung của một trang lịch -->
         <div class="image-container">
-            <img src="https://via.placeholder.com/150" alt="Maria và Chúa Giêsu">
+            <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu">
         </div>
         <div class="details" id="detailsSection">
             <p><strong id="saintName">THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>

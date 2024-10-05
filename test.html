@@ -16,13 +16,14 @@
         .calendar-wrapper {
             max-width: 400px;
             margin: 0 auto;
-            overflow: hidden; /* Giới hạn phần tử con trong vùng nhìn thấy */
+            overflow: hidden;
             position: relative;
         }
 
         .calendar-container {
             display: flex;
-            transition: transform 0.5s ease-in-out; /* Hiệu ứng mượt khi chuyển */
+            transition: transform 0.3s ease-in-out; /* Giảm thời gian để mượt hơn */
+            will-change: transform; /* Cải thiện hiệu suất */
         }
 
         .calendar-page {
@@ -188,7 +189,7 @@
 
 <div class="calendar-wrapper" id="calendarWrapper">
 
-    <!-- Cuộn trang lịch bằng cách dùng flex -->
+    <!-- Container chứa các trang lịch -->
     <div class="calendar-container" id="calendarContainer">
 
         <!-- Trang 1 -->
@@ -275,13 +276,17 @@
             // Vuốt sang trái (chuyển trang tiếp theo)
             if (currentPage < totalPages - 1) {
                 currentPage++;
-                calendarContainer.style.transform = `translateX(-${currentPage * 100}%)`;
+                requestAnimationFrame(() => {
+                    calendarContainer.style.transform = `translateX(-${currentPage * 100}%)`;
+                });
             }
         } else if (endX > startX + 50) {
             // Vuốt sang phải (quay về trang trước)
             if (currentPage > 0) {
                 currentPage--;
-                calendarContainer.style.transform = `translateX(-${currentPage * 100}%)`;
+                requestAnimationFrame(() => {
+                    calendarContainer.style.transform = `translateX(-${currentPage * 100}%)`;
+                });
             }
         }
     });

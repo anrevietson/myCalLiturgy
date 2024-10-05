@@ -262,9 +262,10 @@
         return months[date.getMonth()];
     }
 
-    // Hàm để tạo hiệu ứng tuyết rơi
+    // Hàm để tạo hiệu ứng tuyết rơi với màu ngẫu nhiên
     function createSnowflakes() {
         const snowflakeCount = 30; // Số lượng chấm tuyết rơi
+        const colors = ['#ff9999', '#ffcc99', '#99ccff', '#cc99ff', '#ffffff']; // Các màu ngẫu nhiên
         for (let i = 0; i < snowflakeCount; i++) {
             const snowflake = document.createElement('div');
             snowflake.classList.add('snowflake');
@@ -275,6 +276,11 @@
             snowflake.style.width = size + 'px';
             snowflake.style.height = size + 'px';
             snowflake.style.left = Math.random() * window.innerWidth + 'px';
+
+            // Thêm màu ngẫu nhiên cho chấm tuyết
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            snowflake.style.backgroundColor = randomColor;
+
             snowflake.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
 
             // Xóa chấm tuyết sau khi rơi xong

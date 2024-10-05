@@ -1,0 +1,153 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    overflow: hidden; /* Đảm bảo không có thanh cuộn */
+}
+
+/* Thiết lập container chính để bao gồm toàn bộ nội dung */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+}
+
+header, footer {
+    text-align: center;
+    background-color: #ff0000;
+    color: white;
+    padding: 8px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 3px;
+    background-color: #ff0000;
+    color: white;
+    padding: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.calendar-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.image-container {
+    text-align: center;
+    margin-bottom: 0px;
+    position: relative; /* Cho phép dịch chuyển */
+    left: -5px; /* Dịch chuyển toàn bộ container qua trái 50px */
+}
+
+
+.image-container img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative; /* Cho phép dịch chuyển */
+    left: 0px; /* Dịch chuyển chỉ hình ảnh qua trái 50px */
+}
+
+
+.details {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.details strong {
+    font-size: 18px;
+}
+
+.scripture {
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #87CEEB;
+    color: white;
+    border-radius: 10px;
+    font-style: italic;
+    text-align: justify;
+    font-size: 15px;
+}
+
+.reading {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.weekday {
+    margin-top: -60px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2196F3;
+}
+
+.lunar-date {
+    margin-top: -60px;
+    font-size: 20px;
+    font-weight: normal;
+    color: #ff0000;
+}
+
+.date-large {
+    font-size: 120px;
+    color: red;
+    text-align: center;
+    margin: -5px; /* Đảm bảo margin có đơn vị */
+    line-height: 0.9;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative; /* Sử dụng relative để có thể dịch chuyển */
+    left: -10px; /* Dịch chuyển sang trái 100px */
+}
+
+
+.year-info {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+footer button {
+    padding: 8px 16px;
+    margin: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: #ff0000;
+    cursor: pointer;
+}
+
+footer button:hover {
+    background-color: #ff9999;
+}
+
+/* Date Picker */
+.date-picker-container {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.date-picker-container input[type="date"] {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}

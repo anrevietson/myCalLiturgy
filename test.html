@@ -13,14 +13,25 @@
             background-color: #f4f4f4;
         }
 
+        .calendar-wrapper {
+            max-width: 400px;
+            margin: 0 auto;
+            overflow: hidden; /* Giới hạn phần tử con trong vùng nhìn thấy */
+            position: relative;
+        }
+
         .calendar-container {
-            max-width: 380px;
-            margin: 20px auto;
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* Hiệu ứng mượt khi chuyển */
+        }
+
+        .calendar-page {
+            min-width: 100%;
             padding: 20px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: relative;
+            margin: 20px 0;
         }
 
         header, footer {
@@ -175,32 +186,64 @@
     LỊCH PHỤNG VỤ CÔNG GIÁO - Năm B
 </header>
 
-<div class="calendar-container" id="calendar-container">
+<div class="calendar-wrapper" id="calendarWrapper">
 
-    <!-- Hình ảnh có ID "calendarImage" -->
-    <div class="image-container">
-        <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu" id="calendarImage">
-    </div>
+    <!-- Cuộn trang lịch bằng cách dùng flex -->
+    <div class="calendar-container" id="calendarContainer">
 
-    <!-- Thông tin 3 hàng có ID cho mỗi phần -->
-    <div class="details">
-        <p id="saint"><strong>THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>
-        <p id="readings"><i>Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21</i></p>
-        <p class="scripture" id="scripture">"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng." (Lc 2,9)</p>
-    </div>
+        <!-- Trang 1 -->
+        <div class="calendar-page" id="page1">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu">
+            </div>
+            <div class="details">
+                <p><strong>THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>
+                <p><i>Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21</i></p>
+                <p class="scripture">"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng." (Lc 2,9)</p>
+            </div>
+            <div class="reading">
+                <div class="weekday">THỨ HAI</div>
+                <div class="lunar-date">AL: 1/2</div>
+            </div>
+            <p class="date-large">1</p>
+            <div class="year-info">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
+        </div>
 
-    <!-- Thứ Hai và Ngày Âm Lịch có ID để thay đổi -->
-    <div class="reading">
-        <div class="weekday" id="weekday">THỨ HAI</div>
-        <div class="lunar-date" id="lunarDate">AL: 1/2</div>
-    </div>
+        <!-- Trang 2 -->
+        <div class="calendar-page" id="page2">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/200" alt="Phêrô">
+            </div>
+            <div class="details">
+                <p><strong>THÁNH PHÊRÔ, TÔNG ĐỒ</strong></p>
+                <p><i>Cv 12,1-11; Tv 34,2-9; 2 Tm 4,6-8.17-18; Mt 16,13-19</i></p>
+                <p class="scripture">"Con là Đá, và trên Đá này, Thầy sẽ xây Hội thánh của Thầy." (Mt 16,18)</p>
+            </div>
+            <div class="reading">
+                <div class="weekday">THỨ BA</div>
+                <div class="lunar-date">AL: 2/2</div>
+            </div>
+            <p class="date-large">2</p>
+            <div class="year-info">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
+        </div>
 
-    <!-- Số 01 có ID "dayNumber" -->
-    <p class="date-large" id="dayNumber">1</p>
-
-    <!-- Thông tin năm và tháng có ID "yearInfo" -->
-    <div class="year-info" id="yearInfo">
-        <p>THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</p>
+        <!-- Trang 3 -->
+        <div class="calendar-page" id="page3">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/200" alt="Gioan">
+            </div>
+            <div class="details">
+                <p><strong>THÁNH GIOAN, TÔNG ĐỒ</strong></p>
+                <p><i>1 Ga 1,1-4; Tv 96,1-2.5-6.11-12; Ga 20,2-8</i></p>
+                <p class="scripture">"Người môn đệ được Chúa Giêsu yêu mến." (Ga 20,2)</p>
+            </div>
+            <div class="reading">
+                <div class="weekday">THỨ TƯ</div>
+                <div class="lunar-date">AL: 3/2</div>
+            </div>
+            <p class="date-large">3</p>
+            <div class="year-info">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
+        </div>
     </div>
 </div>
 
@@ -212,64 +255,34 @@
 </footer>
 
 <script>
-    let currentDay = 1;
+    let currentPage = 0;
 
-    // Dummy data cho các ngày kế tiếp và trước đó
-    const daysData = [
-        {
-            day: 1,
-            saint: "THÁNH MARIA, MẸ THIÊN CHÚA",
-            readings: "Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21",
-            scripture: "\"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng.\" (Lc 2,9)",
-            weekday: "THỨ HAI",
-            lunarDate: "AL: 1/2"
-        },
-        {
-            day: 2,
-            saint: "THÁNH PHÊRÔ, TÔNG ĐỒ",
-            readings: "Cv 12,1-11; Tv 34,2-9; 2 Tm 4,6-8.17-18; Mt 16,13-19",
-            scripture: "\"Con là Đá, và trên Đá này, Thầy sẽ xây Hội thánh của Thầy.\" (Mt 16,18)",
-            weekday: "THỨ BA",
-            lunarDate: "AL: 2/2"
-        },
-        {
-            day: 3,
-            saint: "THÁNH GIOAN, TÔNG ĐỒ",
-            readings: "1 Ga 1,1-4; Tv 96,1-2.5-6.11-12; Ga 20,2-8",
-            scripture: "\"Người môn đệ được Chúa Giêsu yêu mến.\" (Ga 20,2)",
-            weekday: "THỨ TƯ",
-            lunarDate: "AL: 3/2"
-        }
-    ];
+    const calendarContainer = document.getElementById('calendarContainer');
+    const totalPages = document.querySelectorAll('.calendar-page').length;
 
-    // Hàm cập nhật nội dung khi chuyển ngày
-    function updateDayContent(dayIndex) {
-        const dayData = daysData[dayIndex];
-        document.getElementById("dayNumber").innerText = dayData.day;
-        document.getElementById("saint").innerText = dayData.saint;
-        document.getElementById("readings").innerText = dayData.readings;
-        document.getElementById("scripture").innerText = dayData.scripture;
-        document.getElementById("weekday").innerText = dayData.weekday;
-        document.getElementById("lunarDate").innerText = dayData.lunarDate;
-    }
-
-    // Lắng nghe sự kiện vuốt
     let startX = 0;
 
-    document.getElementById("calendar-container").addEventListener("touchstart", function(event) {
+    // Sự kiện touchstart để bắt đầu vuốt
+    calendarContainer.addEventListener('touchstart', function(event) {
         startX = event.touches[0].clientX;
     });
 
-    document.getElementById("calendar-container").addEventListener("touchend", function(event) {
+    // Sự kiện touchend để kết thúc vuốt và xử lý di chuyển trang
+    calendarContainer.addEventListener('touchend', function(event) {
         const endX = event.changedTouches[0].clientX;
+
         if (endX < startX - 50) {
-            // Vuốt sang trái - chuyển sang ngày kế tiếp
-            currentDay = (currentDay + 1) % daysData.length;
-            updateDayContent(currentDay);
+            // Vuốt sang trái (chuyển trang tiếp theo)
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                calendarContainer.style.transform = `translateX(-${currentPage * 100}%)`;
+            }
         } else if (endX > startX + 50) {
-            // Vuốt sang phải - chuyển sang ngày trước đó
-            currentDay = (currentDay - 1 + daysData.length) % daysData.length;
-            updateDayContent(currentDay);
+            // Vuốt sang phải (quay về trang trước)
+            if (currentPage > 0) {
+                currentPage--;
+                calendarContainer.style.transform = `translateX(-${currentPage * 100}%)`;
+            }
         }
     });
 </script>

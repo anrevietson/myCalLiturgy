@@ -25,25 +25,30 @@
             text-align: center;
             background-color: #ff0000;
             color: white;
-            padding: 8px; /* Giảm padding cho header và footer */
+            padding: 8px;
             font-size: 22px;
             font-weight: bold;
         }
 
+        /* Giảm chiều cao cho footer */
         footer {
             margin-top: auto;
             border-top: 5px solid #cccccc;
-            padding-bottom: 20px; /* Tăng thêm khoảng cách ở dưới footer */
+            padding-bottom: 20px;
         }
 
-        /* Giảm kích thước chữ trên màn hình nhỏ */
+        /* Tối ưu chiều cao nội dung cho di động */
         @media (max-width: 768px) {
+            .container {
+                min-height: calc(100vh - 60px); /* Giảm 60px cho thanh tiêu đề và trạng thái */
+            }
+
             header {
-                font-size: 18px; /* Giảm kích thước chữ header */
+                font-size: 18px;
             }
 
             .calendar-wrapper {
-                margin: 0 10px; /* Giảm khoảng cách 2 bên trên di động */
+                margin: 0 10px;
             }
 
             .details {
@@ -84,16 +89,16 @@
 
         .calendar-wrapper {
             max-width: 400px;
-            margin: 0 auto; /* Loại bỏ khoảng trống bên dưới */
+            margin: 0 auto;
             background-color: white;
             border-radius: 10px;
-            padding: 10px; /* Giảm padding */
+            padding: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .image-container {
             text-align: center;
-            margin-bottom: 10px; /* Giảm khoảng cách dưới hình ảnh */
+            margin-bottom: 10px;
         }
 
         .image-container img {
@@ -107,7 +112,7 @@
             text-align: center;
             font-size: 16px;
             margin-top: 5px;
-            padding: 5px; /* Giảm padding */
+            padding: 5px;
         }
 
         .details strong {
@@ -179,7 +184,7 @@
 
         /* Date Picker */
         .date-picker-container {
-            margin: 10px 0; /* Giảm khoảng cách trên dưới Date Picker */
+            margin: 10px 0;
             text-align: center;
         }
 

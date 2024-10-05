@@ -6,13 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Trang Lịch với Hiệu Ứng</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        html, body {
             margin: 0;
             padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            overflow: hidden; /* Ngăn cuộn trang */
-            position: relative;
+        }
+
+        /* Thiết lập container chính để bao gồm toàn bộ nội dung */
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header, footer {
+            text-align: center;
+            background-color: #ff0000;
+            color: white;
+            padding: 10px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: auto;
+            border-top: 5px solid #cccccc;
         }
 
         .calendar-wrapper {
@@ -22,30 +42,11 @@
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 1;
-        }
-
-        header, footer {
-            text-align: center;
-            background-color: #ff0000;
-            color: white;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 22px;
-            font-weight: bold;
-            z-index: 1;
-        }
-
-        footer {
-            margin-top: 30px;
-            border-top: 5px solid #cccccc;
         }
 
         .image-container {
             text-align: center;
             margin-bottom: 20px;
-            z-index: 1;
         }
 
         .image-container img {
@@ -142,27 +143,6 @@
             border: 1px solid #ddd;
         }
 
-        /* Hiệu ứng tuyết rơi */
-        .snowflake {
-            position: absolute;
-            top: 0;
-            background-color: white;
-            border-radius: 50%;
-            opacity: 0.8;
-            z-index: 0;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-100px);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(600px);
-                opacity: 0;
-            }
-        }
-
         @media (max-width: 768px) {
             .calendar-wrapper {
                 width: 90%;
@@ -209,45 +189,44 @@
 </head>
 <body>
 
-<!-- Phần Header -->
-<header>
-    LỊCH PHỤNG VỤ CÔNG GIÁO - Năm B
-</header>
+<div class="container">
+    <!-- Phần Header -->
+    <header>
+        LỊCH PHỤNG VỤ CÔNG GIÁO - Năm B
+    </header>
 
-<div class="calendar-wrapper">
+    <div class="calendar-wrapper">
 
-    <!-- Nội dung của một trang lịch -->
-    <div class="image-container">
-        <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu">
+        <!-- Nội dung của một trang lịch -->
+        <div class="image-container">
+            <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu">
+        </div>
+        <div class="details" id="detailsSection">
+            <p><strong id="saintName">THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>
+            <p><i id="readings">Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21</i></p>
+            <p class="scripture" id="scriptureQuote">"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng." (Lc 2,9)</p>
+        </div>
+        <div class="reading">
+            <div class="weekday" id="weekday">THỨ HAI</div>
+            <div class="lunar-date" id="lunarDate">AL: 1/2</div>
+        </div>
+        <p class="date-large" id="dateLarge">1</p>
+        <div class="year-info" id="yearInfo">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
+
+        <!-- Date Picker để chọn ngày -->
+        <div class="date-picker-container">
+            <input type="date" id="datePicker" onchange="selectDay()">
+        </div>
+
     </div>
-    <div class="details" id="detailsSection">
-        <p><strong id="saintName">THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>
-        <p><i id="readings">Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21</i></p>
-        <p class="scripture" id="scriptureQuote">"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng." (Lc 2,9)</p>
-    </div>
-    <div class="reading">
-        <div class="weekday" id="weekday">THỨ HAI</div>
-        <div class="lunar-date" id="lunarDate">AL: 1/2</div>
-    </div>
-    <p class="date-large" id="dateLarge">1</p>
-    <div class="year-info" id="yearInfo">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
 
-    <!-- Date Picker để chọn ngày -->
-    <div class="date-picker-container">
-        <input type="date" id="datePicker" onchange="selectDay()">
-    </div>
-
-    <!-- Nút để mở chế độ toàn màn hình -->
-    <button onclick="openFullscreen()">Chuyển sang Toàn Màn Hình</button>
-
+    <!-- Phần Footer -->
+    <footer>
+        <button onclick="goToToday()">Trang 1 (Today)</button>
+        <button onclick="alert('Trang 2 hiện chưa làm')">Trang 2</button>
+        <button onclick="alert('Trang 3 hiện chưa làm')">Trang 3</button>
+    </footer>
 </div>
-
-<!-- Phần Footer -->
-<footer>
-    <button onclick="goToToday()">Trang 1 (Today)</button>
-    <button onclick="alert('Trang 2 hiện chưa làm')">Trang 2</button>
-    <button onclick="alert('Trang 3 hiện chưa làm')">Trang 3</button>
-</footer>
 
 <script>
     // Hàm lấy thứ (weekday) từ ngày
@@ -265,34 +244,6 @@
         return months[date.getMonth()];
     }
 
-    // Hàm để tạo hiệu ứng tuyết rơi với màu ngẫu nhiên
-    function createSnowflakes() {
-        const snowflakeCount = 30; // Số lượng chấm tuyết rơi
-        const colors = ['#ff9999', '#ffcc99', '#99ccff', '#cc99ff', '#ffffff']; // Các màu ngẫu nhiên
-        for (let i = 0; i < snowflakeCount; i++) {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            document.body.appendChild(snowflake);
-
-            // Đặt vị trí ngẫu nhiên cho mỗi chấm tuyết
-            const size = Math.random() * 10 + 5; // Kích thước ngẫu nhiên
-            snowflake.style.width = size + 'px';
-            snowflake.style.height = size + 'px';
-            snowflake.style.left = Math.random() * window.innerWidth + 'px';
-
-            // Thêm màu ngẫu nhiên cho chấm tuyết
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            snowflake.style.backgroundColor = randomColor;
-
-            snowflake.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
-
-            // Xóa chấm tuyết sau khi rơi xong
-            snowflake.addEventListener('animationend', () => {
-                snowflake.remove();
-            });
-        }
-    }
-
     // Hàm xử lý khi chọn ngày
     function selectDay() {
         const selectedDate = document.getElementById('datePicker').value;
@@ -307,9 +258,6 @@
         // Cập nhật tháng và năm trong id "yearInfo"
         const year = date.getFullYear();
         document.getElementById("yearInfo").innerText = getMonthName(date) + " - NĂM " + year + " QUÝ MÃO";
-
-        // Gọi hàm tạo hiệu ứng tuyết rơi
-        createSnowflakes();
     }
 
     // Hàm để trở về ngày hiện tại (today)
@@ -321,20 +269,6 @@
 
         // Cập nhật các thông tin ngày hiện tại
         selectDay();
-    }
-
-    // Hàm mở chế độ toàn màn hình
-    function openFullscreen() {
-        const elem = document.documentElement; // Chọn toàn bộ tài liệu để full màn hình
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.mozRequestFullScreen) { // Firefox
-            elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) { // IE/Edge
-            elem.msRequestFullscreen();
-        }
     }
 
     // Tự động hiển thị ngày hôm nay khi mở trang lần đầu

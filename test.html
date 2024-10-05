@@ -279,55 +279,36 @@
         } else {
             monthCalendar.style.display = "block"; // Hiển thị lịch tháng
         }
-        isMonthView = !isMonthView; // Chuyển trạng thái
+        isMonthView = !isMonthView; // Chuyển
     }
 
-    // Hàm để chọn một ngày trong tháng
     function selectDay(day) {
-        const saintName = document.getElementById("saintName");
-        const readings = document.getElementById("readings");
-        const scriptureQuote = document.getElementById("scriptureQuote");
-        const weekday = document.getElementById("weekday");
-        const lunarDate = document.getElementById("lunarDate");
-        const dateLarge = document.getElementById("dateLarge");
-        const yearInfo = document.getElementById("yearInfo");
-
-        // Giả lập thông tin của các ngày
-        const daysData = {
+        // Chọn ngày từ bảng tháng phụng vụ và hiển thị dữ liệu ngày tháng tương ứng
+        const dayData = {
             1: {
                 saint: "THÁNH MARIA, MẸ THIÊN CHÚA",
                 readings: "Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21",
-                scripture: '"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng." (Lc 2,9)',
+                scripture: "\"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng.\" (Lc 2,9)",
                 weekday: "THỨ HAI",
-                lunarDate: "AL: 1/2",
-                yearInfo: "THÁNG MƯỜI MỘT - NĂM QUÝ MÃO"
+                lunar: "AL: 1/2"
             },
             2: {
-                saint: "THÁNH PHÊRÔ, TÔNG ĐỒ",
+                saint: "THÁNH PHÊRÔ",
                 readings: "Cv 12,1-11; Tv 34,2-9; 2 Tm 4,6-8.17-18; Mt 16,13-19",
-                scripture: '"Con là Đá, và trên Đá này, Thầy sẽ xây Hội thánh của Thầy." (Mt 16,18)',
+                scripture: "\"Con là Đá, và trên Đá này, Thầy sẽ xây Hội thánh của Thầy.\" (Mt 16,18)",
                 weekday: "THỨ BA",
-                lunarDate: "AL: 2/2",
-                yearInfo: "THÁNG MƯỜI MỘT - NĂM QUÝ MÃO"
-            },
-            3: {
-                saint: "THÁNH GIOAN, TÔNG ĐỒ",
-                readings: "1 Ga 1,1-4; Tv 96,1-2.5-6.11-12; Ga 20,2-8",
-                scripture: '"Người môn đệ được Chúa Giêsu yêu mến." (Ga 20,2)',
-                weekday: "THỨ TƯ",
-                lunarDate: "AL: 3/2",
-                yearInfo: "THÁNG MƯỜI MỘT - NĂM QUÝ MÃO"
+                lunar: "AL: 2/2"
             }
+            // Các ngày khác...
         };
 
-        // Cập nhật thông tin hiển thị theo ngày đã chọn
-        saintName.textContent = daysData[day].saint;
-        readings.textContent = daysData[day].readings;
-        scriptureQuote.textContent = daysData[day].scripture;
-        weekday.textContent = daysData[day].weekday;
-        lunarDate.textContent = daysData[day].lunarDate;
-        dateLarge.textContent = day;
-        yearInfo.textContent = daysData[day].yearInfo;
+        // Cập nhật dữ liệu hiển thị
+        document.getElementById("saintName").innerText = dayData[day].saint;
+        document.getElementById("readings").innerText = dayData[day].readings;
+        document.getElementById("scriptureQuote").innerText = dayData[day].scripture;
+        document.getElementById("weekday").innerText = dayData[day].weekday;
+        document.getElementById("lunarDate").innerText = dayData[day].lunar;
+        document.getElementById("dateLarge").innerText = day;
 
         // Ẩn lịch tháng sau khi chọn ngày
         toggleCalendar();

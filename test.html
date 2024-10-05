@@ -5,167 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Trang Lịch với Hiệu Ứng</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            overflow: hidden; /* Đảm bảo không có thanh cuộn */
-        }
-
-        /* Thiết lập container chính để bao gồm toàn bộ nội dung */
-        .container {
-            display: flex;
-            flex-direction: column;
-            min-height: 90vh;
-        }
-
-        header, footer {
-            text-align: center;
-            background-color: #ff0000;
-            color: white;
-            padding: 8px;
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        footer {
-            margin-top: 3px;
-            background-color: #ff0000;
-            color: white;
-            padding: 10px;
-            font-size: 22px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .calendar-wrapper {
-            max-width: 400px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .image-container {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .image-container img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .details {
-            text-align: center;
-            font-size: 16px;
-            margin-top: 5px;
-            padding: 5px;
-        }
-
-        .details strong {
-            font-size: 18px;
-        }
-
-        .scripture {
-            margin-top: 5px;
-            padding: 5px;
-            background-color: #87CEEB;
-            color: white;
-            border-radius: 10px;
-            font-style: italic;
-            text-align: justify;
-            font-size: 15px;
-        }
-
-        .reading {
-            margin-top: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 10px;
-        }
-
-        .weekday {
-            margin-top: -60px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #2196F3;
-        }
-
-        .lunar-date {
-            margin-top: -60px;
-            font-size: 20px;
-            font-weight: normal;
-            color: #ff0000;
-        }
-
-        .date-large {
-            font-size: 120px;
-            color: red;
-            text-align: center;
-            margin: 0;
-            line-height: 0.9;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        .year-info {
-            font-size: 18px;
-            text-align: center;
-            margin-top: 5px;
-            font-weight: bold;
-        }
-
-        footer button {
-            padding: 8px 16px;
-            margin: 5px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            background-color: white;
-            color: #ff0000;
-            cursor: pointer;
-        }
-
-        footer button:hover {
-            background-color: #ff9999;
-        }
-
-        /* Hiệu ứng tuyết */
-        .snowflake {
-            position: fixed;
-            top: -10px;
-            color: white;
-            user-select: none;
-            pointer-events: none;
-            z-index: 9999;
-            font-size: 1em;
-            opacity: 0.9;
-        }
-
-        /* Date Picker */
-        .date-picker-container {
-            margin: 10px 0;
-            text-align: center;
-        }
-
-        .date-picker-container input[type="date"] {
-            padding: 8px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-
-    </style>
-</head>
+    <!-- Liên kết đến tệp CSS -->
+    <link rel="stylesheet" href="styles.css">
+   </head>
 <body>
 
 <div class="container">
@@ -175,10 +17,9 @@
     </header>
 
     <div class="calendar-wrapper">
-
         <!-- Nội dung của một trang lịch -->
         <div class="image-container">
-            <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu">
+            <img src="01.webp" alt="Maria và Chúa Giêsu">
         </div>
         <div class="details" id="detailsSection">
             <p><strong id="saintName">THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>
@@ -193,9 +34,8 @@
         <div class="year-info" id="yearInfo">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
         <!-- Date Picker để chọn ngày -->
         <div class="date-picker-container">
-            <input type="date" id="datePicker" onchange="selectDay()">
+            <input type="date" id="datePicker" onchange="selectDay()"> <!-- Chỉ gọi selectDay -->
         </div>
-
     </div>
 
     <!-- Phần Footer -->
@@ -206,51 +46,15 @@
     </footer>
 </div>
 
-<!-- Hiệu ứng tuyết rơi -->
 <script>
-    const colors = ['#FF6347', '#87CEFA', '#32CD32', '#FFD700', '#FF69B4'];
-
-    function createSnowflake() {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake');
-        snowflake.textContent = '❄';  // Biểu tượng tuyết rơi
-        snowflake.style.left = Math.random() * window.innerWidth + 'px'; // Vị trí ngẫu nhiên
-        snowflake.style.fontSize = Math.random() * 20 + 10 + 'px'; // Kích thước ngẫu nhiên
-        snowflake.style.color = colors[Math.floor(Math.random() * colors.length)]; // Màu sắc ngẫu nhiên
-
-        document.body.appendChild(snowflake);
-
-        // Hoạt ảnh tuyết rơi
-        const fallDuration = Math.random() * 5 + 3; // Thời gian rơi
-        snowflake.style.transition = `transform ${fallDuration}s linear, opacity ${fallDuration}s ease-out`;
-        snowflake.style.transform = `translateY(${window.innerHeight}px)`;
-        snowflake.style.opacity = '0';
-
-        // Xóa tuyết khi rơi đến cuối màn hình
-        setTimeout(() => {
-            snowflake.remove();
-        }, fallDuration * 1000);
-    }
-
-    // Tạo tuyết rơi khi người dùng chọn ngày
     function selectDay() {
         const selectedDate = document.getElementById('datePicker').value;
         const date = new Date(selectedDate);
 
-        // Cập nhật thứ trong id "weekday"
         document.getElementById("weekday").innerText = getWeekday(date);
-
-        // Cập nhật ngày (số 1) trong id "dateLarge"
         document.getElementById("dateLarge").innerText = date.getDate();
-
-        // Cập nhật tháng và năm trong id "yearInfo"
         const year = date.getFullYear();
         document.getElementById("yearInfo").innerText = getMonthName(date) + " - NĂM " + year + " QUÝ MÃO";
-
-        // Tạo hiệu ứng tuyết rơi khi chọn ngày
-        for (let i = 0; i < 20; i++) {
-            setTimeout(createSnowflake, i * 200); // Tạo tuyết rơi dần
-        }
     }
 
     function getWeekday(date) {
@@ -269,15 +73,10 @@
     // Hàm để trở về ngày hiện tại (today)
     function goToToday() {
         const today = new Date();
-
-        // Đặt giá trị cho Date Picker là ngày hiện tại
         document.getElementById('datePicker').value = today.toISOString().split('T')[0];
-
-        // Cập nhật các thông tin ngày hiện tại
         selectDay();
     }
 
-    // Tự động hiển thị ngày hôm nay khi mở trang lần đầu
     window.onload = goToToday;
 </script>
 

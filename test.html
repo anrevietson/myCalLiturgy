@@ -12,98 +12,51 @@
             height: 100%;
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Thiết lập container chính để bao gồm toàn bộ nội dung */
+        /* Thiết lập container chính để canh giữa nội dung cả về chiều ngang và dọc */
         .container {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            justify-content: space-between;
+            height: 100%;
+            max-height: 100vh; /* Giới hạn chiều cao tối đa */
         }
 
         header, footer {
             text-align: center;
             background-color: #ff0000;
             color: white;
-            padding: 8px;
+            padding: 10px;
             font-size: 22px;
             font-weight: bold;
+            border-radius: 10px;
         }
 
-        /* Giảm chiều cao cho footer */
         footer {
-            margin-top: auto;
             border-top: 5px solid #cccccc;
-            padding-bottom: 20px;
-        }
-
-        /* Tối ưu chiều cao nội dung cho di động */
-        @media (max-width: 768px) {
-            .container {
-                min-height: calc(100vh - 60px); /* Giảm 60px cho thanh tiêu đề và trạng thái */
-            }
-
-            header {
-                font-size: 18px;
-            }
-
-            .calendar-wrapper {
-                margin: 0 10px;
-            }
-
-            .details {
-                font-size: 14px;
-            }
-
-            .details strong {
-                font-size: 16px;
-            }
-
-            .scripture {
-                font-size: 14px;
-                padding: 8px;
-            }
-
-            .reading .weekday, .lunar-date {
-                font-size: 18px;
-            }
-
-            .date-large {
-                font-size: 100px;
-            }
-
-            .image-container img {
-                width: 150px;
-                height: 150px;
-            }
-
-            .year-info {
-                font-size: 16px;
-            }
-
-            footer button {
-                font-size: 14px;
-                padding: 8px 16px;
-            }
         }
 
         .calendar-wrapper {
-            max-width: 400px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .image-container {
-            text-align: center;
-            margin-bottom: 10px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .image-container img {
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
@@ -111,8 +64,7 @@
         .details {
             text-align: center;
             font-size: 16px;
-            margin-top: 5px;
-            padding: 5px;
+            margin-top: 10px;
         }
 
         .details strong {
@@ -120,8 +72,8 @@
         }
 
         .scripture {
-            margin-top: 5px;
-            padding: 5px;
+            margin-top: 10px;
+            padding: 10px;
             background-color: #87CEEB;
             color: white;
             border-radius: 10px;
@@ -131,10 +83,11 @@
         }
 
         .reading {
-            margin-top: 5px;
+            margin-top: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
             padding: 0 10px;
         }
 
@@ -151,11 +104,10 @@
         }
 
         .date-large {
-            font-size: 120px;
+            font-size: 100px;
             color: red;
             text-align: center;
             margin: 0;
-            line-height: 0.9;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
@@ -163,12 +115,12 @@
         .year-info {
             font-size: 18px;
             text-align: center;
-            margin-top: 5px;
+            margin-top: 10px;
             font-weight: bold;
         }
 
         footer button {
-            padding: 8px 16px;
+            padding: 10px 20px;
             margin: 5px;
             font-size: 16px;
             border: none;
@@ -184,12 +136,12 @@
 
         /* Date Picker */
         .date-picker-container {
-            margin: 10px 0;
+            margin: 20px 0;
             text-align: center;
         }
 
         .date-picker-container input[type="date"] {
-            padding: 8px;
+            padding: 10px;
             font-size: 16px;
             border-radius: 5px;
             border: 1px solid #ddd;
@@ -209,7 +161,7 @@
 
         <!-- Nội dung của một trang lịch -->
         <div class="image-container">
-            <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu">
+            <img src="https://via.placeholder.com/150" alt="Maria và Chúa Giêsu">
         </div>
         <div class="details" id="detailsSection">
             <p><strong id="saintName">THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>

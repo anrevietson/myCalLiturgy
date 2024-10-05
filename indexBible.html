@@ -5,184 +5,227 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lịch Công Giáo</title>
    <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-        margin: 0;
-        padding: 0;
-    }
-
-    .calendar-header {
-        background-color: #007bff;
-        color: white;
-        padding: 15px;
-        text-align: center;
-        font-size: 24px;
-    }
-
-    .calendar-content {
-        background-color: white;
-        border-radius: 10px;
-        margin: 20px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
-
-    .date-large {
-        font-size: 100px;
-        color: green;
-        margin: 0;
-    }
-
-    .date-small {
-        font-size: 28px;
-        color: #666;
-        margin: 0;
-    }
-
-    .feast-info-container {
-        display: flex; /* Sử dụng flexbox để các phần tử nằm cùng hàng */
-        justify-content: center; /* Căn giữa theo chiều ngang */
-        align-items: center; /* Căn giữa theo chiều dọc */
-        text-align: center; /* Căn giữa nội dung văn bản */
-        gap: 15px; /* Khoảng cách giữa thông tin lễ và lễ phục */
-    }
-
-    .feast-info {
-        margin: 0; /* Đảm bảo không có khoảng cách thừa */
-    }
-
-    .feast-info-container div {
-        margin: 0; /* Đảm bảo không có khoảng cách thừa */
-    }
-
-    .readings {
-        margin: 5px 0;
-        text-align: center;
-    }
-
-    .readings div {
-        margin-bottom: 5px;
-    }
-
-    /* Phần cho điều khiển hiển thị */
-    .controls-container {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin: 20px 0;
-    }
-
-    .control-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    button {
-        padding: 5px 10px;
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 4px;
-        font-size: 14px;
-    }
-
-    button:hover {
-        background-color: #0056b3;
-    }
-
-    input[type="date"], input[type="number"] {
-        padding: 5px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        font-size: 14px;
-    }
-
-    .bottom-nav {
-        display: flex;
-        justify-content: space-around;
-        background-color: #007bff;
-        color: white;
-        padding: 15px;
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-    }
-
-    .bottom-nav div {
-        text-align: center;
-        cursor: pointer;
-    }
-
-    .bottom-nav div:hover {
-        background-color: #0056b3;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 30px;
-    }
-
-    table, th, td {
-        border: 1px solid black;
-    }
-
-    th, td {
-        padding: 8px;
-        text-align: center;
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
-
-    .feast-bold {
-        font-weight: bold;
-    }
-    .bg-Tr { background-color: white; }  /* Trắng */
-    .bg-Tm { background-color: #d8bfd8; } /* Tím nhạt */
-    .bg-Đ { background-color: #ff6347; } /* Đỏ nhẹ */
-    .bg-X { background-color: lightgreen; } /* Xanh lá cây */
-    .week-separator {
-        height: 1px;
-        border-top: 10px solid #ccc;
-    }
-    .info {
-    color: rgb(2, 14, 95); /* Đặt màu cho văn bản trong thẻ p có class info */
-    font-weight: bold; /* Tùy chọn, đặt văn bản in đậm */
-    font-style: italic; /* Tùy chọn, đặt văn bản nghiêng */
-    background-color: rgb(148, 250, 243); /* Đặt màu nền cho thẻ p */
-    padding: 10px; /* Tùy chọn, thêm khoảng cách bên trong thẻ */
-    border-radius: 5px; /* Tùy chọn, thêm góc bo tròn */
+    /* Phong cách chung cho toàn trang */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
 
-    /* Modal container */
+/* Header */
+.calendar-header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Container chính */
+.calendar-content {
+    background-color: white;
+    border-radius: 15px;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 900px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Định dạng phần ngày lớn và ngày nhỏ */
+.reading-row {
+    display: flex;
+    justify-content: space-between; /* Căn đều các phần tử */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 15px; /* Khoảng cách giữa các phần tử */
+    padding: 10px 0;
+}
+.date-large {
+    font-size: 120px;
+    color: red;
+    text-align: center;
+    margin: -5px; /* Đảm bảo margin có đơn vị */
+    line-height: 0.9;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative; /* Sử dụng relative để có thể dịch chuyển */
+    left: -10px; /* Dịch chuyển sang trái 100px */
+}
+.weekday {
+    margin-left: 100px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2196F3;
+}
+
+.lunar-date {
+    margin-right: 100px;
+    font-size: 20px;
+    font-weight: normal;
+    color: #ff0000;
+}
+
+.date-small {
+    font-size: 18px;
+    color: #3506f0;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Căn chỉnh thông tin lễ và bài đọc */
+.feast-info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.feast-info {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* Định dạng phần bài đọc */
+.readings {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.readings div {
+    margin-bottom: 8px;
+}
+
+/* Điều chỉnh hiển thị các nút điều khiển */
+.controls-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 30px 0;
+    gap: 10px;
+}
+
+.control-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+input[type="date"], input[type="number"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Điều chỉnh footer */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav div {
+    text-align: center;
+    cursor: pointer;
+}
+
+.bottom-nav div:hover {
+    background-color: #0056b3;
+}
+
+/* Bảng hiển thị thông tin */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Màu nền theo màu áo lễ */
+.bg-Tr { background-color: white; }
+.bg-Tm { background-color: #d8bfd8; }
+.bg-Đ { background-color: #ff6347; }
+.bg-X { background-color: lightgreen; }
+
+.week-separator {
+    height: 1px;
+    border-top: 10px solid #ccc;
+}
+
+/* Định dạng văn bản đặc biệt */
+.info {
+    color: #020e5f;
+    font-weight: bold;
+    font-style: italic;
+    background-color: #94faf3;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Modal (hộp thoại) */
 .modal {
-            display: none; /* Modal mặc định ẩn */
-            position: fixed; /* Giữ modal ở giữa màn hình */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000; /* Đảm bảo modal luôn nằm trên các phần tử khác */
-            background-color: #f5f7b3;
-            padding: 20px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-            width: 90%; /* Điều chỉnh cho modal lớn hơn */
-            max-width: 800px; /* Điều chỉnh giới hạn chiều rộng tối đa */
-            max-height: 80%; /* Giới hạn chiều cao modal */
-            overflow-y: auto; /* Thêm thanh cuộn dọc khi nội dung vượt quá chiều cao */
-        }
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #f5f7b3;
+    padding: 30px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 600px;
+    max-height: 80%;
+    overflow-y: auto;
+    border-radius: 10px;
+}
 
-        /* Nội dung của modal */
-        .modal-content {
-            padding: 20px;
-            text-align: left;
-        }
-
+.modal-content {
+    padding: 20px;
+    text-align: left;
+}
 
 .close:focus {
     color: #000;
@@ -190,82 +233,33 @@
     cursor: pointer;
 }
 
-
-        /* Overlay nền mờ */
-        .overlay {
-            display: none; /* Ẩn overlay mặc định */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 999; /* Phía sau modal */
-        }
-
-        /* Hiển thị modal và overlay */
-        .modal.show, .overlay.show {
-            display: block;
-        }
-
-/* Modal container */
-.modal {
-            display: none; /* Modal mặc định ẩn */
-            position: fixed; /* Giữ modal ở giữa màn hình */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000; /* Đảm bảo modal luôn nằm trên các phần tử khác */
-            background-color: #f5f7b3;
-            padding: 20px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-            width:100%; /* Điều chỉnh cho modal lớn hơn */
-            max-width: 100%; /* Điều chỉnh giới hạn chiều rộng tối đa */
-            max-height: 100%; /* Giới hạn chiều cao modal */
-            overflow-y: auto; /* Thêm thanh cuộn dọc khi nội dung vượt quá chiều cao */
-        }
-
-        /* Nội dung của modal */
-        .modal-content {
-            padding: 20px;
-            text-align: left;
-        }
-
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-
-        /* Overlay nền mờ */
-        .overlay {
-            display: none; /* Ẩn overlay mặc định */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 999; /* Phía sau modal */
-        }
-        #readingContent, #reading1 {
-            font-size: 16px;
-            font-family: Arial, sans-serif; /* Sử dụng font chữ Arial */
-            line-height: 1.5; /* Tăng khoảng cách dòng lên 1.5 lần chiều cao font chữ */
-        }
-       
-/* Các nút điều chỉnh cố định bên trái màn hình */
-.vertical-buttons {
-    position: sticky;   /* Giữ các nút cố định khi cuộn */
-    top: 10px; /* Giữ các nút cách phần trên của màn hình/modal 20px */
-    left: 5px; /* Đặt nút cố định bên trái màn hình */
-    display: flex;
-    flex-direction: row;
-    gap: 10px; /* Khoảng cách giữa các nút */
-    z-index: 1001; /* Đảm bảo các nút nằm trên nội dung modal */
+/* Overlay (nền mờ) */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
 }
 
+/* Hiển thị modal và overlay */
+.modal.show, .overlay.show {
+    display: block;
+}
+
+/* Căn chỉnh các nút cố định bên trái màn hình */
+.vertical-buttons {
+    position: sticky;
+    top: 10px;
+    left: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    z-index: 1001;
+}
 
 .icon-button {
     background-color: transparent;
@@ -273,82 +267,71 @@
     cursor: pointer;
     padding: 10px;
     font-size: 24px;
-    font:bold;
-    color: #D18A78; /* Màu biểu tượng */
-    border-radius: 50%; /* Hình tròn */
+    font-weight: bold;
+    color: #d18a78;
+    border-radius: 50%;
     transition: background-color 0.3s ease;
 }
 
 .icon-button:hover {
-    background-color: #F5EAD6; /* Màu nền khi hover */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng khi hover */
+    background-color: #f5ead6;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-
-
-        /* Hiển thị modal và overlay */
-        .modal.show, .overlay.show {
-            display: block;
-        }
-        br {
-            line-height: 2;
-        }
-        .readable {
-            cursor: pointer; /* Chuyển con trỏ thành dạng pointer khi hover */
-        }
-        .readable {
-            cursor: pointer; /* Con trỏ sẽ thay đổi thành dạng pointer khi hover */
-            transition: color 0.3s ease; /* Tạo hiệu ứng chuyển màu mượt mà */
-        }
-
-        .readable:hover {
-            color: blue; /* Thay đổi màu chữ khi hover, bạn có thể đổi thành màu khác */
-            font-weight: bold; /* Thêm hiệu ứng đậm khi hover */
-        }
-
 
 br {
     line-height: 2;
 }
+
 .readable {
-    cursor: pointer; /* Chuyển con trỏ thành dạng pointer khi hover */
-}
-.readable {
-    cursor: pointer; /* Con trỏ sẽ thay đổi thành dạng pointer khi hover */
-    transition: color 0.3s ease; /* Tạo hiệu ứng chuyển màu mượt mà */
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .readable:hover {
-    color: blue; /* Thay đổi màu chữ khi hover, bạn có thể đổi thành màu khác */
-    font-weight: bold; /* Thêm hiệu ứng đậm khi hover */
+    color: blue;
+    font-weight: bold;
 }
 
+/* Định dạng cho các tên lễ */
+.feast-bold {
+    font-weight: bold;
+}
+header, footer {
+    text-align: center;
+    background-color: #ff0000;
+    color: white;
+    padding: 8px;
+    font-size: 22px;
+    font-weight: bold;
+}
 
-    /* Media Queries cho thiết bị di động */
-    @media (max-width: 768px) {
-        .controls-container {
-            flex-direction: column; /* Chuyển từ hàng ngang sang cột dọc */
-            align-items: flex-start; /* Căn lề trái cho các phần tử */
-        }
-
-        .control-item {
-            width: 100%; /* Đảm bảo phần tử kéo dài đủ chiều rộng */
-            justify-content: space-between; /* Chia đều không gian giữa nhãn và input/button */
-        }
-
-        button, input[type="date"], input[type="number"] {
-            width: 100%; /* Kéo dài các nút và trường nhập liệu theo chiều rộng */
-            margin-bottom: 10px; /* Thêm khoảng cách giữa các nút */
-        }
-
-        .calendar-content {
-            margin: 10px;
-            padding: 10px;
-        }
-
-        .date-large {
-            font-size: 70px; /* Giảm kích thước chữ cho màn hình nhỏ */
-        }
+/* Media Queries cho thiết bị di động */
+@media (max-width: 768px) {
+    .calendar-content {
+        padding: 10px;
+        margin: 10px;
     }
+
+    .controls-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .control-item {
+        width: 100%;
+    }
+
+    .date-large {
+        font-size: 70px;
+    }
+
+    button, input[type="date"], input[type="number"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
 
 </style>
 
@@ -373,9 +356,10 @@ br {
 
 <body>
 
-<div class="calendar-header">
-    Lịch Công Giáo
-</div>
+  <!-- Phần Header -->
+  <header>
+    LỊCH PHỤNG VỤ CÔNG GIÁO
+</header>
 
 
 <div id="readingModal" class="modal">
@@ -398,37 +382,48 @@ br {
 <div id="modalOverlay" class="overlay" onclick="closeModal()"></div>
 
 <!-- Hiển thị thông tin ngày hôm nay hoặc ngày đã chọn -->
+
 <div class="calendar-content">
-    <p class="date-small" id="current-month-year"></p>
-    <p class="date-large" id="current-date">1</p>
+
 
     <!-- Thông tin lễ và Lễ Phục cùng nằm trên một hàng và được căn giữa -->
-    <div class="feast-info-container">
-        <p class="feast-info" id="feast-info"></p>
-    </div>
-   
-    <p class="info">
-        <span id="info"></span> 
-    </p>
-    <p class="readings">
-        <span id="reading1"></span> <span id="psalm"></span> <span id="reading2"></span> <span id="gospel"></span>
-    </p>
-    
+<div class="details" id="detailsSection">
+                <div class="feast-info-container">
+                    <p class="feast-info" id="feast-info"></p> <!-- Thông tin lễ -->
+                </div>
+                <p class="readings">
+                    <span id="reading1"></span> <span id="psalm"></span>
+                    <span id="reading2"></span> <span id="gospel"></span>
+                </p>
+                <p class="info">
+                    <span id="info"></span>
+                </p>
+                <!-- Hiển thị lễ vọng -->
+                <div>
+                    <p id="second-feast-info"></p>
+                </div>
+                <!-- Hiển thị bài đọc phụ -->
+                <div>
+                    <p id="optional-reading"></p>
+                    <div class="reading-row">
+                        <div class="weekday" id="weekday">THỨ HAI</div>
+                        <p class="date-large" id="current-date">1</p>
+                        <div class="lunar-date" id="lunarDate">AL: 1/2</div>
+                    </div>
+                    
+                <p class="date-small" id="current-month-year"></p>
+               
 
-    <!-- Thêm phần hiển thị lễ vọng -->
-    <div>
-        <p id="second-feast-info"></p> <!-- Phần hiển thị lễ vọng -->
-    </div>
-</div>
+
 
 <!-- Chọn ngày và các nút Lịch -->
 <div class="controls-container">
     <!-- Chọn ngày -->
     <div class="control-item">
         <label for="inputDate">Chọn ngày: </label>
-        <input type="date" id="inputDate">
-        <button onclick="getFeastForSelectedDate()">Ngày Lễ</button>
+        <input type="date" id="inputDate" onchange="getFeastForSelectedDate()"> <!-- Gọi hàm khi người dùng chọn ngày -->
     </div>
+    
 
     <!-- Lịch Tuần -->
     <div class="control-item">
@@ -468,15 +463,56 @@ br {
 </html>
 
 <script>
+
+function getWeekday(date) {
+        const days = ["CHÚA NHẬT", "THỨ HAI", "THỨ BA", "THỨ TƯ", "THỨ NĂM", "THỨ SÁU", "THỨ BẢY"];
+        return days[date.getDay()];
+    }
+
+    function getMonthName(date) {
+        const months = [
+            "THÁNG MỘT", "THÁNG HAI", "THÁNG BA", "THÁNG TƯ", "THÁNG NĂM", "THÁNG SÁU",
+            "THÁNG BẢY", "THÁNG TÁM", "THÁNG CHÍN", "THÁNG MƯỜI", "THÁNG MƯỜI MỘT", "THÁNG MƯỜI HAI"
+        ];
+        return months[date.getMonth()];
+}
+// làm sao tôi cập nhật getWeekday(date) và getMonthName(date) vào hàm sau
+
 function displayDateInfo(date) {
     const selectedDate = date ? new Date(date) : new Date(); // Sử dụng ngày đã chọn hoặc ngày hiện tại
     const year = selectedDate.getFullYear();
     const month = selectedDate.getMonth() + 1;
     const day = selectedDate.getDate();
 
-    // Hiển thị ngày tháng hiện tại hoặc đã chọn
-    document.getElementById("current-date").textContent = day;
-    document.getElementById("current-month-year").textContent = `${month}/${year}`;
+// Sử dụng các hàm getWeekday và getMonthName để lấy thứ và tháng
+const weekday = getWeekday(selectedDate);  // Lấy thứ trong tuần
+const monthName = getMonthName(selectedDate);  // Lấy tên tháng
+
+// Lấy ngày Chúa Nhật đầu tiên của Mùa Vọng trong năm hiện tại
+const firstSundayOfAdvent = getFirstSundayOfAdvent(year);
+
+// Kiểm tra xem ngày hiện tại có sau Chúa Nhật đầu tiên của Mùa Vọng không
+let liturgicalYear = getLiturgicalYear(year);
+if (selectedDate >= firstSundayOfAdvent) {
+    // Nếu sau Chúa Nhật đầu tiên của Mùa Vọng, cộng thêm 1 cho năm phụng vụ
+    liturgicalYear = getLiturgicalYear(year + 1);
+}
+
+// Hiển thị thứ trong tuần, ngày và tháng/năm phụng vụ
+document.getElementById("weekday").textContent = weekday; // Hiển thị thứ trong tuần
+document.getElementById("current-date").textContent = day; // Hiển thị ngày
+document.getElementById("current-month-year").textContent = `${monthName} - ${year} NĂM ${liturgicalYear}`; // Hiển thị tháng/năm và năm phụng vụ
+
+    // Chuyển đổi ngày âm lịch
+    const lunarDate = convertToLunarDate({ day, month, year });
+
+    // Lấy can chi sau khi có ngày âm lịch
+    const lunarNewYearArray = getSolarDate(lunarDate.day, lunarDate.month, year); // Lấy mảng trả về (ngày, tháng)
+    const lunarNewYear = new Date(year, lunarNewYearArray[1] - 1, lunarNewYearArray[0]); // Sử dụng ngày và tháng từ mảng, thêm năm
+    const canChi = getYearCanChi(lunarNewYear.getFullYear()); // Tính can chi của năm âm lịch
+
+    // Hiển thị ngày âm lịch (AL) và can chi trong phần tử `lunarDate`
+    document.getElementById("lunarDate").textContent = `AL: ${lunarDate.day}/${lunarDate.month}/${canChi}`;
 
     // Lấy thông tin lễ và bài đọc
     const feasts = calculateFeasts(year);
@@ -484,25 +520,103 @@ function displayDateInfo(date) {
     const feast = getFeastForDay(selectedDate, feasts);
     document.getElementById("feast-info").innerHTML = feast ? formatFeastName(feast.name) : 'Không có lễ đặc biệt';
 
-    // Lấy thông tin bài đọc từ hàm showfordayContent với định dạng ngày day/month/year
     const readingContent = showfordayContent(selectedDate)?.split('; ') || [];
     const info = showfordayContentinfo(selectedDate);
-    
+
     const solarDate = selectedDate.toISOString();
 
     // Hiển thị thông tin bài đọc
     updateReadingInfo(info, readingContent, solarDate);
 
-                     
-// Tính toán và thêm lễ vọng (second feast)
-const secondFeast = getSecondFeastsForDate(selectedDate, secondFeasts); // Trả về một đối tượng hoặc null
+    // Tính toán và thêm lễ vọng (second feast)
+    const secondFeast = getSecondFeastsForDate(selectedDate, secondFeasts); // Trả về một đối tượng hoặc null
+    document.getElementById("second-feast-info").innerHTML = secondFeast
+        ? formatFeastName(secondFeast.name)
+        : '';
 
-// Kiểm tra nếu secondFeast tồn tại và cập nhật thông tin
-document.getElementById("second-feast-info").innerHTML = secondFeast
-    ? formatFeastName(secondFeast.name) // Nếu có lễ vọng, hiển thị tên
-    : ''; // Nếu không có lễ vọng, trả về chuỗi rỗng
-
+    const reading1 = showOptionContent(selectedDate);
+    updateOptionalReadingInfo(reading1, secondFeast);
 }
+
+
+
+
+function updateOptionalReadingInfo(reading1, solarDate) {
+
+    // Kiểm tra nếu bài đọc phụ tồn tại và khác "1"
+    if (reading1 && reading1 !== "1") {
+
+        // Xác định phần tử HTML cho bài đọc phụ
+        const optionalReadingContainer = document.getElementById("optional-reading");
+        if (!optionalReadingContainer) {
+            return;
+        }
+        // Cập nhật nội dung bài đọc phụ
+        optionalReadingContainer.innerHTML = `
+            <div class="readable" id="optional-content">
+                <strong>${reading1 || ''}</strong>
+            </div>`;
+
+        // Gán sự kiện onclick cho phần tử vừa tạo
+        const optionalContent = document.getElementById("optional-content");
+        if (optionalContent) {
+            optionalContent.addEventListener('click', function() {
+                try {
+                    // Lấy thuộc tính `date` từ `solarDate` và chuyển thành chuỗi
+                    const dateStr = solarDate.date.toISOString();
+                    showBibleOptionContent(dateStr); // Truyền chuỗi định dạng ngày
+                } catch (error) {
+                }
+            });
+        }
+
+        // Nếu reading1 là mảng, xử lý hiển thị thêm nội dung bài đọc
+        if (Array.isArray(reading1)) {
+            const reading1Container = document.getElementById("reading1");
+            if (!reading1Container) {
+                return;
+            }
+
+            if (reading1.length === 4) {
+                console.log("Bài đọc có độ dài 4:", reading1);
+                reading1Container.innerHTML = `
+                    <div class="readable" id="reading1-content">
+                        <strong>${reading1[0] || ''}</strong> ${reading1[1] || ''} 
+                        ${reading1[2] || ''}<strong> ${reading1[3] || ''}
+                    </div>`;
+                const reading1Content = document.getElementById("reading1-content");
+                if (reading1Content) {
+                    reading1Content.addEventListener('click', function() {
+                        try {
+                            const dateStr = solarDate.date.toISOString(); // Chuyển ngày thành chuỗi
+                            showReadingContent(dateStr); // Truyền chuỗi định dạng ngày
+                        } catch (error) {
+                        }
+                    });
+                }
+            } else if (reading1.length === 3) {
+                reading1Container.innerHTML = `
+                    <div class="readable" id="reading1-content">
+                        <strong>${reading1[0] || ''}</strong> ${reading1[1] || ''} 
+                        <strong>${reading1[2] || ''}
+                    </div>`;
+                const reading1Content = document.getElementById("reading1-content");
+                if (reading1Content) {
+                    reading1Content.addEventListener('click', function() {
+                        try {
+                            const dateStr = solarDate.date.toISOString(); // Chuyển ngày thành chuỗi
+                            showReadingContent(dateStr); // Truyền chuỗi định dạng ngày
+                        } catch (error) {
+                        }
+                    });
+                }
+            }
+        }
+    } else {
+        return;
+    }
+}
+
 
 // Hàm để cập nhật thông tin bài đọc 
 function updateReadingInfo(info, readingContent, solarDate) {
@@ -835,7 +949,7 @@ document.getElementById('yearDisplay').textContent = year + ' Năm ' + (ABC) ;
 
             // Ngày dương lịch
             const solarDateCell = document.createElement('td');
-            solarDateCell.textContent = `${day}/${month}/${year}`;
+            solarDateCell.textContent = `${day}/${month}`;
             row.appendChild(solarDateCell);
 
             // Ngày âm lịch

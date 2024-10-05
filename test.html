@@ -55,11 +55,11 @@
             margin-bottom: 10px;
         }
 
-        .image-container img {
+        /* SVG được chèn ở đây thay vì hình ảnh */
+        svg {
             width: 150px;
             height: 150px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
         }
 
         .details {
@@ -176,10 +176,32 @@
 
     <div class="calendar-wrapper">
 
-        <!-- Nội dung của một trang lịch -->
+        <!-- SVG thay thế hình ảnh trong thẻ này -->
         <div class="image-container">
-            <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                <!-- Vòng tròn ngoài cùng -->
+                <circle cx="200" cy="200" r="180" stroke="red" stroke-width="5" fill="none" />
+                
+                <!-- Chữ trên cùng -->
+                <text x="50%" y="60" font-family="Arial" font-size="20" text-anchor="middle" fill="red">
+                    Catholic Church of Vietnam
+                </text>
+                
+                <!-- Chữ dưới cùng -->
+                <text x="50%" y="380" font-family="Arial" font-size="20" text-anchor="middle" fill="red">
+                    Parish of Da Lat
+                </text>
+
+                <!-- Chữ ở giữa -->
+                <text x="50%" y="200" font-family="Arial" font-size="30" text-anchor="middle" fill="red" font-weight="bold">
+                    Parish of Chi Lang
+                </text>
+
+                <!-- Vòng tròn bên trong -->
+                <circle cx="200" cy="200" r="100" stroke="red" stroke-width="5" fill="none" />
+            </svg>
         </div>
+
         <div class="details" id="detailsSection">
             <p><strong id="saintName">THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>
             <p><i id="readings">Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21</i></p>

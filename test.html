@@ -214,9 +214,9 @@
 
 <!-- Phần Footer -->
 <footer>
-    <button onclick="window.location.href='page1.html'">Trang 1</button>
-    <button onclick="window.location.href='page2.html'">Trang 2</button>
-    <button onclick="window.location.href='page3.html'">Trang 3</button>
+    <button onclick="goToToday()">Trang 1 (Today)</button>
+    <button onclick="alert('Trang 2 hiện chưa làm')">Trang 2</button>
+    <button onclick="alert('Trang 3 hiện chưa làm')">Trang 3</button>
 </footer>
 
 <script>
@@ -235,7 +235,7 @@
         return months[date.getMonth()];
     }
 
-    // Hàm để xử lý khi người dùng chọn ngày
+    // Hàm xử lý khi chọn ngày
     function selectDay() {
         const selectedDate = document.getElementById('datePicker').value;
         const date = new Date(selectedDate);
@@ -246,9 +246,24 @@
         // Cập nhật ngày (số 1) trong id "dateLarge"
         document.getElementById("dateLarge").innerText = date.getDate();
 
-        // Cập nhật tháng trong id "yearInfo"
-        document.getElementById("yearInfo").innerText = getMonthName(date) + " - NĂM QUÝ MÃO";
+        // Cập nhật tháng và năm trong id "yearInfo"
+        const year = date.getFullYear();
+        document.getElementById("yearInfo").innerText = getMonthName(date) + " - NĂM " + year + " QUÝ MÃO";
     }
+
+    // Hàm để trở về ngày hiện tại (today)
+    function goToToday() {
+        const today = new Date();
+
+        // Đặt giá trị cho Date Picker là ngày hiện tại
+        document.getElementById('datePicker').value = today.toISOString().split('T')[0];
+
+        // Cập nhật các thông tin ngày hiện tại
+        selectDay();
+    }
+
+    // Tự động hiển thị ngày hôm nay khi mở trang lần đầu
+    window.onload = goToToday;
 </script>
 
 </body>

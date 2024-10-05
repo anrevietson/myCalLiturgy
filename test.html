@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            overflow: hidden; /* Ngăn cuộn trang */
         }
 
         .calendar-wrapper {
@@ -21,13 +22,7 @@
         }
 
         .calendar-container {
-            display: flex;
-            transition: transform 0.3s ease-in-out; /* Giảm thời gian để mượt hơn */
-            will-change: transform; /* Cải thiện hiệu suất */
-        }
-
-        .calendar-page {
-            min-width: 100%;
+            position: relative;
             padding: 20px;
             background-color: white;
             border-radius: 10px;
@@ -136,6 +131,38 @@
             background-color: #ff9999;
         }
 
+        /* Hiệu ứng lật trang */
+        .transition-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .line {
+            height: 100%;
+            width: 10px;
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: scaleX(0);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .line-1 {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .line-2 {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .line-3 {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
         @media (max-width: 768px) {
             .calendar-container {
                 width: 90%;
@@ -189,107 +216,64 @@
 
 <div class="calendar-wrapper" id="calendarWrapper">
 
-    <!-- Container chứa các trang lịch -->
+    <!-- Container chứa lịch -->
     <div class="calendar-container" id="calendarContainer">
 
-        <!-- Trang 1 -->
-        <div class="calendar-page" id="page1">
-            <div class="image-container">
-                <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu">
-            </div>
-            <div class="details">
-                <p><strong>THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>
-                <p><i>Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21</i></p>
-                <p class="scripture">"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng." (Lc 2,9)</p>
-            </div>
-            <div class="reading">
-                <div class="weekday">THỨ HAI</div>
-                <div class="lunar-date">AL: 1/2</div>
-            </div>
-            <p class="date-large">1</p>
-            <div class="year-info">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
+        <!-- Nội dung của một trang lịch -->
+        <div class="image-container">
+            <img src="https://via.placeholder.com/200" alt="Maria và Chúa Giêsu">
         </div>
-
-        <!-- Trang 2 -->
-        <div class="calendar-page" id="page2">
-            <div class="image-container">
-                <img src="https://via.placeholder.com/200" alt="Phêrô">
-            </div>
-            <div class="details">
-                <p><strong>THÁNH PHÊRÔ, TÔNG ĐỒ</strong></p>
-                <p><i>Cv 12,1-11; Tv 34,2-9; 2 Tm 4,6-8.17-18; Mt 16,13-19</i></p>
-                <p class="scripture">"Con là Đá, và trên Đá này, Thầy sẽ xây Hội thánh của Thầy." (Mt 16,18)</p>
-            </div>
-            <div class="reading">
-                <div class="weekday">THỨ BA</div>
-                <div class="lunar-date">AL: 2/2</div>
-            </div>
-            <p class="date-large">2</p>
-            <div class="year-info">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
+        <div class="details">
+            <p><strong>THÁNH MARIA, MẸ THIÊN CHÚA</strong> (lễ trọng)</p>
+            <p><i>Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21</i></p>
+            <p class="scripture">"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng." (Lc 2,9)</p>
         </div>
-
-        <!-- Trang 3 -->
-        <div class="calendar-page" id="page3">
-            <div class="image-container">
-                <img src="https://via.placeholder.com/200" alt="Gioan">
-            </div>
-            <div class="details">
-                <p><strong>THÁNH GIOAN, TÔNG ĐỒ</strong></p>
-                <p><i>1 Ga 1,1-4; Tv 96,1-2.5-6.11-12; Ga 20,2-8</i></p>
-                <p class="scripture">"Người môn đệ được Chúa Giêsu yêu mến." (Ga 20,2)</p>
-            </div>
-            <div class="reading">
-                <div class="weekday">THỨ TƯ</div>
-                <div class="lunar-date">AL: 3/2</div>
-            </div>
-            <p class="date-large">3</p>
-            <div class="year-info">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
+        <div class="reading">
+            <div class="weekday">THỨ HAI</div>
+            <div class="lunar-date">AL: 1/2</div>
         </div>
+        <p class="date-large">1</p>
+        <div class="year-info">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
     </div>
+
+    <!-- Hiệu ứng lật trang với 3 đường thẳng -->
+    <div class="transition-lines" id="transitionLines">
+        <div class="line line-1"></div>
+        <div class="line line-2"></div>
+        <div class="line line-3"></div>
+    </div>
+
 </div>
 
 <!-- Phần Footer -->
 <footer>
-    <button onclick="window.location.href='page1.html'">Trang 1</button>
-    <button onclick="window.location.href='page2.html'">Trang 2</button>
-    <button onclick="window.location.href='page3.html'">Trang 3</button>
+    <button onclick="changeDay()">Chuyển Ngày</button>
 </footer>
 
 <script>
-    let currentPage = 0;
+    // Hàm kích hoạt hiệu ứng chuyển trang
+    function changeDay() {
+        const transitionLines = document.getElementById('transitionLines');
+        const lines = document.querySelectorAll('.line');
+        
+        // Hiển thị hiệu ứng
+        transitionLines.style.display = 'flex';
+        
+        // Kích hoạt các đường thẳng
+        setTimeout(() => {
+            lines.forEach((line, index) => {
+                line.style.transform = 'scaleX(1)'; // Mở rộng các đường thẳng
+            });
+        }, 100);
 
-    const calendarContainer = document.getElementById('calendarContainer');
-    const totalPages = document.querySelectorAll('.calendar-page').length;
-
-    let startX = 0;
-
-    // Sự kiện touchstart để bắt đầu vuốt
-    calendarContainer.addEventListener('touchstart', function(event) {
-        startX = event.touches[0].clientX;
-    });
-
-    // Sự kiện touchend để kết thúc vuốt và xử lý di chuyển trang
-    calendarContainer.addEventListener('touchend', function(event) {
-        const endX = event.changedTouches[0].clientX;
-
-        if (endX < startX - 50) {
-            // Vuốt sang trái (chuyển trang tiếp theo)
-            if (currentPage < totalPages - 1) {
-                currentPage++;
-                requestAnimationFrame(() => {
-                    calendarContainer.style.transform = `translateX(-${currentPage * 100}%)`;
-                });
-            }
-        } else if (endX > startX + 50) {
-            // Vuốt sang phải (quay về trang trước)
-            if (currentPage > 0) {
-                currentPage--;
-                requestAnimationFrame(() => {
-                    calendarContainer.style.transform = `translateX(-${currentPage * 100}%)`;
-                });
-            }
-        }
-    });
+        // Sau khi hoàn thành, ẩn hiệu ứng và reset trạng thái
+        setTimeout(() => {
+            lines.forEach((line) => {
+                line.style.transform = 'scaleX(0)'; // Thu lại các đường thẳng
+            });
+            transitionLines.style.display = 'none'; // Ẩn toàn bộ hiệu ứng
+        }, 700);
+    }
 </script>
 
 </body>

@@ -44,7 +44,7 @@ body {
     padding: 10px 0;
 }
 .date-large {
-    font-size: 120px;
+    font-size: 150px;
     color: red;
     text-align: center;
     margin: -5px; /* Đảm bảo margin có đơn vị */
@@ -55,14 +55,14 @@ body {
     left: -10px; /* Dịch chuyển sang trái 100px */
 }
 .weekday {
-    margin-left: 10px;
+    margin-left: 100px;
     font-size: 20px;
     font-weight: bold;
     color: #2196F3;
 }
 
 .lunar-date {
-    margin-right: 10px;
+    margin-right: 100px;
     font-size: 20px;
     font-weight: normal;
     color: #ff0000;
@@ -193,6 +193,22 @@ th {
     height: 1px;
     border-top: 10px solid #ccc;
 }
+.image-container {
+    text-align: center;
+    margin-bottom: 0px;
+    position: relative; /* Cho phép dịch chuyển */
+    left: -5px; /* Dịch chuyển toàn bộ container qua trái 50px */
+}
+
+
+.image-container img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative; /* Cho phép dịch chuyển */
+    left: 0px; /* Dịch chuyển chỉ hình ảnh qua trái 50px */
+}
 
 /* Định dạng văn bản đặc biệt */
 .info {
@@ -215,12 +231,11 @@ th {
     background-color: #f5f7b3;
     padding: 30px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-    width: 90%;
+    width: 80%;
     max-width: 700px;
     max-height: 80%;
     overflow-y: auto;
     border-radius: 10px;
-    font-size: 24px;
 }
 
 .modal-content {
@@ -385,7 +400,10 @@ header, footer {
 <!-- Hiển thị thông tin ngày hôm nay hoặc ngày đã chọn -->
 
 <div class="calendar-content">
-
+        <!-- Nội dung của một trang lịch -->
+        <div class="image-container">
+            <img src="01.webp" alt="Maria và Chúa Giêsu">
+        </div>
 
     <!-- Thông tin lễ và Lễ Phục cùng nằm trên một hàng và được căn giữa -->
 <div class="details" id="detailsSection">
@@ -513,7 +531,9 @@ document.getElementById("current-month-year").textContent = `${monthName} - ${ye
     const canChi = getYearCanChi(lunarNewYear.getFullYear()); // Tính can chi của năm âm lịch
 
     // Hiển thị ngày âm lịch (AL) và can chi trong phần tử `lunarDate`
-    document.getElementById("lunarDate").textContent = `AL: ${lunarDate.day}/${lunarDate.month}/${canChi}`;
+
+    document.getElementById("lunarDate").innerHTML = `AL: ${lunarDate.day}/${lunarDate.month}<br>${canChi}`;
+
 
     // Lấy thông tin lễ và bài đọc
     const feasts = calculateFeasts(year);
@@ -535,8 +555,13 @@ document.getElementById("current-month-year").textContent = `${monthName} - ${ye
         ? formatFeastName(secondFeast.name)
         : '';
 
-    const reading1 = showOptionContent(selectedDate);
-    updateOptionalReadingInfo(reading1, secondFeast);
+   // Lấy thông tin bài đọc phụ và cập nhật chỉ khi có giá trị
+   const reading1 = showOptionContent(selectedDate);
+    if (reading1 && reading1.trim() !== "") {
+        updateOptionalReadingInfo(reading1, secondFeast);
+    } else {
+        document.getElementById("optional-reading").textContent = ''; // Xóa thông tin bài đọc phụ nếu không có giá trị
+    }
 }
 
 
@@ -567,7 +592,7 @@ function updateOptionalReadingInfo(reading1, solarDate) {
                     const dateStr = solarDate.date.toISOString();
                     showBibleOptionContent(dateStr); // Truyền chuỗi định dạng ngày
                 } catch (error) {
-                }
+                }  
             });
         }
 
@@ -613,9 +638,7 @@ function updateOptionalReadingInfo(reading1, solarDate) {
                 }
             }
         }
-    } else {
-        return;
-    }
+    } 
 }
 
 

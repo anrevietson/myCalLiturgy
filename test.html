@@ -123,35 +123,17 @@
             background-color: #ff9999;
         }
 
-        /* Lịch tháng */
-        .month-calendar {
-            display: none;
+        /* Date Picker */
+        .date-picker-container {
+            margin: 20px 0;
             text-align: center;
-            margin-top: 20px;
         }
 
-        .month-calendar table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .month-calendar th, .month-calendar td {
+        .date-picker-container input[type="date"] {
             padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
             border: 1px solid #ddd;
-        }
-
-        .month-calendar th {
-            background-color: #ff0000;
-            color: white;
-        }
-
-        .month-calendar td {
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .month-calendar td:hover {
-            background-color: #f0f0f0;
         }
 
         @media (max-width: 768px) {
@@ -223,95 +205,55 @@
     <p class="date-large" id="dateLarge">1</p>
     <div class="year-info" id="yearInfo">THÁNG MƯỜI MỘT - NĂM QUÝ MÃO</div>
 
-    <!-- Lịch tháng -->
-    <div class="month-calendar" id="monthCalendar">
-        <table>
-            <thead>
-                <tr>
-                    <th>CN</th>
-                    <th>T2</th>
-                    <th>T3</th>
-                    <th>T4</th>
-                    <th>T5</th>
-                    <th>T6</th>
-                    <th>T7</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td onclick="selectDay(1)">1</td>
-                    <td onclick="selectDay(2)">2</td>
-                    <td onclick="selectDay(3)">3</td>
-                    <td onclick="selectDay(4)">4</td>
-                    <td onclick="selectDay(5)">5</td>
-                    <td onclick="selectDay(6)">6</td>
-                </tr>
-                <tr>
-                    <td onclick="selectDay(7)">7</td>
-                    <td onclick="selectDay(8)">8</td>
-                    <td onclick="selectDay(9)">9</td>
-                    <td onclick="selectDay(10)">10</td>
-                    <td onclick="selectDay(11)">11</td>
-                    <td onclick="selectDay(12)">12</td>
-                    <td onclick="selectDay(13)">13</td>
-                </tr>
-                <!-- Các hàng khác -->
-            </tbody>
-        </table>
+    <!-- Date Picker để chọn ngày -->
+    <div class="date-picker-container">
+        <input type="date" id="datePicker" onchange="selectDay()">
     </div>
 
 </div>
 
 <!-- Phần Footer -->
 <footer>
-    <button onclick="toggleCalendar()">Chọn Ngày</button>
+    <button onclick="window.location.href='page1.html'">Trang 1</button>
+    <button onclick="window.location.href='page2.html'">Trang 2</button>
+    <button onclick="window.location.href='page3.html'">Trang 3</button>
 </footer>
 
 <script>
-    let isMonthView = false;
-
-    // Hàm để chuyển đổi giữa lịch ngày và lịch tháng
-    function toggleCalendar() {
-        const monthCalendar = document.getElementById("monthCalendar");
-        if (isMonthView) {
-            monthCalendar.style.display = "none"; // Ẩn lịch tháng
-        } else {
-            monthCalendar.style.display = "block"; // Hiển thị lịch tháng
+    // Dữ liệu ngày tháng từ hệ thống của bạn
+    const dayData = {
+        '2024-11-01': {
+            saint: "THÁNH MARIA, MẸ THIÊN CHÚA",
+            readings: "Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21",
+            scripture: "\"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng.\" (Lc 2,9)",
+            weekday: "THỨ HAI",
+            lunar: "AL: 1/2"
+        },
+        '2024-11-02': {
+            saint: "THÁNH PHÊRÔ",
+            readings: "Cv 12,1-11; Tv 34,2-9; 2 Tm 4,6-8.17-18; Mt 16,13-19",
+            scripture: "\"Con là Đá, và trên Đá này, Thầy sẽ xây Hội thánh của Thầy.\" (Mt 16,18)",
+            weekday: "THỨ BA",
+            lunar: "AL: 2/2"
         }
-        isMonthView = !isMonthView; // Chuyển
-    }
+        // Dữ liệu cho các ngày khác...
+    };
 
-    function selectDay(day) {
-        // Chọn ngày từ bảng tháng phụng vụ và hiển thị dữ liệu ngày tháng tương ứng
-        const dayData = {
-            1: {
-                saint: "THÁNH MARIA, MẸ THIÊN CHÚA",
-                readings: "Ds 6,22-27; Tv 67,2-3.5.6.8; Gl 4,4-7; Lc 2,16-21",
-                scripture: "\"Còn bà Maria thì hằng ghi nhớ mọi kỷ niệm ấy, và suy đi nghĩ lại trong lòng.\" (Lc 2,9)",
-                weekday: "THỨ HAI",
-                lunar: "AL: 1/2"
-            },
-            2: {
-                saint: "THÁNH PHÊRÔ",
-                readings: "Cv 12,1-11; Tv 34,2-9; 2 Tm 4,6-8.17-18; Mt 16,13-19",
-                scripture: "\"Con là Đá, và trên Đá này, Thầy sẽ xây Hội thánh của Thầy.\" (Mt 16,18)",
-                weekday: "THỨ BA",
-                lunar: "AL: 2/2"
-            }
-            // Các ngày khác...
-        };
+    // Hàm để xử lý khi người dùng chọn ngày
+    function selectDay() {
+        const selectedDate = document.getElementById('datePicker').value;
+        const data = dayData[selectedDate];
 
-        // Cập nhật dữ liệu hiển thị
-        document.getElementById("saintName").innerText = dayData[day].saint;
-        document.getElementById("readings").innerText = dayData[day].readings;
-        document.getElementById("scriptureQuote").innerText = dayData[day].scripture;
-        document.getElementById("weekday").innerText = dayData[day].weekday;
-        document.getElementById("lunarDate").innerText = dayData[day].lunar;
-        document.getElementById("dateLarge").innerText = day;
-
-        // Ẩn lịch tháng sau khi chọn ngày
-        toggleCalendar();
+        if (data) {
+            document.getElementById("saintName").innerText = data.saint;
+            document.getElementById("readings").innerText = data.readings;
+            document.getElementById("scriptureQuote").innerText = data.scripture;
+            document.getElementById("weekday").innerText = data.weekday;
+            document.getElementById("lunarDate").innerText = data.lunar;
+            document.getElementById("dateLarge").innerText = new Date(selectedDate).getDate();
+        } else {
+            alert('Không có dữ liệu cho ngày được chọn.');
+        }
     }
 </script>
 

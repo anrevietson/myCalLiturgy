@@ -292,7 +292,7 @@ br {
 /* Container chung cho phần chọn ngày và các nút */
 .controls-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Căn trái các phần tử */
     align-items: center;
     gap: 10px; /* Khoảng cách giữa các phần tử */
     padding: 10px;
@@ -300,16 +300,28 @@ br {
 }
 
 .control-item {
-    flex: none; /* Đảm bảo các phần tử không giãn ra */
-    min-width: auto; /* Đảm bảo chiều rộng tự động */
+    display: inline-block;
+    margin-right: 10px; /* Khoảng cách giữa các phần tử */
+    flex-shrink: 0; /* Ngăn không cho các phần tử bị thu nhỏ */
 }
 
-input[type="date"], input[type="number"], select, button {
+input[type="date"], select, button {
     padding: 8px;
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    width: auto; /* Đảm bảo không chiếm toàn bộ chiều rộng */
+    width: auto; /* Đảm bảo chỉ chiếm không gian vừa đủ */
+    white-space: nowrap; /* Ngăn không cho nội dung bị ngắt dòng */
+}
+
+/* Điều chỉnh kích thước cho ô nhập năm */
+input[type="number"] {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 80px; /* Điều chỉnh kích thước nhỏ gọn cho ô nhập năm */
+    white-space: nowrap; /* Ngăn không cho nội dung bị ngắt dòng */
 }
 
 button {
@@ -319,6 +331,7 @@ button {
     cursor: pointer;
     border-radius: 4px;
     font-size: 16px;
+    padding: 8px 16px;
 }
 
 button:hover {

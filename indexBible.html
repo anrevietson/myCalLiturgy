@@ -299,130 +299,47 @@ br {
     flex-wrap: nowrap; /* Không cho các phần tử bọc xuống dòng */
 }
 
-/* Container chính cho tab */
-.tab-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Tabs */
-.tabs {
-    display: flex;
-    justify-content: space-around;
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 20px;
-}
-
-.tabs li {
+/* Mỗi control-item sẽ chiếm một cột (ô) riêng biệt */
+.control-item {
     flex: 1;
-    text-align: center;
+    display: flex;
+    flex-direction: column; /* Đặt nhãn và input thành cột */
+    align-items: flex-start;
 }
 
-.tabs a {
-    display: block;
-    padding: 10px;
+input[type="date"], select, input[type="number"], button {
+    padding: 8px;
     font-size: 16px;
-    text-decoration: none;
-    color: #333;
-    background-color: #f5f5f5;
     border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 1px solid #ccc;
+    width: 100%; /* Đảm bảo chiếm hết không gian của ô */
+    box-sizing: border-box; /* Đảm bảo padding không vượt ra ngoài kích thước */
 }
 
-.tabs a.active, .tabs a:hover {
+button {
     background-color: #007BFF;
     color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 10px;
 }
 
-/* Nội dung của tab */
-.tab-content {
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+button:hover {
+    background-color: #0056b3;
 }
 
-/* Ẩn tab */
-.tab-pane {
-    display: none;
-}
-
-/* Hiển thị tab đang hoạt động */
-.tab-pane.active {
-    display: block;
-}
-
-/* Điều chỉnh cho màn hình nhỏ (di động) */
+/* Khi màn hình nhỏ hơn, các phần tử sẽ tự động xuống hàng */
 @media (max-width: 768px) {
-    .tabs {
-        flex-direction: column;
-        gap: 10px;
+    .controls-container {
+        flex-direction: column; /* Chuyển sang hàng dọc khi màn hình nhỏ */
     }
 
-    .tabs a {
-        font-size: 18px;
-    }
-
-    .tab-content {
-        padding: 15px;
+    input[type="date"], select, input[type="number"], button {
+        width: 100%; /* Chiếm hết chiều rộng trên màn hình nhỏ */
     }
 }
-.tab-container {
-        width: 90%;
-    }
-
-    .tabs {
-        list-style-type: none;
-        padding: 0;
-        display: flex;
-        justify-content: space-around;
-    }
-
-    .tabs li {
-        margin: 0 10px;
-    }
-
-    .tabs a {
-        text-decoration: none;
-        color: black;
-        font-size: 16px;
-        padding: 10px;
-        background-color: #f1f1f1;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
-
-    .tabs a.active {
-        background-color: #007bff;
-        color: white;
-    }
-
-    .tabs a:hover {
-        background-color: #ddd;
-    }
-
-    .tab-content {
-        margin-top: 20px;
-    }
-
-    .tab-pane {
-        display: none;
-    }
-
-    .tab-pane.active {
-        display: block;
-    }
-
-    iframe {
-        width: 100%;
-        height: 500px;
-    }
-
 
 
 
@@ -515,47 +432,43 @@ br {
 
 
 <!-- Chọn ngày và các nút Lịch -->
-<div class="tab-container">
-    <!-- Tabs -->
-    <ul class="tabs">
-        <li><a href="#" class="active" onclick="showTab('day')">Day</a></li>
-        <li><a href="#" onclick="showTab('week')">Week</a></li>
-        <li><a href="#" onclick="showTab('month')">Mounth</a></li>
-    </ul>
+<!-- Chọn ngày và các nút Lịch -->
+<div class="controls-container">
+    <!-- Chọn ngày -->
+    <div class="control-item">
+        <label for="inputDate"></label>
+        <input type="date" id="inputDate" onchange="getFeastForSelectedDate()"> <!-- Gọi hàm khi người dùng chọn ngày -->
+    </div>
+    
+    <div class="control-item">
+        <button onclick="displayWeekInfo()">Tuần</button>
+    </div>
 
-    <!-- Nội dung của tab -->
-    <div class="tab-content">
-        <!-- Nội dung tab 'Chọn ngày' -->
-        <div id="day" class="tab-pane active">
-            <label for="inputDate">Chọn ngày: </label>
-            <input type="date" id="inputDate" onchange="getFeastForSelectedDate()">
-        </div>
+    <div class="control-item">
+        <label for="monthInput"> </label>
+        <select id="monthInput">
+            <option value="1">Tháng 1</option>
+            <option value="2">Tháng 2</option>
+            <option value="3">Tháng 3</option>
+            <option value="4">Tháng 4</option>
+            <option value="5">Tháng 5</option>
+            <option value="6">Tháng 6</option>
+            <option value="7">Tháng 7</option>
+            <option value="8">Tháng 8</option>
+            <option value="9">Tháng 9</option>
+            <option value="10">Tháng 10</option>
+            <option value="11">Tháng 11</option>
+            <option value="12">Tháng 12</option>
+        </select>
+    </div>
 
-        <!-- Nội dung tab 'Lịch tuần' -->
-        <div id="week" class="tab-pane">
-            <button onclick="displayWeekInfo()">Lịch Tuần</button>
-        </div>
+    <div class="control-item">
+        <label for="yearInput"></label>
+        <input type="number" id="yearInput" value="2024">
+    </div>
 
-        <!-- Nội dung tab 'Lịch tháng' -->
-        <div id="month" class="tab-pane">
-            <label for="monthInput">Chọn tháng:</label>
-            <select id="monthInput">
-                <option value="1">Tháng 1</option>
-                <option value="2">Tháng 2</option>
-                <option value="3">Tháng 3</option>
-                <option value="4">Tháng 4</option>
-                <option value="5">Tháng 5</option>
-                <option value="6">Tháng 6</option>
-                <option value="7">Tháng 7</option>
-                <option value="8">Tháng 8</option>
-                <option value="9">Tháng 9</option>
-                <option value="10">Tháng 10</option>
-                <option value="11">Tháng 11</option>
-                <option value="12">Tháng 12</option>
-            </select>
-            <input type="number" id="yearInput" value="2024">
-            <button onclick="displayMonthInfo()">Xem lịch tháng</button>
-        </div>
+    <div class="control-item">
+        <button onclick="displayMonthInfo()">Tháng</button>
     </div>
 </div>
 
@@ -582,28 +495,6 @@ br {
 </html>
 
 <script>
-    function showTab(tabId) {
-    // Ẩn tất cả các tab
-    const tabs = document.querySelectorAll('.tab-pane');
-    tabs.forEach(tab => {
-        tab.classList.remove('active');
-    });
-
-    // Hiển thị tab được chọn
-    const activeTab = document.getElementById(tabId);
-    activeTab.classList.add('active');
-
-    // Thay đổi class của liên kết để tab được chọn nổi bật
-    const tabLinks = document.querySelectorAll('.tabs a');
-    tabLinks.forEach(link => {
-        link.classList.remove('active');
-    });
-
-    // Đặt tab được chọn có class active
-    const clickedLink = document.querySelector(`a[onclick="showTab('${tabId}')"]`);
-    clickedLink.classList.add('active');
-}
-
 
 function getWeekday(date) {
         const days = ["CHÚA NHẬT", "THỨ HAI", "THỨ BA", "THỨ TƯ", "THỨ NĂM", "THỨ SÁU", "THỨ BẢY"];

@@ -56,14 +56,14 @@
     }
 
     .weekday {
-        margin-left: 0px;
+        margin-left: 100px;
         font-size: 20px;
         font-weight: bold;
         color: #2196F3;
     }
 
     .lunar-date {
-        margin-right: 0px;
+        margin-right: 100px;
         font-size: 20px;
         font-weight: normal;
         color: #ff0000;
@@ -350,7 +350,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1000;
-        background-color: rgb(253, 221, 156);
+        background-color: rgb(251, 232, 195);
         padding: 20px;
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
         width: 80%;
@@ -376,6 +376,14 @@
     .modal.show {
         display: block; /* Hiển thị modal khi người dùng nhấn */
     }
+    .close {
+    font-size: 24px;
+    color: black;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
 }
 
 
@@ -498,7 +506,8 @@
         <span class="close" onclick="closeDatePicker()">&times;</span>
         <h3>Chọn ngày</h3>
         <input type="date" id="mobileInputDate">
-        <button onclick="confirmDateSelection()">Xác nhận</button> <!-- Nút xác nhận -->
+        <!-- Gọi trực tiếp hàm displayDateInfo với giá trị ngày đã chọn -->
+        <button onclick="displayDateInfo(document.getElementById('mobileInputDate').value)">Xác nhận</button> <!-- Nút xác nhận -->
     </div>
 </div>
 
@@ -512,7 +521,6 @@
     </div>
 </div>
 
-<!-- Modal chọn tháng và năm -->
 <div id="monthPickerModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeMonthPicker()">&times;</span>
@@ -583,7 +591,14 @@ function toggleMonthPicker() {
 function closeMonthPicker() {
     document.getElementById('monthPickerModal').classList.remove('show');
 }
-
+// Hàm để đóng modal chọn tháng/năm
+function closeMonthPicker() {
+    document.getElementById('monthPickerModal').classList.remove('show');
+}
+// Hàm để đóng modal chọn ngày
+function closeDatePicker() {
+    document.getElementById('datePickerModal').classList.remove('show');
+}
 function getWeekday(date) {
         const days = ["CHÚA NHẬT", "THỨ HAI", "THỨ BA", "THỨ TƯ", "THỨ NĂM", "THỨ SÁU", "THỨ BẢY"];
         return days[date.getDay()];

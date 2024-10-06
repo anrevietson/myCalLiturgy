@@ -361,7 +361,7 @@
 </header>
 
 <!-- Modal -->
-<div> id="readingModal" class="modal">
+<div id="readingModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span> <!-- Nút đóng modal -->
         <h3>Bài Đọc Ngày Lễ</h3>
@@ -376,16 +376,16 @@
 </div>
 
 <!-- Overlay -->
-<div> id="modalOverlay" class="overlay" onclick="closeModal()"></div>
+<div id="modalOverlay" class="overlay" onclick="closeModal()"></div>
 
 <!-- Nội dung chính -->
-<div> class="calendar-content">
+<div class="calendar-content">
     <div class="image-container">
         <img src="01.webp" alt="Maria và Chúa Giêsu">
     </div>
 
     <!-- Thông tin lễ và bài đọc -->
-    <div> class="details" id="detailsSection">
+    <div class="details" id="detailsSection">
         <div class="feast-info-container">
             <p class="feast-info" id="feast-info"></p>
         </div>
@@ -412,7 +412,7 @@
 
     <!-- Chọn ngày, tuần và tháng -->
 <!-- Chọn ngày, tuần và tháng -->
-<div> class="controls-container">
+<div class="controls-container">
     <!-- Biểu tượng cho điện thoại -->
     <div class="mobile-controls">
         <button class="icon-button" onclick="toggleDatePicker()">Ngày 📅</button> <!-- Biểu tượng chọn ngày -->
@@ -421,27 +421,27 @@
     </div>
 
     <!-- Các trường chọn ngày, tháng, năm cho thiết bị lớn -->
-    <div> class="desktop-controls">
-    <input type="date" id="inputDate" onchange="getFeastForSelectedDate()">
-    <!-- Chọn tuần hiện tại, tuần trước, hoặc tuần tới -->
-    <button onclick="displayWeekInfo('previous')">Tuần Trước</button>
-    <button onclick="displayWeekInfo('current')">Tuần Hiện Tại</button>
-    <button onclick="displayWeekInfo('next')">Tuần Tới</button>
-    
+    <div class="desktop-controls">
+        <input type="date" id="inputDate" onchange="getFeastForSelectedDate()">
+        
+        <!-- Chọn tuần hiện tại, tuần trước, hoặc tuần tới -->
+        <button onclick="displayWeekInfo('previous')">Tuần Trước</button>
+        <button onclick="displayWeekInfo('current')">Tuần Hiện Tại</button>
+        <button onclick="displayWeekInfo('next')">Tuần Tới</button>
 
         <select id="monthInput">
-            <option value="1">Tháng 1</option>
-            <option value="2">Tháng 2</option>
-            <option value="3">Tháng 3</option>
-            <option value="4">Tháng 4</option>
-            <option value="5">Tháng 5</option>
-            <option value="6">Tháng 6</option>
-            <option value="7">Tháng 7</option>
-            <option value="8">Tháng 8</option>
-            <option value="9">Tháng 9</option>
-            <option value="10">Tháng 10</option>
-            <option value="11">Tháng 11</option>
-            <option value="12">Tháng 12</option>
+            <option value="1">Thg 1</option>
+            <option value="2">Thg 2</option>
+            <option value="3">Thg 3</option>
+            <option value="4">Thg 4</option>
+            <option value="5">Thg 5</option>
+            <option value="6">Thg 6</option>
+            <option value="7">Thg 7</option>
+            <option value="8">Thg 8</option>
+            <option value="9">Thg 9</option>
+            <option value="10">Thg 10</option>
+            <option value="11">Thg 11</option>
+            <option value="12">Thg 12</option>
         </select>
         <input type="number" id="yearInput" value="2024">
         <button onclick="displayMonthInfo()">Lịch Tháng</button>
@@ -473,25 +473,26 @@
     </div>
 </div>
 
-<div> id="monthPickerModal" class="modal">
+
+<div id="monthPickerModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeMonthPicker()">&times;</span>
         <h3>Chọn tháng và năm</h3>
 
         <!-- Khi người dùng thay đổi tháng, tự động gọi hàm displayMonthInfo -->
         <select id="mobileMonthInput" onchange="displayMonthInfo(document.getElementById('mobileMonthInput').value, document.getElementById('mobileYearInput').value)">
-            <option value="1">Tháng 1</option>
-            <option value="2">Tháng 2</option>
-            <option value="3">Tháng 3</option>
-            <option value="4">Tháng 4</option>
-            <option value="5">Tháng 5</option>
-            <option value="6">Tháng 6</option>
-            <option value="7">Tháng 7</option>
-            <option value="8">Tháng 8</option>
-            <option value="9">Tháng 9</option>
-            <option value="10">Tháng 10</option>
-            <option value="11">Tháng 11</option>
-            <option value="12">Tháng 12</option>
+            <option value="1">Thg 1</option>
+            <option value="2">Thg 2</option>
+            <option value="3">Thg 3</option>
+            <option value="4">Thg 4</option>
+            <option value="5">Thg 5</option>
+            <option value="6">Thg 6</option>
+            <option value="7">Thg 7</option>
+            <option value="8">Thg 8</option>
+            <option value="9">Thg 9</option>
+            <option value="10">Thg 10</option>
+            <option value="11">Thg 11</option>
+            <option value="12">Thg 12</option>
         </select>
 
         <!-- Khi người dùng thay đổi năm, tự động gọi hàm displayMonthInfo -->
@@ -892,7 +893,6 @@ function displayWeekInfo(weekType) {
         currentDay.setDate(currentDay.getDate() + 1);
     }
 }
-
 
 
 function displayMonthInfo() {

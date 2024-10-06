@@ -1273,10 +1273,19 @@ function decreaseFontSize() {
 }
 
 function quitModal() {
-    // Ẩn modal và overlay
-    closeModal();
-    document.getElementById('monthPickerModal').style.display = 'none';
-    document.getElementById('modalOverlay').style.display = 'none';
+    // Lấy tất cả các modal có class 'modal'
+    var modals = document.querySelectorAll('.modal');
+    
+    // Lặp qua từng modal và ẩn chúng
+    modals.forEach(function(modal) {
+        modal.style.display = 'none';
+    });
+    
+    // Ẩn overlay nếu có
+    var overlay = document.getElementById('modalOverlay');
+    if (overlay) {
+        overlay.style.display = 'none';
+    }
 }
 // Hàm bôi đậm nội dung (Bold)
 function boldText() {

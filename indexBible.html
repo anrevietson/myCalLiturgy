@@ -56,14 +56,14 @@
     }
 
     .weekday {
-        margin-left: 100px;
+        margin-left: 0px;
         font-size: 20px;
         font-weight: bold;
         color: #2196F3;
     }
 
     .lunar-date {
-        margin-right: 100px;
+        margin-right: 0px;
         font-size: 20px;
         font-weight: normal;
         color: #ff0000;
@@ -200,6 +200,10 @@
         overflow-y: auto;
         border-radius: 10px;
     }
+    /* Ẩn dấu X trong modal */
+.modal .close {
+    display: none;
+}
 
     .modal-content {
         padding: 20px;
@@ -346,13 +350,17 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1000;
-        background-color: white;
+        background-color: rgb(253, 221, 156);
         padding: 20px;
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
         width: 80%;
         max-width: 400px;
         border-radius: 10px;
     }
+    /* Ẩn dấu X trong modal */
+.modal .close {
+    display: none;
+}
 
     .modal-content {
         padding: 20px;
@@ -451,6 +459,7 @@
     </div>
 
     <!-- Chọn ngày, tuần và tháng -->
+<!-- Chọn ngày, tuần và tháng -->
 <div class="controls-container">
     <!-- Biểu tượng cho điện thoại -->
     <div class="mobile-controls">
@@ -488,7 +497,8 @@
     <div class="modal-content">
         <span class="close" onclick="closeDatePicker()">&times;</span>
         <h3>Chọn ngày</h3>
-        <input type="date" id="mobileInputDate" onchange="getFeastForSelectedDate()">
+        <input type="date" id="mobileInputDate">
+        <button onclick="confirmDateSelection()">Xác nhận</button> <!-- Nút xác nhận -->
     </div>
 </div>
 
@@ -522,8 +532,10 @@
             <option value="12">Thg 12</option>
         </select>
         <input type="number" id="mobileYearInput" value="2024">
+        <button onclick="confirmMonthYearSelection()">Xác nhận</button> <!-- Nút xác nhận -->
     </div>
 </div>
+
 
 
     <!-- Bảng hiển thị thông tin -->

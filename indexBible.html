@@ -149,13 +149,17 @@
     /* Màu nền theo màu áo lễ */
     .bg-Tr { background-color: white; }
     .bg-Tm { background-color: #d8bfd8; }
-    .bg-Đ { background-color: #ff6347; }
+    .bg-Đ { background-color: #ff0000; }
     .bg-X { background-color: lightgreen; }
-
+    
     .week-separator {
         height: 1px;
         border-top: 10px solid #ccc;
     }
+    .bg-Đ { 
+    background-color: #ff0000; /* Màu nền đỏ */
+    color: white;              /* Màu chữ trắng */
+}
 
     .image-container {
         text-align: center;
@@ -272,24 +276,6 @@
         font-weight: bold;
     }
 
-    /* Media Queries cho thiết bị di động */
-    @media (max-width: 768px) {
-        .calendar-content {
-            padding: 10px;
-            margin: 10px;
-        }
-
-        .controls-container {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        input[type="date"], input[type="number"], select, button {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-    }
-
     /* Container chung cho phần chọn ngày và các nút */
     .controls-container {
         display: flex;
@@ -320,6 +306,70 @@
     button:hover {
         background-color: #0056b3;
     }
+    /* Ẩn các biểu tượng trên máy tính */
+.mobile-controls {
+    display: none;
+}
+    /* Hiển thị biểu tượng trên thiết bị di động */
+@media (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+    }
+
+    .desktop-controls {
+        display: none; /* Ẩn các trường chọn bình thường trên điện thoại */
+    }
+
+    /* Các nút biểu tượng */
+    .icon-button {
+        font-size: 24px;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: background-color 0.3s ease;
+    }
+
+    .icon-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Modal popup để chọn ngày, tuần, tháng */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+        width: 80%;
+        max-width: 400px;
+        border-radius: 10px;
+    }
+
+    .modal-content {
+        padding: 20px;
+        text-align: left;
+    }
+
+    .close {
+        cursor: pointer;
+        float: right;
+        font-size: 24px;
+    }
+
+    .modal.show {
+        display: block; /* Hiển thị modal khi người dùng nhấn */
+    }
+}
+
 
     </style>
 
@@ -400,20 +450,81 @@
         </div>
     </div>
 
-    <!-- Chọn ngày và các nút điều khiển -->
-    <div class="controls-container">
+    <!-- Chọn ngày, tuần và tháng -->
+<div class="controls-container">
+    <!-- Biểu tượng cho điện thoại -->
+    <div class="mobile-controls">
+        <button class="icon-button" onclick="toggleDatePicker()">📅</button> <!-- Biểu tượng chọn ngày -->
+        <button class="icon-button" onclick="toggleWeekPicker()">📆</button> <!-- Biểu tượng chọn tuần -->
+        <button class="icon-button" onclick="toggleMonthPicker()">📅📅</button> <!-- Biểu tượng chọn tháng/năm -->
+    </div>
+
+    <!-- Các trường chọn ngày, tháng, năm cho thiết bị lớn -->
+    <div class="desktop-controls">
         <input type="date" id="inputDate" onchange="getFeastForSelectedDate()">
         <button onclick="displayWeekInfo()">Lịch Tuần</button>
 
         <select id="monthInput">
-            <option value="1">Tháng 1</option>
-            <option value="2">Tháng 2</option>
-            <!-- Thêm các tháng còn lại -->
+            <option value="1">Thg 1</option>
+            <option value="2">Thg 2</option>
+            <option value="3">Thg 3</option>
+            <option value="4">Thg 4</option>
+            <option value="5">Thg 5</option>
+            <option value="6">Thg 6</option>
+            <option value="7">Thg 7</option>
+            <option value="8">Thg 8</option>
+            <option value="9">Thg 9</option>
+            <option value="10">Thg 10</option>
+            <option value="11">Thg 11</option>
+            <option value="12">Thg 12</option>
         </select>
-
         <input type="number" id="yearInput" value="2024">
         <button onclick="displayMonthInfo()">Lịch Tháng</button>
     </div>
+</div>
+
+<!-- Modal chọn ngày -->
+<div id="datePickerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeDatePicker()">&times;</span>
+        <h3>Chọn ngày</h3>
+        <input type="date" id="mobileInputDate" onchange="getFeastForSelectedDate()">
+    </div>
+</div>
+
+<!-- Modal chọn tuần -->
+<div id="weekPickerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeWeekPicker()">&times;</span>
+        <h3>Chọn tuần</h3>
+        <!-- Hiển thị thông tin lịch tuần hoặc chọn tuần -->
+        <button onclick="displayWeekInfo()">Hiển thị thông tin tuần</button>
+    </div>
+</div>
+
+<!-- Modal chọn tháng và năm -->
+<div id="monthPickerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeMonthPicker()">&times;</span>
+        <h3>Chọn tháng và năm</h3>
+        <select id="mobileMonthInput">
+            <option value="1">Thg 1</option>
+            <option value="2">Thg 2</option>
+            <option value="3">Thg 3</option>
+            <option value="4">Thg 4</option>
+            <option value="5">Thg 5</option>
+            <option value="6">Thg 6</option>
+            <option value="7">Thg 7</option>
+            <option value="8">Thg 8</option>
+            <option value="9">Thg 9</option>
+            <option value="10">Thg 10</option>
+            <option value="11">Thg 11</option>
+            <option value="12">Thg 12</option>
+        </select>
+        <input type="number" id="mobileYearInput" value="2024">
+    </div>
+</div>
+
 
     <!-- Bảng hiển thị thông tin -->
     <h2>Lịch Phụng Vụ <span id="yearDisplay"></span></h2>
@@ -435,6 +546,30 @@
 </html>
 
 <script>
+
+function toggleDatePicker() {
+    document.getElementById('datePickerModal').classList.toggle('show');
+}
+
+function closeDatePicker() {
+    document.getElementById('datePickerModal').classList.remove('show');
+}
+
+function toggleWeekPicker() {
+    document.getElementById('weekPickerModal').classList.toggle('show');
+}
+
+function closeWeekPicker() {
+    document.getElementById('weekPickerModal').classList.remove('show');
+}
+
+function toggleMonthPicker() {
+    document.getElementById('monthPickerModal').classList.toggle('show');
+}
+
+function closeMonthPicker() {
+    document.getElementById('monthPickerModal').classList.remove('show');
+}
 
 function getWeekday(date) {
         const days = ["CHÚA NHẬT", "THỨ HAI", "THỨ BA", "THỨ TƯ", "THỨ NĂM", "THỨ SÁU", "THỨ BẢY"];

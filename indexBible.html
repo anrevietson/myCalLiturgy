@@ -13,7 +13,23 @@
     padding: 0;
     color: #333;
 }
-
+header, footer {
+    text-align: center;
+    background-color: #260292;
+    color: white;
+    padding: 8px;
+    font-size: 22px;
+    font-weight: bold;
+}
+footer {
+    margin-top: 3px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    font-size: 22px;
+    text-align: center;
+    font-weight: normal;
+}
 /* Header */
 .calendar-header {
     background-color: #007bff;
@@ -343,8 +359,6 @@ button:hover {
 
 
 
-
-
 </style>
 
 <!-- Tích hợp các tệp JS -->
@@ -369,7 +383,7 @@ button:hover {
 <body>
 
   <!-- Phần Header -->
-  <header>
+<header>
     LỊCH PHỤNG VỤ CÔNG GIÁO
 </header>
 
@@ -431,7 +445,7 @@ button:hover {
 
 
 
-<!-- Chọn ngày và các nút Lịch -->
+                <footer>
 <!-- Chọn ngày và các nút Lịch -->
 <div class="controls-container">
     <!-- Chọn ngày -->
@@ -471,7 +485,7 @@ button:hover {
         <button onclick="displayMonthInfo()">Tháng</button>
     </div>
 </div>
-
+<footer>
  
 
 <h2>Lịch Phụng vụ <span id="yearDisplay"></span></h2>

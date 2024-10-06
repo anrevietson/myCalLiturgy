@@ -56,14 +56,14 @@
     }
 
     .weekday {
-        margin-left: 0px;
+        margin-left: 100px;
         font-size: 20px;
         font-weight: bold;
         color: #2196F3;
     }
 
     .lunar-date {
-        margin-right: 0px;
+        margin-right: 100px;
         font-size: 20px;
         font-weight: normal;
         color: #ff0000;
@@ -207,7 +207,7 @@
 
     .modal-content {
         padding: 20px;
-        text-align: left;
+        text-align: center;
     }
 
     .close:focus {
@@ -296,7 +296,7 @@
         font-size: 16px;
         border-radius: 5px;
         border: 1px solid #ccc;
-        width: auto;
+        width: fit-content;
     }
 
     button {
@@ -311,6 +311,35 @@
     button:hover {
         background-color: #0056b3;
     }
+    .desktop-controls {
+    display: flex;
+    justify-content: space-around; /* Chia đều không gian cho các phần tử */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+    padding: 10px; /* Khoảng cách xung quanh */
+}
+
+.desktop-controls input{
+    flex: 1; /* Mỗi phần tử sẽ chiếm một phần không gian bằng nhau */
+    max-width: 50px; /* Giới hạn chiều rộng tối đa cho các nút và input */
+} 
+
+.desktop-controls select{
+    flex: 1; /* Mỗi phần tử sẽ chiếm một phần không gian bằng nhau */
+    max-width: 200px; /* Giới hạn chiều rộng tối đa cho các nút và input */
+}
+
+.desktop-controls button {
+    flex: none; /* Mỗi phần tử sẽ chiếm một phần không gian bằng nhau */
+    max-width: 150px; /* Giới hạn chiều rộng tối đa cho các nút và input */
+}
+
+.desktop-controls button {
+    padding: 8px 12px; /* Điều chỉnh kích thước nút */
+}
+
+
+
     /* Ẩn các biểu tượng trên máy tính */
 .mobile-controls {
     display: none;
@@ -410,8 +439,8 @@
         </div>
     </div>
 
-    <!-- Chọn ngày, tuần và tháng -->
-<!-- Chọn ngày, tuần và tháng -->
+    
+<!-- Chọn ngày, tuần và tháng vủa mobi -->
 <div class="controls-container">
     <!-- Biểu tượng cho điện thoại -->
     <div class="mobile-controls">
@@ -422,30 +451,33 @@
 
     <!-- Các trường chọn ngày, tháng, năm cho thiết bị lớn -->
     <div class="desktop-controls">
-        <input type="date" id="inputDate" onchange="getFeastForSelectedDate()">
+
+        <button>Ngày : </button>
+        <input type="date" id="inputDate" onchange="getFeastForSelectedDate()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         
         <!-- Chọn tuần hiện tại, tuần trước, hoặc tuần tới -->
-        <button onclick="displayWeekInfo('previous')">Tuần Trước</button>
+        <button onclick="displayWeekInfo('previous')">⏮</button>
         <button onclick="displayWeekInfo('current')">Tuần Hiện Tại</button>
-        <button onclick="displayWeekInfo('next')">Tuần Tới</button>
+        <button onclick="displayWeekInfo('next')">⏭</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
 
+        <button onclick="displayMonthInfo()">Lịch Tháng : </button>
         <select id="monthInput">
-            <option value="1">Thg 1</option>
-            <option value="2">Thg 2</option>
-            <option value="3">Thg 3</option>
-            <option value="4">Thg 4</option>
-            <option value="5">Thg 5</option>
-            <option value="6">Thg 6</option>
-            <option value="7">Thg 7</option>
-            <option value="8">Thg 8</option>
-            <option value="9">Thg 9</option>
-            <option value="10">Thg 10</option>
-            <option value="11">Thg 11</option>
-            <option value="12">Thg 12</option>
+            <option value="1">Tháng 1</option>
+            <option value="2">Tháng 2</option>
+            <option value="3">Tháng 3</option>
+            <option value="4">Tháng 4</option>
+            <option value="5">Tháng 5</option>
+            <option value="6">Tháng 6</option>
+            <option value="7">Tháng 7</option>
+            <option value="8">Tháng 8</option>
+            <option value="9">Tháng 9</option>
+            <option value="10">Tháng 10</option>
+            <option value="11">Tháng 11</option>
+            <option value="12">Tháng 12</option>
         </select>
         <input type="number" id="yearInput" value="2024">
-        <button onclick="displayMonthInfo()">Lịch Tháng</button>
-    </div>
+       </div>
 </div>
 
 <!-- Modal chọn ngày -->
@@ -460,20 +492,20 @@
     </div>
 </div>
 
-<!-- Modal chọn tuần -->
+<!-- Modal chọn tuần mobi-->
 <div id="weekPickerModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeWeekPicker()">&times;</span>
         <h3>Chọn tuần</h3>
         <!-- Hiển thị thông tin tuần -->
-        <button onclick="displayWeekInfo('previous')">Tuần Trước</button>
+        <button onclick="displayWeekInfo('previous')">⏮</button>
         <button onclick="displayWeekInfo('current')">Tuần Hiện Tại</button>
-        <button onclick="displayWeekInfo('next')">Tuần Tới</button>
+        <button onclick="displayWeekInfo('next')">⏭</button>
         <button onclick="quitModal()">Close</button> <!-- Đóng modal -->
     </div>
 </div>
 
-
+<!-- Modal chọn Thánh mobi-->
 <div id="monthPickerModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeMonthPicker()">&times;</span>

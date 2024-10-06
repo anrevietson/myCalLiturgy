@@ -531,37 +531,60 @@
 
 <script>
 
+// Hàm mở/đóng modal chọn ngày
 function toggleDatePicker() {
-    document.getElementById('datePickerModal').classList.toggle('show');
+    var modal = document.getElementById('datePickerModal');
+    var displayStatus = modal.style.display === 'block' ? 'none' : 'block';
+    modal.style.display = displayStatus;
+    toggleOverlay(displayStatus); // Điều khiển overlay
 }
 
-function closeDatePicker() {
-    document.getElementById('datePickerModal').classList.remove('show');
-}
-
+// Hàm mở/đóng modal chọn tuần
 function toggleWeekPicker() {
-    document.getElementById('weekPickerModal').classList.toggle('show');
+    var modal = document.getElementById('weekPickerModal');
+    var displayStatus = modal.style.display === 'block' ? 'none' : 'block';
+    modal.style.display = displayStatus;
+    toggleOverlay(displayStatus); // Điều khiển overlay
+}
+
+// Hàm mở/đóng modal chọn tháng/năm (có thể thêm modal cho tháng/năm nếu cần)
+function toggleMonthPicker() {
+    var modal = document.getElementById('monthPickerModal');
+    if (modal) {
+        var displayStatus = modal.style.display === 'block' ? 'none' : 'block';
+        modal.style.display = displayStatus;
+        toggleOverlay(displayStatus); // Điều khiển overlay
+    }
+}
+
+// Hàm ẩn overlay và các modal
+function quitModal() {
+    var modals = document.querySelectorAll('.modal');
+    modals.forEach(function(modal) {
+        modal.style.display = 'none';
+    });
+    toggleOverlay('none'); // Ẩn overlay khi đóng tất cả modal
+}
+
+// Hàm mở/đóng overlay
+function toggleOverlay(displayStatus) {
+    var overlay = document.getElementById('modalOverlay');
+    if (overlay) {
+        overlay.style.display = displayStatus;
+    }
+}
+
+// Các hàm đóng từng modal
+function closeDatePicker() {
+    document.getElementById('datePickerModal').style.display = 'none';
+    toggleOverlay('none'); // Ẩn overlay
 }
 
 function closeWeekPicker() {
-    document.getElementById('weekPickerModal').classList.remove('show');
+    document.getElementById('weekPickerModal').style.display = 'none';
+    toggleOverlay('none'); // Ẩn overlay
 }
 
-function toggleMonthPicker() {
-    document.getElementById('monthPickerModal').classList.toggle('show');
-}
-
-function closeMonthPicker() {
-    document.getElementById('monthPickerModal').classList.remove('show');
-}
-// Hàm để đóng modal chọn tháng/năm
-function closeMonthPicker() {
-    document.getElementById('monthPickerModal').classList.remove('show');
-}
-// Hàm để đóng modal chọn ngày
-function closeDatePicker() {
-    document.getElementById('datePickerModal').classList.remove('show');
-}
 function getWeekday(date) {
         const days = ["CHÚA NHẬT", "THỨ HAI", "THỨ BA", "THỨ TƯ", "THỨ NĂM", "THỨ SÁU", "THỨ BẢY"];
         return days[date.getDay()];
@@ -1272,21 +1295,7 @@ function decreaseFontSize() {
     content.style.fontSize = newSize + 'px';
 }
 
-function quitModal() {
-    // Lấy tất cả các modal có class 'modal'
-    var modals = document.querySelectorAll('.modal');
-    
-    // Lặp qua từng modal và ẩn chúng
-    modals.forEach(function(modal) {
-        modal.style.display = 'none';
-    });
-    
-    // Ẩn overlay nếu có
-    var overlay = document.getElementById('modalOverlay');
-    if (overlay) {
-        overlay.style.display = 'none';
-    }
-}
+
 // Hàm bôi đậm nội dung (Bold)
 function boldText() {
     // Lấy phần nội dung của modal

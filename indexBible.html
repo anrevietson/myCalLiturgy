@@ -461,12 +461,13 @@
     <div class="modal-content">
         <span class="close" onclick="closeWeekPicker()">&times;</span>
         <h3>Chọn tuần</h3>
-        <!-- Gọi hàm displayWeekInfo khi người dùng chọn tuần -->
-        <input type="week" id="weekInput" onchange="displayWeekInfo(this.value)">
-        <button onclick="quitModal()">Close</button> <!-- đóng modal -->
+        <!-- Hiển thị thông tin tuần -->
+        <button onclick="displayWeekInfo('previous')">Tuần Trước</button>
+        <button onclick="displayWeekInfo('current')">Tuần Hiện Tại</button>
+        <button onclick="displayWeekInfo('next')">Tuần Tới</button>
+        <button onclick="quitModal()">Close</button> <!-- Đóng modal -->
     </div>
 </div>
-
 
 <div id="monthPickerModal" class="modal">
     <div class="modal-content">
@@ -772,9 +773,22 @@ function getFeastForSelectedDate() {
 }
 
 // Hiển thị tuần phụng vụ
-function displayWeekInfo() {
+function displayWeekInfo(weekType) {
     const today = new Date();
-    const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay())); // Chủ Nhật đầu tuần
+    let startOfWeek;
+
+    // Xác định tuần nào sẽ hiển thị
+    if (weekType === 'previous') {
+        // Tuần trước
+        startOfWeek = new Date(today.setDate(today.getDate() - today.getDay() - 7)); // Chủ Nhật tuần trước
+    } else if (weekType === 'next') {
+        // Tuần tới
+        startOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 7)); // Chủ Nhật tuần tới
+    } else {
+        // Tuần hiện tại (default)
+        startOfWeek = new Date(today.setDate(today.getDate() - today.getDay())); // Chủ Nhật tuần này
+    }
+
     const endOfWeek = new Date(startOfWeek);
     endOfWeek.setDate(startOfWeek.getDate() + 6); // Kết thúc vào Thứ Bảy
 
@@ -813,31 +827,28 @@ function displayWeekInfo() {
 
         // Thêm bài đọc vào sau thông tin lễ
         const readingContent = showfordayContent(currentDay); // Gọi hàm showfordayContent để lấy nội dung bài đọc
-            if (readingContent) {
-                feastAndReadingContent += `<div class="readable" onclick="showReadingContent('${currentDay.toISOString()}')">${readingContent}</div>`;
-            } else {
-                feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc
-                }
-        
-            // Tính toán và thêm lễ vọng (second feast)
-            const secondFeast = getSecondFeastsForDate(currentDay, secondFeasts);
-                if (secondFeast) {
-                feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>';
-                }
+        if (readingContent) {
+            feastAndReadingContent += `<div class="readable" onclick="showReadingContent('${currentDay.toISOString()}')">${readingContent}</div>`;
+        } else {
+            feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc
+        }
 
-            // Thêm bài đọc phụ vào sau phần ngày lễ
-                const reading1 = showOptionContent(currentDay); // Gọi hàm showOptionContent để tên bài đọc
+        // Tính toán và thêm lễ vọng (second feast)
+        const secondFeast = getSecondFeastsForDate(currentDay, secondFeasts);
+        if (secondFeast) {
+            feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>';
+        }
 
-                if (reading1 && reading1 !== "1") {
-                    // Thay vì hiển thị "Click để xem bài đọc phụ", hiển thị tên bài đọc (reading1)
-                    feastAndReadingContent += `
-                        <div class="readable" onclick="showBibleOptionContent('${currentDay.toISOString()}')">
-                            ${reading1}
-                        </div>
-                    `;
-                } else {
-                    feastAndReadingContent += '';  // Nếu không có bài đọc
-                } 
+        // Thêm bài đọc phụ vào sau phần ngày lễ
+        const reading1 = showOptionContent(currentDay); // Gọi hàm showOptionContent để lấy tên bài đọc
+
+        if (reading1 && reading1 !== "1") {
+            feastAndReadingContent += `
+                <div class="readable" onclick="showBibleOptionContent('${currentDay.toISOString()}')">
+                    ${reading1}
+                </div>
+            `;
+        }
 
         // Tạo hàng mới trong bảng
         const row = document.createElement('tr');
@@ -861,26 +872,23 @@ function displayWeekInfo() {
         solarDateCell.innerHTML = `<strong>${day}/${month}</strong><br><em><span style="color: darkblue;">(${lunarDate.day}/${lunarDate.month})</span><em>`;
         row.appendChild(solarDateCell);
 
-
-         //Màu áo lễ
+        // Màu áo lễ
         const chasubleCell = document.createElement('td');
         chasubleCell.textContent = chasuble || 'Xanh';
         row.appendChild(chasubleCell);
 
-         //Thông tin lễ và bài đọc
+        // Thông tin lễ và bài đọc
         const feastAndReadingCell = document.createElement('td');
         feastAndReadingCell.innerHTML = feastAndReadingContent;
         row.appendChild(feastAndReadingCell);
 
-
         reportTableBody.appendChild(row);
-    
-
 
         // Chuyển sang ngày tiếp theo
         currentDay.setDate(currentDay.getDate() + 1);
     }
 }
+
 
 
 function displayMonthInfo() {

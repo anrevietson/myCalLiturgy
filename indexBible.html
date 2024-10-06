@@ -568,48 +568,54 @@
 
 <script>
 
-// Hàm để bật/tắt modal chọn ngày
+// Hàm bật/tắt modal chọn ngày
 function toggleDatePicker() {
     const modal = document.getElementById('datePickerModal');
-    modal.classList.toggle('show');  // Bật/tắt modal khi cần thiết
+    if (modal.style.display === 'block') {
+        modal.style.display = 'none';  // Ẩn modal nếu đang mở
+    } else {
+        modal.style.display = 'block'; // Hiển thị modal nếu đang ẩn
+    }
 }
 
 // Hàm để đóng modal chọn ngày
 function closeDatePicker() {
     const modal = document.getElementById('datePickerModal');
-    modal.classList.remove('show');  // Đảm bảo modal bị ẩn sau khi nhấn nút xác nhận
+    modal.style.display = 'none';  // Ẩn modal
 }
 
-// Hàm để bật/tắt modal chọn tuần
+// Hàm bật/tắt modal chọn tuần
 function toggleWeekPicker() {
     const modal = document.getElementById('weekPickerModal');
-    modal.classList.toggle('show');  // Bật/tắt modal khi cần thiết
+    if (modal.style.display === 'block') {
+        modal.style.display = 'none';  // Ẩn modal nếu đang mở
+    } else {
+        modal.style.display = 'block'; // Hiển thị modal nếu đang ẩn
+    }
 }
 
 // Hàm để đóng modal chọn tuần
 function closeWeekPicker() {
     const modal = document.getElementById('weekPickerModal');
-    modal.classList.remove('show');  // Đảm bảo modal bị ẩn sau khi nhấn nút xác nhận
+    modal.style.display = 'none';  // Ẩn modal
 }
 
-// Hàm để bật/tắt modal chọn tháng/năm
+// Hàm bật/tắt modal chọn tháng/năm
 function toggleMonthPicker() {
     const modal = document.getElementById('monthPickerModal');
-    modal.classList.toggle('show');  // Bật/tắt modal khi cần thiết
+    if (modal.style.display === 'block') {
+        modal.style.display = 'none';  // Ẩn modal nếu đang mở
+    } else {
+        modal.style.display = 'block'; // Hiển thị modal nếu đang ẩn
+    }
 }
 
 // Hàm để đóng modal chọn tháng/năm
 function closeMonthPicker() {
     const modal = document.getElementById('monthPickerModal');
-    modal.classList.remove('show');  // Đảm bảo modal bị ẩn sau khi nhấn nút xác nhận
+    modal.style.display = 'none';  // Ẩn modal
 }
 
-
-// Hàm để bật tắt modal chọn ngày
-function toggleDatePicker() {
-    const modal = document.getElementById('datePickerModal');
-    modal.classList.toggle('show');  // Bật/tắt modal khi cần thiết
-}
 function getWeekday(date) {
         const days = ["CHÚA NHẬT", "THỨ HAI", "THỨ BA", "THỨ TƯ", "THỨ NĂM", "THỨ SÁU", "THỨ BẢY"];
         return days[date.getDay()];

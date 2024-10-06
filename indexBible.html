@@ -416,7 +416,9 @@
     <!-- Biểu tượng cho điện thoại -->
     <div class="mobile-controls">
         <button class="icon-button" onclick="toggleDatePicker()">Ngày 📅</button> <!-- Biểu tượng chọn ngày -->
-        <button class="icon-button" onclick="toggleWeekPicker()">Tuần⏮ 🧭 ⏭ </button> <!-- Biểu tượng chọn tuần -->
+        <button class="icon-button" onclick="toggleWeekPicker()">⏮  </button> <!-- Biểu tượng chọn tuần -->
+                <button class="icon-button" onclick="toggleWeekPicker()">Tuần🧭  </button> <!-- Biểu tượng chọn tuần -->
+                <button class="icon-button" onclick="toggleWeekPicker()">⏭ </button> <!-- Biểu tượng chọn tuần -->
         <button class="icon-button" onclick="toggleMonthPicker()">Tháng 🗓</button> <!-- Biểu tượng chọn tháng/năm -->
     </div>
 
@@ -445,15 +447,12 @@
 </div>
 
 <!-- Modal chọn ngày -->
-<!-- Modal chọn ngày -->
-<div id="datePickerModal" class="modal">
+<div id="datePickerModal">
     <div class="modal-content">
         <span class="close" onclick="closeDatePicker()">&times;</span>
         <h3>Chọn ngày</h3>
         <!-- Gọi hàm displayDateInfo khi người dùng chọn ngày -->
         <input type="date" id="mobileInputDate" onchange="displayDateInfo(this.value)">
-        <!-- Nút đóng modal nếu cần -->
-        <button onclick="quitModal()">Close</button>
     </div>
 </div>
 

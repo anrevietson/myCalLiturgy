@@ -468,6 +468,7 @@
         <input type="date" id="mobileInputDate">
         <!-- Gọi trực tiếp hàm displayDateInfo với giá trị ngày đã chọn -->
         <button onclick="displayDateInfo(document.getElementById('mobileInputDate').value)">Xác nhận</button> <!-- Nút xác nhận -->
+        <button onclick="quitModal()">Close</button> <!-- đóng modal -->
     </div>
 </div>
 
@@ -478,6 +479,7 @@
         <h3>Chọn tuần</h3>
         <!-- Hiển thị thông tin lịch tuần hoặc chọn tuần -->
         <button onclick="displayWeekInfo()">Hiển thị thông tin tuần</button>
+        <button onclick="quitModal()">Close</button> <!-- đóng modal -->
     </div>
 </div>
 
@@ -502,6 +504,7 @@
         <input type="number" id="mobileYearInput" value="2024">
         <!-- Gọi trực tiếp hàm displayMonthInfo với các tham số tháng và năm -->
         <button onclick="displayMonthInfo(document.getElementById('mobileMonthInput').value, document.getElementById('mobileYearInput').value)">Xác nhận</button>
+        <button onclick="quitModal()">Close</button> <!-- đóng modal -->
     </div>
 </div>
 

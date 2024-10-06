@@ -457,13 +457,11 @@
 </div>
 
 <!-- Modal chọn tuần -->
-<div id="weekPickerModal" class="modal">
+<div id="weekPickerModal">
     <div class="modal-content">
-        <span class="close" onclick="closeWeekPicker()">&times;</span>
         <h3>Chọn tuần</h3>
         <!-- Gọi hàm displayWeekInfo khi người dùng chọn tuần -->
         <input type="week" id="weekInput" onchange="displayWeekInfo(this.value)">
-        <button onclick="quitModal()">Close</button> <!-- đóng modal -->
     </div>
 </div>
 

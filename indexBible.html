@@ -532,7 +532,8 @@
             <option value="12">Thg 12</option>
         </select>
         <input type="number" id="mobileYearInput" value="2024">
-        <button onclick="confirmMonthYearSelection()">Xác nhận</button> <!-- Nút xác nhận -->
+        <!-- Gọi trực tiếp hàm displayMonthInfo với các tham số tháng và năm -->
+        <button onclick="displayMonthInfo(document.getElementById('mobileMonthInput').value, document.getElementById('mobileYearInput').value)">Xác nhận</button>
     </div>
 </div>
 

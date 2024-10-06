@@ -129,22 +129,23 @@ function updateCodeNumbersIncludingSundays(year, codePrefix, codeNumbers) {
         let sundayNumbers = [];
         let codeNumbers = [];
         let lastOrdinaryWeekBeforeLent = 0;
+	    
+let currentDate = new Date(year, 0, 1); // Tháng 0 là tháng 1
 
-        let currentDate = new Date(`${year}-1-1`);
+// Push tất cả các ngày từ 1/1 đến trước lễ Hiển Linh vào mảng codeNumbers
+while (currentDate < epiphanySunday) {
+    let day = currentDate.getDate();
+    let month = currentDate.getMonth() + 1; // Lấy tháng chính xác
+    let code = `20${day}0${month}`;
 
-        // Push tất cả các ngày từ 1/1 đến trước lễ Hiển Linh vào mảng codeNumbers
-        while (currentDate < epiphanySunday) {
-            let day = currentDate.getDate();
-            let month = currentDate.getMonth() + 1; // Lấy tháng chính xác
-            let code = `20${day}0${month}`;
+    codeNumbers.push({
+        date: new Date(currentDate), // Tạo một bản sao của ngày
+        code: code
+    });
 
-            codeNumbers.push({
-                date: new Date(currentDate), // Tạo một bản sao của ngày
-                code: code
-            });
+    currentDate.setDate(currentDate.getDate() + 1);
+}
 
-            currentDate.setDate(currentDate.getDate() + 1);
-        }
 
         // Tiếp tục các xử lý khác trong năm
         let currentDate1 = new Date(epiphanySunday); 

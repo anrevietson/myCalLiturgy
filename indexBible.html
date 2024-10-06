@@ -470,7 +470,6 @@ button:hover {
             <!--<th>Ngày (Âm lịch)</th>-->
             <th>Màu</th>
             <th>Thông tin Ngày Lễ và Bài Đọc</th>
-            <th>Numbercode</th>
         </tr>
     </thead>
     <tbody id="reportTableBody">
@@ -885,12 +884,6 @@ function displayMonthInfo() {
         const feastAndReadingCell = document.createElement('td');
         feastAndReadingCell.innerHTML = feastAndReadingContent;
         row.appendChild(feastAndReadingCell);
-
-        const codeNumber = calculatenumberSunday(year).getCodeNumberForDay(currentDate);
-        // Thêm NumberCode vào cột mới
-        const numberCodeCell = document.createElement('td');
-        numberCodeCell.textContent = codeNumber;
-        row.appendChild(numberCodeCell);
 
         // Nếu là Chủ Nhật, thêm hiệu ứng 3D
         if (currentDate.getDay() === 0) {

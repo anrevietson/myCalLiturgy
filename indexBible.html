@@ -244,22 +244,23 @@
         z-index: 1001;
     }
 
-    .icon-button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 10px;
-        font-size: 24px;
-        font-weight: bold;
-        color: #d18a78;
-        border-radius: 50%;
-        transition: background-color 0.3s ease;
-    }
+ .icon-button {
+    background-color: transparent; /* Đảm bảo nút trong suốt */
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #d18a78; /* Màu của văn bản, bạn có thể thay đổi màu nếu cần */
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
 
-    .icon-button:hover {
-        background-color: #f5ead6;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
+/* Khi di chuột qua nút */
+.icon-button:hover {
+    background-color: transparent; /* Đảm bảo không có màu nền xanh */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Bạn có thể điều chỉnh */
+}
 
     br {
         line-height: 2;

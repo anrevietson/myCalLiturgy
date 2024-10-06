@@ -13,16 +13,8 @@
     padding: 0;
     color: #333;
 }
-header, footer {
-    text-align: center;
-    background-color: #1900ff;
-    color: white;
-    padding: 8px;
-    font-size: 22px;
-    font-weight: bold;
-}
+
 /* Header */
-       
 .calendar-header {
     background-color: #007bff;
     color: white;
@@ -63,14 +55,14 @@ header, footer {
 }
 
 .weekday {
-    margin-left: 0px;
+    margin-left: 100px;
     font-size: 20px;
     font-weight: bold;
     color: #2196F3;
 }
 
 .lunar-date {
-    margin-right: 0px;
+    margin-right: 100px;
     font-size: 20px;
     font-weight: normal;
     color: #ff0000;
@@ -478,6 +470,7 @@ button:hover {
             <!--<th>Ngày (Âm lịch)</th>-->
             <th>Màu</th>
             <th>Thông tin Ngày Lễ và Bài Đọc</th>
+            <th>Numbercode</th>
         </tr>
     </thead>
     <tbody id="reportTableBody">
@@ -892,6 +885,12 @@ function displayMonthInfo() {
         const feastAndReadingCell = document.createElement('td');
         feastAndReadingCell.innerHTML = feastAndReadingContent;
         row.appendChild(feastAndReadingCell);
+
+        const codeNumber = calculatenumberSunday(year).getCodeNumberForDay(currentDate);
+        // Thêm NumberCode vào cột mới
+        const numberCodeCell = document.createElement('td');
+        numberCodeCell.textContent = codeNumber;
+        row.appendChild(numberCodeCell);
 
         // Nếu là Chủ Nhật, thêm hiệu ứng 3D
         if (currentDate.getDay() === 0) {

@@ -55,14 +55,14 @@ body {
     left: -10px; /* Dịch chuyển sang trái 100px */
 }
 .weekday {
-    margin-left: 0px;
+    margin-left: 100px;
     font-size: 20px;
     font-weight: bold;
     color: #2196F3;
 }
 
 .lunar-date {
-    margin-right: 0px;
+    margin-right: 100px;
     font-size: 20px;
     font-weight: normal;
     color: #ff0000;
@@ -103,42 +103,7 @@ body {
 }
 
 /* Điều chỉnh hiển thị các nút điều khiển */
-.controls-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 30px 0;
-    gap: 10px;
-}
 
-.control-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-input[type="date"], input[type="number"] {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    width: 100%;
-}
 
 /* Điều chỉnh footer */
 .bottom-nav {
@@ -314,7 +279,7 @@ br {
 }
 header, footer {
     text-align: center;
-     background-color: #3103a5;
+    background-color: #3103a5;
     color: white;
     padding: 8px;
     font-size: 22px;
@@ -347,6 +312,82 @@ header, footer {
         margin-bottom: 10px;
     }
 }
+/* Container chung cho phần chọn ngày và các nút */
+.controls-container {
+    display: flex;
+    justify-content: center; /* Căn giữa các phần tử */
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+    padding: 20px;
+    background-color: #f9f9f9; /* Màu nền nhẹ nhàng */
+    border-radius: 10px; /* Bo góc mềm mại */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+}
+
+/* Thiết kế cho trường chọn ngày */
+input[type="date"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Viền nhạt */
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển khi hover */
+}
+
+input[type="date"]:focus {
+    outline: none;
+    border-color: #007bff; /* Đổi màu viền khi focus */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Đổ bóng khi focus */
+}
+
+/* Thiết kế cho các nút */
+button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Màu nền xanh đậm */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3; /* Đổi màu nền khi hover */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Đổ bóng khi hover */
+}
+
+button:active {
+    background-color: #004494; /* Màu khi nút được bấm */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); /* Hiệu ứng khi nút được nhấn */
+}
+.month-control {
+    margin-bottom: 20px;
+}
+
+.month-control select, .month-control input {
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.month-control button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.month-control button:hover {
+    background-color: #0056b3;
+}
+
 
 
 </style>
@@ -439,27 +480,35 @@ header, footer {
 <div class="controls-container">
     <!-- Chọn ngày -->
     <div class="control-item">
-        <label for="inputDate">Chọn ngày: </label>
+        <label for="inputDate"></label>
         <input type="date" id="inputDate" onchange="getFeastForSelectedDate()"> <!-- Gọi hàm khi người dùng chọn ngày -->
-    </div>
-    
-
-    <!-- Lịch Tuần -->
-    <div class="control-item">
         <button onclick="displayWeekInfo()">Lịch Tuần</button>
-    </div>
+        <!-- Chọn tháng và năm để hiển thị lịch -->
 
-    <!-- Lịch Tháng -->
-    <div class="control-item">
-        <button onclick="displayMonthInfo()">Lịch Tháng</button>
-    </div>
-    <!-- Lịch Năm -->
-    <div class="control-item">
-        <label for="yearInput">Nhập Năm: </label>
-        <input type="number" id="yearInput" value="2024">
-        <button onclick="generateReport()">Tạo Lịch </button>
-    </div>
 </div>
+    <label for="monthInput"></label>
+    <select id="monthInput">
+        <option value="1">Tháng 1</option>
+        <option value="2">Tháng 2</option>
+        <option value="3">Tháng 3</option>
+        <option value="4">Tháng 4</option>
+        <option value="5">Tháng 5</option>
+        <option value="6">Tháng 6</option>
+        <option value="7">Tháng 7</option>
+        <option value="8">Tháng 8</option>
+        <option value="9">Tháng 9</option>
+        <option value="10">Tháng 10</option>
+        <option value="11">Tháng 11</option>
+        <option value="12">Tháng 12</option>
+    </select>
+
+    <label for="yearInput"></label>
+    <input type="number" id="yearInput" value="2024">
+
+    <button onclick="displayMonthInfo()">Xem lịch tháng</button>
+
+ </div>
+ 
 
 <h2>Lịch Phụng vụ <span id="yearDisplay"></span></h2>
 
@@ -467,9 +516,9 @@ header, footer {
 <table>
     <thead>
         <tr>
-            <th>Ngày (Solar)</th>
-            <th>Ngày (Âm lịch)</th>
-            <th>Màu Áo Lễ</th>
+            <th>Ngày</th>
+            <!--<th>Ngày (Âm lịch)</th>-->
+            <th>Màu</th>
             <th>Thông tin Ngày Lễ và Bài Đọc</th>
         </tr>
     </thead>
@@ -642,6 +691,7 @@ function updateOptionalReadingInfo(reading1, solarDate) {
 }
 
 
+
 // Hàm để cập nhật thông tin bài đọc 
 function updateReadingInfo(info, readingContent, solarDate) {
     if (readingContent.length === 4) {
@@ -666,6 +716,7 @@ function updateReadingInfo(info, readingContent, solarDate) {
 window.onload = function() {
     displayDateInfo();
 };
+
 
 // Hàm cập nhật thông tin khi chọn ngày từ input
 function getFeastForSelectedDate() {
@@ -759,29 +810,29 @@ function displayWeekInfo() {
             row.classList.add(chasubleClass);
         }
 
-        // Ngày dương lịch
+        // Ngày dương lịch và âm lịch được hiển thị trong cùng một ô
         const solarDateCell = document.createElement('td');
-        solarDateCell.textContent = `${day}/${month}/${year}`;
+        const lunarDate = convertToLunarDate({ day, month, year });
+
+        // Hiển thị ngày dương lịch với chữ đậm và ngày âm lịch với màu xanh đậm
+        solarDateCell.innerHTML = `<strong>${day}/${month}</strong><br><em><span style="color: darkblue;">(${lunarDate.day}/${lunarDate.month})</span><em>`;
         row.appendChild(solarDateCell);
 
-        // Ngày âm lịch
-        const lunarDate = convertToLunarDate({ day, month, year });
-        const lunarDateCell = document.createElement('td');
-        lunarDateCell.textContent = `${lunarDate.day}/${lunarDate.month}`;
-        row.appendChild(lunarDateCell);
 
-        // Màu áo lễ
+         //Màu áo lễ
         const chasubleCell = document.createElement('td');
         chasubleCell.textContent = chasuble || 'Xanh';
         row.appendChild(chasubleCell);
 
-        // Thông tin lễ và bài đọc
+         //Thông tin lễ và bài đọc
         const feastAndReadingCell = document.createElement('td');
         feastAndReadingCell.innerHTML = feastAndReadingContent;
         row.appendChild(feastAndReadingCell);
 
-        // Thêm hàng vào bảng
+
         reportTableBody.appendChild(row);
+    
+
 
         // Chuyển sang ngày tiếp theo
         currentDay.setDate(currentDay.getDate() + 1);
@@ -789,36 +840,35 @@ function displayWeekInfo() {
 }
 
 
-// Hiển thị tháng
 function displayMonthInfo() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const daysInMonth = new Date(year, month, 0).getDate(); // Số ngày trong tháng
-    const secondFeasts = calculateSecondFeasts(year); // Lấy các lễ vọng
+    // Lấy tháng và năm từ input của người dùng
+    const month = parseInt(document.getElementById('monthInput').value);
+    const year = parseInt(document.getElementById('yearInput').value);
 
-    // Cập nhật nội dung của <span id="yearDisplay"> thay vì xóa thẻ <h2>
+    // Tính số ngày trong tháng được chọn
+    const daysInMonth = new Date(year, month, 0).getDate();
+
+    // Lấy các lễ trong năm
+    const feasts = calculateFeasts(year);
+    const secondFeasts = calculateSecondFeasts(year); // Lấy các lễ vọng (nếu có)
+
+    // Cập nhật nội dung của thẻ <span id="yearDisplay"> để hiển thị tháng/năm
     const yearDisplayElement = document.getElementById('yearDisplay');
-    yearDisplayElement.textContent = `Tháng ${month}/${year}`;
+    yearDisplayElement.textContent = `Tháng ${month} - Năm ${year}`;
 
+    // Lấy phần body của bảng để thêm nội dung vào
     const reportTableBody = document.getElementById('reportTableBody');
     reportTableBody.innerHTML = ''; // Xóa dữ liệu cũ trong bảng
 
-    let lastWeekNumber = -1; // Biến lưu số tuần trước đó
+    // Biến để lưu số tuần hiện tại
+    let lastWeekNumber = -1;
 
-    // Hiển thị thông tin cho từng ngày trong tháng
+    // Lặp qua từng ngày trong tháng
     for (let day = 1; day <= daysInMonth; day++) {
         const currentDate = new Date(year, month - 1, day);
+        const currentWeekNumber = Math.ceil((day - currentDate.getDay() + 1) / 7); // Số tuần trong tháng
 
-        const feasts = calculateFeasts(year);
-        const chasuble = calculateChasuble(year).getChasubleForDay(currentDate);
-        const feast = getFeastForDay(currentDate, feasts);
-        //const readingDateString = `${year}-${month}-${day}`;
-        //const reading = getReadingForDate(readingDateString);
-
-        const currentWeekNumber = Math.ceil((currentDate.getDate() - currentDate.getDay() + 1) / 7); // Số tuần trong tháng
-
-        // Thêm ngăn cách giữa các tuần
+        // Thêm ngăn cách giữa các tuần nếu số tuần thay đổi
         if (currentWeekNumber !== lastWeekNumber && lastWeekNumber !== -1) {
             const separatorRow = document.createElement('tr');
             separatorRow.classList.add('week-separator');
@@ -829,8 +879,61 @@ function displayMonthInfo() {
         }
         lastWeekNumber = currentWeekNumber;
 
-        // Tạo hàng mới trong bảng
+        // Tạo hàng mới trong bảng cho mỗi ngày
         const row = document.createElement('tr');
+
+        // Lấy thông tin lễ, màu áo lễ và bài đọc cho ngày hiện tại
+        let feastAndReadingContent = '';
+        const feast = getFeastForDay(currentDate, feasts); // Lấy thông tin lễ
+        const chasuble = calculateChasuble(year).getChasubleForDay(currentDate); // Lấy màu áo lễ
+
+        // Thêm thông tin về ngày lễ chính
+        if (feast) {
+            feastAndReadingContent += formatFeastName(feast.name) + '<br>';
+        } else {
+            feastAndReadingContent += 'Không có lễ đặc biệt<br>';
+        }
+
+        // Thêm bài đọc vào sau thông tin lễ
+        const readingContent = showfordayContent(currentDate); // Gọi hàm showfordayContent để lấy nội dung bài đọc
+        if (readingContent) {
+            feastAndReadingContent += `<div class="readable" onclick="showReadingContent('${currentDate.toISOString()}')">${readingContent}</div>`;
+        } else {
+            feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc
+        }
+
+        // Tính toán và thêm lễ vọng (second feast)
+        const secondFeast = getSecondFeastsForDate(currentDate, secondFeasts);
+        if (secondFeast) {
+            feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>';
+        }
+
+        // Thêm bài đọc phụ vào sau phần ngày lễ
+        const reading1 = showOptionContent(currentDate); // Gọi hàm showOptionContent để lấy bài đọc phụ
+        if (reading1 && reading1 !== "1") {
+            feastAndReadingContent += `
+                <div class="readable" onclick="showBibleOptionContent('${currentDate.toISOString()}')">
+                    ${reading1}
+                </div>`;
+        }
+
+        // Ngày dương lịch và âm lịch được hiển thị trong cùng một ô
+        const solarDateCell = document.createElement('td');
+        const lunarDate = convertToLunarDate({ day, month, year });
+
+        // Hiển thị ngày dương lịch với chữ đậm và ngày âm lịch với màu xanh đậm
+        solarDateCell.innerHTML = `<strong>${day}/${month}</strong><br><em><span style="color: darkblue;">(${lunarDate.day}/${lunarDate.month})</span></em>`;
+        row.appendChild(solarDateCell);
+
+        // Màu áo lễ
+        const chasubleCell = document.createElement('td');
+        chasubleCell.innerHTML = `<strong>${chasuble || 'Xanh'}</strong>`; // Hiển thị màu áo lễ, nếu không có thì mặc định là 'Xanh'
+        row.appendChild(chasubleCell);
+
+        // Thông tin lễ và bài đọc
+        const feastAndReadingCell = document.createElement('td');
+        feastAndReadingCell.innerHTML = feastAndReadingContent;
+        row.appendChild(feastAndReadingCell);
 
         // Nếu là Chủ Nhật, thêm hiệu ứng 3D
         if (currentDate.getDay() === 0) {
@@ -843,195 +946,15 @@ function displayMonthInfo() {
             row.classList.add(chasubleClass);
         }
 
-        // Ngày dương lịch
-        const solarDateCell = document.createElement('td');
-        solarDateCell.textContent = `${day}/${month}/${year}`;
-        row.appendChild(solarDateCell);
+        // Thêm hàng vào bảng
+        reportTableBody.appendChild(row);
 
-        // Ngày âm lịch
-        const lunarDate = convertToLunarDate({ day, month, year });
-        const lunarDateCell = document.createElement('td');
-        lunarDateCell.textContent = `${lunarDate.day}/${lunarDate.month}`;
-        row.appendChild(lunarDateCell);
-
-        // Màu áo lễ
-        const chasubleCell = document.createElement('td');
-        chasubleCell.textContent = chasuble || 'Xanh';
-        row.appendChild(chasubleCell);
-
-        // Ngày lễ và bài đọc (Feasts & Readings)
-        const feastAndReadingCell = document.createElement('td');
-        let feastAndReadingContent = '';
-
-          
-        // Nếu có ngày lễ, hiển thị tên lễ
-        if (feast) {
-            feastAndReadingContent += formatFeastName(feast.name) + '<br>';
-        } else {
-            feastAndReadingContent += 'Không có lễ đặc biệt<br>';
-        }
-        // Thêm bài đọc vào sau phần ngày lễ
-        const readingContent = showfordayContent(currentDate); // Gọi hàm showfordayContent để lấy nội dung bài đọc
-            if (readingContent) {
-                feastAndReadingContent += `<div class="readable" onclick="showReadingContent('${currentDate.toISOString()}')">${readingContent}</div>`;
-            } else {
-                feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc
-                }
-        
-            // Tính toán và thêm lễ vọng (second feast)
-            const secondFeast = getSecondFeastsForDate(currentDate, secondFeasts);
-                if (secondFeast) {
-                feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>';
-                }
-
-            // Thêm bài đọc phụ vào sau phần ngày lễ
-                const reading1 = showOptionContent(currentDate); // Gọi hàm showOptionContent để tên bài đọc
-
-                if (reading1 && reading1 !== "1") {
-                    // Thay vì hiển thị "Click để xem bài đọc phụ", hiển thị tên bài đọc (reading1)
-                    feastAndReadingContent += `
-                        <div class="readable" onclick="showBibleOptionContent('${currentDate.toISOString()}')">
-                            ${reading1}
-                        </div>
-                    `;
-                } else {
-                    feastAndReadingContent += '';  // Nếu không có bài đọc
-                }  
-            feastAndReadingCell.innerHTML = feastAndReadingContent;
-                row.appendChild(feastAndReadingCell);
-                // Thêm hàng vào bảng
-                reportTableBody.appendChild(row);
-            }
-        }
+        // Chuyển sang ngày tiếp theo
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+}
 
 
-// Hàm để sinh báo cáo cho năm đã nhập
-function generateReport() {
-const year = document.getElementById('yearInput').value;
-const ABC = getLiturgicalYear(year);
-document.getElementById('yearDisplay').textContent = year + ' Năm ' + (ABC) ;
-
-
-    const reportTableBody = document.getElementById('reportTableBody');
-    reportTableBody.innerHTML = ''; // Xóa dữ liệu cũ
-    const today = new Date();
-    //const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const day = today.getDate();
-    const solarDateString = `${day}/${month}/${year}`;
-    const solarDateParsed = parseDate(solarDateString);
-    const lunarDate = convertToLunarDate(solarDateParsed); // Chuyển đổi ngày dương lịch sang âm lịch
-
-    // Lấy thông tin lễ và bài đọc
-    const chasubleData = calculateChasuble(year); // Gọi hàm calculateChasuble
-    const feasts = calculateFeasts(year); // Lấy các ngày lễ
-    const secondFeasts = calculateSecondFeasts(year); // Lấy các lễ vọng
-    const feast = getFeastForDay(today, feasts);
-    const readingDateString = `${year}-${month}-${day}`;
-
-    let lastWeekNumber = -1; // Để theo dõi tuần
-
-    for (let month = 1; month <= 12; month++) {
-        for (let day = 1; day <= 31; day++) {
-            const solarDateString = `${day}/${month}`;
-            const solarDateParsed = parseDate(`${day}/${month}/${year}`); // Chuyển đổi chuỗi ngày thành đối tượng
-            const solarDate = new Date(solarDateParsed.year, solarDateParsed.month - 1, solarDateParsed.day);
-
-            if (solarDate.getMonth() + 1 !== month) break; // Đảm bảo không vượt quá số ngày của tháng
-
-            const lunarDate = convertToLunarDate(solarDateParsed); // Chuyển đổi ngày dương lịch sang âm lịch
-
-            const chasuble = chasubleData.getChasubleForDay(solarDate); // Lấy màu áo lễ
-            const feast = getFeastForDay(solarDate, feasts); // Lấy ngày lễ nếu có
-
-            const codeNumber = calculatenumberSunday(year).getCodeNumberForDay(solarDate);
-            const currentWeekNumber = Math.ceil((solarDate.getDate() - solarDate.getDay() + 1) / 7); // Tính số tuần
-
-            // Thêm ngăn cách giữa các tuần
-            if (currentWeekNumber !== lastWeekNumber && lastWeekNumber !== -1) {
-                const separatorRow = document.createElement('tr');
-                separatorRow.classList.add('week-separator');
-                const separatorCell = document.createElement('td');
-                separatorCell.colSpan = 6; // Số cột trong bảng
-                separatorRow.appendChild(separatorCell);
-                reportTableBody.appendChild(separatorRow);
-            }
-            lastWeekNumber = currentWeekNumber;
-
-            const row = document.createElement('tr');
-
-            // Nếu là Chủ Nhật, thêm hiệu ứng 3D
-            if (solarDate.getDay() === 0) {
-                row.classList.add('sunday');
-            }
-
-            // Gán lớp màu nền cho hàng theo chasuble
-            const chasubleClass = getChasubleClass(chasuble);
-            if (chasubleClass) {
-                row.classList.add(chasubleClass);
-            }
-
-            // Ngày dương lịch
-            const solarDateCell = document.createElement('td');
-            solarDateCell.textContent = `${day}/${month}`;
-            row.appendChild(solarDateCell);
-
-            // Ngày âm lịch
-            const lunarDateCell = document.createElement('td');
-            lunarDateCell.textContent = `${lunarDate.day}/${lunarDate.month}`;
-            row.appendChild(lunarDateCell);
-
-            // Màu áo lễ
-            const chasubleCell = document.createElement('td');
-            chasubleCell.textContent = chasuble;
-            row.appendChild(chasubleCell);
-            
-            // Ngày lễ và bài đọc (Feasts & Readings)
-            const feastAndReadingCell = document.createElement('td');
-            let feastAndReadingContent = '';
-
-            // Nếu có ngày lễ, hiển thị tên lễ
-            if (feast) {
-                feastAndReadingContent += formatFeastName(feast.name) + '<br>';
-            }
-       
-
-            // Thêm bài đọc vào sau phần ngày lễ
-            const readingContent = showfordayContent(solarDate); // Gọi hàm showfordayContent để lấy nội dung bài đọc
-                if (readingContent) {
-                    feastAndReadingContent += `<div class="readable" onclick="showReadingContent('${solarDate.toISOString()}')">${readingContent}</div>`;
-                } else {
-                    feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc
-                    }
-            
-                // Tính toán và thêm lễ vọng (second feast)
-                const secondFeast = getSecondFeastsForDate(solarDate, secondFeasts);
-                    if (secondFeast) {
-                    feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>';
-                    }
-
-                // Thêm bài đọc phụ vào sau phần ngày lễ
-                    const reading1 = showOptionContent(solarDate); // Gọi hàm showOptionContent để tên bài đọc
-
-                    if (reading1 && reading1 !== "1") {
-                        // Thay vì hiển thị "Click để xem bài đọc phụ", hiển thị tên bài đọc (reading1)
-                        feastAndReadingContent += `
-                            <div class="readable" onclick="showBibleOptionContent('${solarDate.toISOString()}')">
-                                ${reading1}
-                            </div>
-                        `;
-                    } else {
-                        feastAndReadingContent += '';  // Nếu không có bài đọc
-                    }         
-          
-                        feastAndReadingCell.innerHTML = feastAndReadingContent;
-
-                        row.appendChild(feastAndReadingCell);
-
-                        reportTableBody.appendChild(row);
-                    }
-                }
-            }
 
                 // các hàm phụ trợ cho hiển thị
                         // xuống 1.5 hàng khi gặp ký tự trong bài đọc

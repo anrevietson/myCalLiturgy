@@ -387,6 +387,53 @@ button:active {
 .month-control button:hover {
     background-color: #0056b3;
 }
+       .controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Cho phép các phần tử bọc lại khi màn hình nhỏ */
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+    padding: 10px;
+}
+
+.control-item {
+    flex: 1; /* Giúp các phần tử chiếm đều không gian */
+}
+
+input[type="date"], input[type="number"], select, button {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%; /* Đảm bảo các phần tử có chiều rộng tối đa trên màn hình nhỏ */
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Định dạng lại cho các màn hình nhỏ */
+@media (max-width: 768px) {
+    .controls-container {
+        flex-direction: column; /* Chuyển sang hàng dọc khi màn hình nhỏ */
+        align-items: flex-start;
+    }
+    
+    input[type="date"], input[type="number"], select, button {
+        width: 100%; /* Đảm bảo chiều rộng đầy đủ trên màn hình nhỏ */
+        margin-bottom: 10px;
+    }
+}
+
 
 
 

@@ -449,10 +449,10 @@
     <div class="modal-content">
         <span class="close" onclick="closeDatePicker()">&times;</span>
         <h3>Chọn ngày</h3>
-        <input type="date" id="mobileInputDate">
-        <!-- Gọi trực tiếp hàm displayDateInfo với giá trị ngày đã chọn -->
-        <button onclick="displayDateInfo(document.getElementById('mobileInputDate').value)">Xác nhận</button> <!-- Nút xác nhận -->
-        <button onclick="quitModal()">Close</button> <!-- đóng modal -->
+        <!-- Gọi hàm displayDateInfo khi người dùng chọn ngày -->
+        <input type="date" id="mobileInputDate" onchange="displayDateInfo(this.value)">
+        <!-- Nút đóng modal nếu cần -->
+        <button onclick="quitModal()">Close</button>
     </div>
 </div>
 

@@ -1272,13 +1272,12 @@ function decreaseFontSize() {
     content.style.fontSize = newSize + 'px';
 }
 
-// Hàm thoát khỏi modal (Quit)
 function quitModal() {
     // Ẩn modal và overlay
-    document.getElementById('readingModal').style.display = 'none';
+    closeModal();
+    document.getElementById('monthPickerModal').style.display = 'none';
     document.getElementById('modalOverlay').style.display = 'none';
 }
-
 // Hàm bôi đậm nội dung (Bold)
 function boldText() {
     // Lấy phần nội dung của modal

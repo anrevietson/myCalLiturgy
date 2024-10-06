@@ -292,36 +292,28 @@ br {
 /* Container chung cho phần chọn ngày và các nút */
 .controls-container {
     display: flex;
-    justify-content: flex-start; /* Căn trái các phần tử */
+    justify-content: space-between; /* Căn đều các phần tử */
     align-items: center;
     gap: 10px; /* Khoảng cách giữa các phần tử */
     padding: 10px;
-    flex-wrap: nowrap; /* Không cho các phần tử xuống hàng */
+    flex-wrap: nowrap; /* Không cho các phần tử bọc xuống dòng */
 }
 
+/* Mỗi control-item sẽ chiếm một cột (ô) riêng biệt */
 .control-item {
-    display: inline-block;
-    margin-right: 10px; /* Khoảng cách giữa các phần tử */
-    flex-shrink: 0; /* Ngăn không cho các phần tử bị thu nhỏ */
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* Đặt nhãn và input thành cột */
+    align-items: flex-start;
 }
 
-input[type="date"], select, button {
+input[type="date"], select, input[type="number"], button {
     padding: 8px;
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    width: auto; /* Đảm bảo chỉ chiếm không gian vừa đủ */
-    white-space: nowrap; /* Ngăn không cho nội dung bị ngắt dòng */
-}
-
-/* Điều chỉnh kích thước cho ô nhập năm */
-input[type="number"] {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 80px; /* Điều chỉnh kích thước nhỏ gọn cho ô nhập năm */
-    white-space: nowrap; /* Ngăn không cho nội dung bị ngắt dòng */
+    width: 100%; /* Đảm bảo chiếm hết không gian của ô */
+    box-sizing: border-box; /* Đảm bảo padding không vượt ra ngoài kích thước */
 }
 
 button {
@@ -331,25 +323,24 @@ button {
     cursor: pointer;
     border-radius: 4px;
     font-size: 16px;
-    padding: 8px 16px;
+    padding: 10px;
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
-
-/* Định dạng lại cho các màn hình nhỏ */
+/* Khi màn hình nhỏ hơn, các phần tử sẽ tự động xuống hàng */
 @media (max-width: 768px) {
     .controls-container {
-        flex-wrap: wrap; /* Cho phép các phần tử xuống hàng trên màn hình nhỏ */
+        flex-direction: column; /* Chuyển sang hàng dọc khi màn hình nhỏ */
     }
 
-    input[type="date"], input[type="number"], select, button {
-        width: 100%; /* Đảm bảo chiều rộng đầy đủ trên màn hình nhỏ */
-        margin-bottom: 10px;
+    input[type="date"], select, input[type="number"], button {
+        width: 100%; /* Chiếm hết chiều rộng trên màn hình nhỏ */
     }
 }
+
 
 
 
@@ -441,38 +432,46 @@ button:hover {
 
 
 <!-- Chọn ngày và các nút Lịch -->
+<!-- Chọn ngày và các nút Lịch -->
 <div class="controls-container">
     <!-- Chọn ngày -->
     <div class="control-item">
         <label for="inputDate"></label>
         <input type="date" id="inputDate" onchange="getFeastForSelectedDate()"> <!-- Gọi hàm khi người dùng chọn ngày -->
+    </div>
+    
+    <div class="control-item">
         <button onclick="displayWeekInfo()">Lịch Tuần</button>
-        <!-- Chọn tháng và năm để hiển thị lịch -->
+    </div>
 
+    <div class="control-item">
+        <label for="monthInput"> </label>
+        <select id="monthInput">
+            <option value="1">Tháng 1</option>
+            <option value="2">Tháng 2</option>
+            <option value="3">Tháng 3</option>
+            <option value="4">Tháng 4</option>
+            <option value="5">Tháng 5</option>
+            <option value="6">Tháng 6</option>
+            <option value="7">Tháng 7</option>
+            <option value="8">Tháng 8</option>
+            <option value="9">Tháng 9</option>
+            <option value="10">Tháng 10</option>
+            <option value="11">Tháng 11</option>
+            <option value="12">Tháng 12</option>
+        </select>
+    </div>
 
-    <label for="monthInput"></label>
-    <select id="monthInput">
-        <option value="1">Tháng 1</option>
-        <option value="2">Tháng 2</option>
-        <option value="3">Tháng 3</option>
-        <option value="4">Tháng 4</option>
-        <option value="5">Tháng 5</option>
-        <option value="6">Tháng 6</option>
-        <option value="7">Tháng 7</option>
-        <option value="8">Tháng 8</option>
-        <option value="9">Tháng 9</option>
-        <option value="10">Tháng 10</option>
-        <option value="11">Tháng 11</option>
-        <option value="12">Tháng 12</option>
-    </select>
+    <div class="control-item">
+        <label for="yearInput"></label>
+        <input type="number" id="yearInput" value="2024">
+    </div>
 
-    <label for="yearInput"></label>
-    <input type="number" id="yearInput" value="2024">
-
-    <button onclick="displayMonthInfo()">lịch tháng</button>
-
- </div>
+    <div class="control-item">
+        <button onclick="displayMonthInfo()">Lịch Tháng</button>
+    </div>
 </div>
+
  
 
 <h2>Lịch Phụng vụ <span id="yearDisplay"></span></h2>

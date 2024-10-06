@@ -342,7 +342,9 @@
         background-color: #0056b3;
     }
 
-
+    
+   
+}
 
 
     </style>
@@ -505,7 +507,6 @@
 
 
 
-
     <!-- Bảng hiển thị thông tin -->
     <h2>Lịch Phụng Vụ <span id="yearDisplay"></span></h2>
     <table>
@@ -527,67 +528,37 @@
 
 <script>
 
-function displayDateInfoAndClose() {
-    const date = document.getElementById('mobileInputDate').value;
-    if (date) {
-        displayDateInfo(date); // Gọi hàm hiển thị ngày
-        closeDatePicker(); // Đóng modal sau khi hiển thị thông tin
-    } else {
-        alert('Vui lòng chọn ngày.');
-    }
+function toggleDatePicker() {
+    document.getElementById('datePickerModal').classList.toggle('show');
 }
 
-// Hàm hiển thị thông tin tuần và đóng modal
-function displayWeekInfoAndClose() {
-    displayWeekInfo(); // Gọi hàm hiển thị thông tin tuần
-    closeWeekPicker(); // Đóng modal sau khi hiển thị thông tin
-}
-
-// Hàm hiển thị thông tin tháng và năm và đóng modal
-function displayMonthInfoAndClose() {
-    const month = document.getElementById('mobileMonthInput').value;
-    const year = document.getElementById('mobileYearInput').value;
-    if (month && year) {
-        displayMonthInfo(month, year); // Gọi hàm hiển thị thông tin tháng và năm
-        closeMonthPicker(); // Đóng modal sau khi hiển thị thông tin
-    } else {
-        alert('Vui lòng chọn tháng và năm.');
-    }
-}
-
-// Hàm hiển thị thông tin ngày (ví dụ)
-function displayDateInfo(date) {
-    alert(`Ngày đã chọn là: ${date}`);  // Thay thế logic thực tế của bạn ở đây
-}
-
-// Hàm hiển thị thông tin tuần (ví dụ)
-function displayWeekInfo() {
-    alert('Hiển thị thông tin tuần');  // Thay thế logic thực tế của bạn
-}
-
-// Hàm hiển thị thông tin tháng và năm (ví dụ)
-function displayMonthInfo(month, year) {
-    alert(`Đã chọn Tháng ${month}, Năm ${year}`);  // Thay thế logic thực tế của bạn
-}
-
-// Hàm để đóng modal chọn ngày
 function closeDatePicker() {
-    const modal = document.getElementById('datePickerModal');
-    modal.style.display = 'none';  // Ẩn modal sau khi xử lý xong
+    document.getElementById('datePickerModal').classList.remove('show');
 }
 
-// Hàm để đóng modal chọn tuần
+function toggleWeekPicker() {
+    document.getElementById('weekPickerModal').classList.toggle('show');
+}
+
 function closeWeekPicker() {
-    const modal = document.getElementById('weekPickerModal');
-    modal.style.display = 'none';  // Ẩn modal sau khi xử lý xong
+    document.getElementById('weekPickerModal').classList.remove('show');
 }
 
+function toggleMonthPicker() {
+    document.getElementById('monthPickerModal').classList.toggle('show');
+}
+
+function closeMonthPicker() {
+    document.getElementById('monthPickerModal').classList.remove('show');
+}
 // Hàm để đóng modal chọn tháng/năm
 function closeMonthPicker() {
-    const modal = document.getElementById('monthPickerModal');
-    modal.style.display = 'none';  // Ẩn modal sau khi xử lý xong
+    document.getElementById('monthPickerModal').classList.remove('show');
 }
-
+// Hàm để đóng modal chọn ngày
+function closeDatePicker() {
+    document.getElementById('datePickerModal').classList.remove('show');
+}
 function getWeekday(date) {
         const days = ["CHÚA NHẬT", "THỨ HAI", "THỨ BA", "THỨ TƯ", "THỨ NĂM", "THỨ SÁU", "THỨ BẢY"];
         return days[date.getDay()];

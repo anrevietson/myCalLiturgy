@@ -365,7 +365,7 @@
     }
 }    
 
-   
+ 
 
 
 
@@ -706,7 +706,6 @@ console.log("feastToUse:", feastToUse);  // Kiểm tra giá trị sau khi gán
 if (reading1 && reading1.trim() !== "") {
     updateOptionalReadingInfo(reading1, secondFeast||feastToUse);
 } else {
-    console.log("Không có bài đọc phụ hoặc bài đọc là chuỗi rỗng");
     document.getElementById("optional-reading").textContent = ''; // Xóa thông tin bài đọc phụ nếu không có giá trị
 }
 
@@ -730,8 +729,8 @@ if (reading1 && reading1 !== "1") {
 
     // Cập nhật nội dung bài đọc phụ
     optionalReadingContainer.innerHTML = `
-        <div class="readable" id="optional-content">
-            <strong>${reading1 || ''}</strong>
+        <div class="readable" id="optional-content"> 
+            ${reading1 || ''}
         </div>`;
 
     // Gán sự kiện onclick cho phần tử vừa tạo tới đây đúng
@@ -749,52 +748,7 @@ if (reading1 && reading1 !== "1") {
         console.log("Không tìm thấy phần tử với id 'optional-content'");
     }
 
-    // Nếu reading1 là mảng, xử lý hiển thị thêm nội dung bài đọc
-    if (Array.isArray(reading1)) {
-        const reading1Container = document.getElementById("reading1");
-        if (!reading1Container) {
-            return;
-        }
-
-        if (reading1.length === 4) {
-            reading1Container.innerHTML = `
-                <div class="readable" id="reading1-content">
-                    <strong>${reading1[0] || ''}</strong> ${reading1[1] || ''} 
-                    ${reading1[2] || ''}<strong> ${reading1[3] || ''}
-                </div>`;
-            
-            const reading1Content = document.getElementById("reading1-content");
-            if (reading1Content) {
-                reading1Content.addEventListener('click', function() {
-                    try {
-                        const dateStr = solarDate.date.toISOString(); // Chuyển ngày thành chuỗi
-                        showReadingContent(dateStr); // Truyền chuỗi định dạng ngày
-                    } catch (error) {
-                    }
-                });
-            }
-        } else if (reading1.length === 3) {
-            reading1Container.innerHTML = `
-                <div class="readable" id="reading1-content">
-                    <strong>${reading1[0] || ''}</strong> ${reading1[1] || ''} 
-                    <strong>${reading1[2] || ''}
-                </div>`;
-
-            const reading1Content = document.getElementById("reading1-content");
-            if (reading1Content) {
-                reading1Content.addEventListener('click', function() {
-                    try {
-                        const dateStr = solarDate.date.toISOString(); // Chuyển ngày thành chuỗi
-                        showReadingContent(dateStr); // Truyền chuỗi định dạng ngày
-                    } catch (error) {
-                    }
-                });
-            }
-        }
     }
-} else {
-    console.log("Bài đọc không tồn tại hoặc bằng '1'");
-}
 }
 
 
@@ -806,7 +760,7 @@ function updateReadingInfo(info, readingContent, solarDate) {
         document.getElementById("info").innerHTML = `<strong><em>${info}</em></strong>`;
         document.getElementById("reading1").innerHTML = `
             <div class="readable" onclick="showReadingContent('${solarDate}')">
-                <strong>${readingContent[0] || ''}</strong> ${readingContent[1] || ''} 
+                <strong>${readingContent[0] || ''}</strong> <em>${readingContent[1] || ''}</em> 
                 ${readingContent[2] || ''}<strong> ${readingContent[3] || ''}
             </div>`;
     } else if (readingContent.length === 3) {
@@ -1071,48 +1025,48 @@ function displayMonthInfo() {
 
 
 
-                // các hàm phụ trợ cho hiển thị
-                        // xuống 1.5 hàng khi gặp ký tự trong bài đọc
-                        function formatWithLineBreaks(text) {
-                            if (!text) return ''; // Kiểm tra chuỗi trống
-                            // Sử dụng div với line-height để tạo khoảng cách dòng lớn hơn
-                            return text.replace(/(\r\n|\n|\r)/g, '<div style="line-height: 2;"></div>'); 
-                        }
+// các hàm phụ trợ cho hiển thị
+    // xuống 1.5 hàng khi gặp ký tự trong bài đọc
+    function formatWithLineBreaks(text) {
+        if (!text) return ''; // Kiểm tra chuỗi trống
+        // Sử dụng div với line-height để tạo khoảng cách dòng lớn hơn
+        return text.replace(/(\r\n|\n|\r)/g, '<div style="line-height: 2;"></div>'); 
+    }
 
 
-                        // Hàm phụ trợ để định dạng từng bài đọc (bài đọc I, II, Tin Mừng)
-                        function formatReadingPart(title, readingPart) {
-                            if (!readingPart) return `<strong style="color: red;"> ${title}:</strong> Not available<br><br>`;
-                            
-                            return `
-                                <br><strong style="color: red;">${title}:</strong> ${formatWithLineBreaks(readingPart.excerpt)} <br>
-                                <br><em>${formatWithLineBreaks(readingPart.info || '')}</em><br>
-                                <br><strong>${formatWithLineBreaks(readingPart.title || '')}</strong><br>
-                                <br>${formatWithLineBreaks(readingPart.content || '')}<br>
-                                <br><strong>${formatWithLineBreaks(readingPart.end || '')}</strong><br><br>
-                            `;
-                        }
+    // Hàm phụ trợ để định dạng từng bài đọc (bài đọc I, II, Tin Mừng)
+    function formatReadingPart(title, readingPart) {
+        if (!readingPart) return `<strong style="color: red;"> ${title}:</strong> Not available<br><br>`;
+        
+        return `
+            <br><strong style="color: red;">${title}:</strong> ${formatWithLineBreaks(readingPart.excerpt)} <br>
+            <br><em>${formatWithLineBreaks(readingPart.info || '')}</em><br>
+            <br><strong>${formatWithLineBreaks(readingPart.title || '')}</strong><br>
+            <br>${formatWithLineBreaks(readingPart.content || '')}<br>
+            <br><strong>${formatWithLineBreaks(readingPart.end || '')}</strong><br><br>
+        `;
+    }
 
-                        // Hàm phụ trợ để định dạng phần Đáp ca
-                        function formatPsalms(psalms) {
-                            if (!psalms) return '<strong>Đáp ca:</strong> Not available<br><br>';
-                            
-                            return `
-                                <strong style="color: red;"> Đáp ca:</strong> ${formatWithLineBreaks(psalms.excerpt)} <br>
-                                <br><strong>${formatWithLineBreaks(psalms.response)}</strong><br>
-                                <br><em>${psalms.verses.map(formatWithLineBreaks).join('<br><br>')}</em><br><br>
-                            `;
-                        }
+    // Hàm phụ trợ để định dạng phần Đáp ca
+    function formatPsalms(psalms) {
+        if (!psalms) return '<strong>Đáp ca:</strong> Not available<br><br>';
+        
+        return `
+            <strong style="color: red;"> Đáp ca:</strong> ${formatWithLineBreaks(psalms.excerpt)} <br>
+            <br><strong>${formatWithLineBreaks(psalms.response)}</strong><br>
+            <br><em>${psalms.verses.map(formatWithLineBreaks).join('<br><br>')}</em><br><br>
+        `;
+    }
 
-                        // Hàm phụ trợ để định dạng phần Xướng trước Tin Mừng
-                        function formatAlleluia(alleluia) {
-                            if (!alleluia) return '<strong style="color: red;">Xướng trước Tin Mừng:</strong> Not available<br><br>';
-                            
-                            return `
-                                <strong style="color: red;"> Xướng trước Tin Mừng:</strong> ${formatWithLineBreaks(alleluia.verse)} <br>
-                                <br><strong>${formatWithLineBreaks(alleluia.content)}</strong><br><br>
-                            `;
-                        }
+    // Hàm phụ trợ để định dạng phần Xướng trước Tin Mừng
+    function formatAlleluia(alleluia) {
+        if (!alleluia) return '<strong style="color: red;">Xướng trước Tin Mừng:</strong> Not available<br><br>';
+        
+        return `
+            <strong style="color: red;"> Xướng trước Tin Mừng:</strong> ${formatWithLineBreaks(alleluia.verse)} <br>
+            <br><strong>${formatWithLineBreaks(alleluia.content)}</strong><br><br>
+        `;
+    }
       
       // Các Hàm liên quan bài đọc chính
         // Hàm hiển thị nội dung bài đọc chính

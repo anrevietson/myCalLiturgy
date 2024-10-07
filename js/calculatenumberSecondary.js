@@ -56,7 +56,7 @@ const getCodeForDate = (function (global) {
         let firstSunday = getFirstSundayOfOctober(year);
         codeSecondaryNumbers.push({
             date: firstSunday,
-            code: `80710`
+            code: `81710`
         });
 
         // Kiểm tra ngày Thánh Tâm (Heartjesus) có trùng ngày 24/6 không

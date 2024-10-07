@@ -701,10 +701,8 @@ if (secondFeast === null) {
     feastToUse = feast;  // Gán giá trị của reading1 cho feastToUse khi secondFeast là null
 }
 
-console.log("feastToUse:", feastToUse);  // Kiểm tra giá trị sau khi gán
-
 if (reading1 && reading1.trim() !== "") {
-    updateOptionalReadingInfo(reading1, secondFeast||feastToUse);
+    updateOptionalReadingInfo(reading1, secondFeast||feastToUse,secondFeast );
 } else {
     document.getElementById("optional-reading").textContent = ''; // Xóa thông tin bài đọc phụ nếu không có giá trị
 }
@@ -714,7 +712,7 @@ if (reading1 && reading1.trim() !== "") {
 
 
 
-function updateOptionalReadingInfo(reading1, solarDate) {
+function updateOptionalReadingInfo(reading1, solarDate, secondFeast) {
 
  // Kiểm tra nếu bài đọc phụ tồn tại và khác "1" có 2 trường hợp....... 
 if (reading1 && reading1 !== "1") {
@@ -726,11 +724,35 @@ if (reading1 && reading1 !== "1") {
         console.log("Không tìm thấy phần tử HTML với id 'optional-reading'");
         return;
     }
-
     // Cập nhật nội dung bài đọc phụ
     const parts = (reading1 || '').split(';');
 
 // Kiểm tra số lượng phần tử trong mảng và định dạng từng phần tử
+if(secondFeast ===null){
+    if (parts.length === 4) {
+    optionalReadingContainer.innerHTML = `
+        <div class="readable" id="optional-content">
+            Hoặc đọc về lễ nhớ: <strong>${parts[0].trim()}</strong>; <!-- Phần tử 1 in đậm -->
+            <em>${parts[1].trim()}</em>; <!-- Phần tử 2 in nghiêng -->
+            ${parts[2].trim()}; <!-- Phần tử 3 in thường -->
+            <strong>${parts[3].trim()}</strong> <!-- Phần tử 4 in đậm -->
+        </div>`;
+} else if (parts.length === 3) {
+    optionalReadingContainer.innerHTML = `
+        Hoặc đọc về lễ nhớ: <div class="readable" id="optional-content">
+            <strong>${parts[0].trim()}</strong>; <!-- Phần tử 1 in đậm -->
+            <em>${parts[1].trim()}</em>; <!-- Phần tử 2 in nghiêng -->
+            <strong>${parts[2].trim()}</strong> <!-- Phần tử 3 in đậm -->
+        </div>`;
+} else {
+    // Trường hợp không đủ hoặc nhiều hơn 4 phần tử, có thể xử lý khác
+    console.log("Số phần tử không hợp lệ: ", parts.length);
+    optionalReadingContainer.innerHTML = `${reading1 || ''}`;
+}
+
+}else{
+
+
 if (parts.length === 4) {
     optionalReadingContainer.innerHTML = `
         <div class="readable" id="optional-content">
@@ -752,6 +774,7 @@ if (parts.length === 4) {
     optionalReadingContainer.innerHTML = `${reading1 || ''}`;
 }
 
+}
     // Gán sự kiện onclick cho phần tử vừa tạo tới đây đúng
     const optionalContent = document.getElementById("optional-content");
     if (optionalContent) {

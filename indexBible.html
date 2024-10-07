@@ -728,10 +728,29 @@ if (reading1 && reading1 !== "1") {
     }
 
     // Cập nhật nội dung bài đọc phụ
+    const parts = (reading1 || '').split(';');
+
+// Kiểm tra số lượng phần tử trong mảng và định dạng từng phần tử
+if (parts.length === 4) {
     optionalReadingContainer.innerHTML = `
-        <div class="readable" id="optional-content"> 
-            ${reading1 || ''}
+        <div class="readable" id="optional-content">
+            <strong>${parts[0].trim()}</strong>; <!-- Phần tử 1 in đậm -->
+            <em>${parts[1].trim()}</em>; <!-- Phần tử 2 in nghiêng -->
+            ${parts[2].trim()}; <!-- Phần tử 3 in thường -->
+            <strong>${parts[3].trim()}</strong> <!-- Phần tử 4 in đậm -->
         </div>`;
+} else if (parts.length === 3) {
+    optionalReadingContainer.innerHTML = `
+        <div class="readable" id="optional-content">
+            <strong>${parts[0].trim()}</strong>; <!-- Phần tử 1 in đậm -->
+            <em>${parts[1].trim()}</em>; <!-- Phần tử 2 in nghiêng -->
+            <strong>${parts[2].trim()}</strong> <!-- Phần tử 3 in đậm -->
+        </div>`;
+} else {
+    // Trường hợp không đủ hoặc nhiều hơn 4 phần tử, có thể xử lý khác
+    console.log("Số phần tử không hợp lệ: ", parts.length);
+    optionalReadingContainer.innerHTML = `${reading1 || ''}`;
+}
 
     // Gán sự kiện onclick cho phần tử vừa tạo tới đây đúng
     const optionalContent = document.getElementById("optional-content");

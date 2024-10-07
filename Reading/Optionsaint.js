@@ -458,7 +458,7 @@ window.OptionsaintReadings = {
       "end": "Ðó là lời Chúa"
     }
   },
-  "80710": {
+  "81710": {
     "firstReading": {
       "excerpt": "St 3, 9-15. 20",
       "info": "“Ta sẽ đặt mối thù nghịch giữa miêu duệ mi và miêu duệ người phụ nữ”.",
@@ -482,6 +482,37 @@ window.OptionsaintReadings = {
       "title": "Trích thư Thánh Phaolô Tông đồ gửi tín hữu Rôma.",
       "content": "Anh em thân mến, cũng như do một người mà tội lỗi đã nhập vào thế gian, và do tội lỗi mà có sự chết, và thế là sự chết đã truyền đến mọi người, vì lẽ rằng mọi người đã phạm tội. Vì nếu bởi tội của một người mà sự chết đã thống trị do một người đó, thì những người lãnh được ân sủng và ơn huệ dồi dào bởi đức công chính, càng được thống trị hơn nữa trong sự sống do một người là Ðức Giêsu Kitô. Do đó, tội của một người truyền đến mọi người đưa tới án phạt như thế nào, thì đức công chính của một người truyền sang mọi người đưa tới bậc công chính ban sự sống cũng như thế. Vì như bởi tội không vâng lời của một người mà muôn người trở thành những tội nhân thế nào, thì do đức vâng lời của một người mà muôn người trở thành kẻ công chính cũng như thế.",
       "end": "Ðó là lời Chúa"
+    },
+    "alleluia": {
+      "verse": "Lc 1, 28",
+      "content": "Alleluia, Alleluia,  Alleluia.- Kính chào Maria đầy ơn phúc, Thiên Chúa ở cùng Trinh Nữ; Trinh Nữ được chúc phúc giữa các người phụ nữ. – Alleluia."
+    },
+    "gospel": {
+      "excerpt": "Lc 1, 26-38",
+      "info": "“Này Trinh nữ sẽ thụ thai và sinh một Con trai”.",
+      "title": "Tin Mừng Chúa Giêsu Kitô theo Thánh Luca.",
+      "content": "Khi ấy, Thiên Thần Gabriel được Chúa sai đến một thành xứ Galilêa, tên là Nadarét, đến với một trinh nữ đã đính hôn với một người tên là Giuse, thuộc chi họ Ðavít, trinh nữ ấy tên là Maria. Thiên thần vào nhà trinh nữ và chào rằng: “Kính chào Trinh Nữ đầy ơn phước, Thiên Chúa ở cùng Trinh Nữ”. Nghe lời đó, Trinh Nữ bối rối và tự hỏi lời chào đó có ý nghĩa gì. Thiên thần liền thưa: “Maria đừng sợ, vì đã được ơn nghĩa với Chúa. Này Trinh Nữ sẽ thụ thai, hạ sinh một con trai và đặt tên là Giêsu. Người sẽ nên cao trọng và được gọi là Con Ðấng Tối Cao. Thiên Chúa sẽ ban cho Người ngôi báu Ðavít tổ phụ Người. Người sẽ cai trị đời đời trong nhà Giacóp, và triều đại Người sẽ vô tận.\rNhưng Maria thưa với thiên thần: “Việc đó xảy đến thế nào được, vì tôi không biết đến người nam?”\rThiên thần thưa: “Chúa Thánh Thần sẽ đến với trinh nữ và uy quyền Ðấng Tối Cao sẽ bao trùm trinh nữ. Vì thế, Ðấng trinh nữ sinh ra sẽ là Ðấng Thánh và được gọi là Con Thiên Chúa. Và này, Isave chị họ trinh nữ cũng đã thụ thai con trai trong lúc tuổi già và nay đã mang thai được sáu tháng, người mà thiên hạ gọi là son sẻ; vì không có việc gì mà Chúa không làm được”.\rMaria liền thưa: “Này tôi là tôi tớ Chúa, tôi xin vâng như lời Thiên thần truyền”. Và thiên thần cáo biệt trinh nữ.",
+      "end": "Ðó là lời Chúa"
+    }
+  },
+  "80710": {
+    "firstReading": {
+      "excerpt": "Cv 1: 12-14",
+      "info": "“Các Tông Đồ chuyên cần cầu nguyện cùng với bà Ma-ri-a, thân mẫu Đức Giê-su.",
+      "title": "Bài trích sách Công vụ Tông Đồ.",
+      "content": "Bấy giờ các ông từ núi gọi là núi Ô-liu trở về Giê-ru-sa-lem. Núi này ở gần Giê-ru-sa-lem, cách đoạn đường được phép đi trong ngày sa bát. Trở về nhà, các ông lên lầu trên, là nơi các ông trú ngụ. Đó là các ông: Phê-rô, Gio-an, Gia-cô-bê, An-rê, Phi-líp-phê, Tô-ma, Ba-tô-lô-mê-ô, Mát-thêu, Gia-cô-bê con ông An-phê, Si-môn thuộc nhóm Quá Khích, và Giu-đa con ông Gia-cô-bê. Tất cả các ông đều đồng tâm nhất trí, chuyên cần cầu nguyện cùng với mấy người phụ nữ, với bà Ma-ri-a thân mẫu Đức Giê-su, và với anh em của Đức Giê-su.",
+      "end": "Ðó là lời Chúa"
+    },
+    "psalms": {
+      "excerpt": "Lc 1,46-47.48-49.50-51.52-53.54-55 ",
+      "response": "Ðáp: Đấng Toàn Năng đã làm cho tôi biết bao điều cao cả, danh Người thật chí thánh chí tôn!",
+      "verses": [
+        "Xướng: Linh hồn tôi ngợi khen Đức Chúa, thần trí tôi hớn hở vui mừng vì Thiên Chúa, Đấng cứu độ tôi.",
+        "Xướng: Phận nữ tỳ hèn mọn, Người đoái thương nhìn tới; từ nay, hết mọi đời sẽ khen tôi diễm phúc. Đấng Toàn Năng đã làm cho tôi biết bao điều cao cả, danh Người thật chí thánh chí tôn!",
+        "Xướng: Đời nọ tới đời kia, Chúa hằng thương xót những ai kính sợ Người. Chúa giơ tay biểu dương sức mạnh, dẹp tan phường lòng trí kiêu căng.",
+        "Xướng: Chúa hạ bệ những ai quyền thế, Người nâng cao mọi kẻ khiêm nhường. Kẻ đói nghèo, Chúa ban của đầy dư, người giàu có, lại đuổi về tay trắng.",
+        "Xướng: Chúa độ trì Ít-ra-en, tôi tớ của Người, như đã hứa cùng cha ông chúng ta, vì Người nhớ lại lòng thương xót dành cho tổ phụ Áp-ra-ham và cho con cháu đến muôn đời”. Muôn nước hỡi, nào ca ngợi Chúa, ngàn dân ơi, hãy chúc tụng Người!"
+      ]
     },
     "alleluia": {
       "verse": "Lc 1, 28",

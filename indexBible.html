@@ -207,7 +207,7 @@
 
     .modal-content {
         padding: 20px;
-        text-align: center;
+        text-align: left;
     }
 
     .close:focus {
@@ -296,7 +296,7 @@
         font-size: 16px;
         border-radius: 5px;
         border: 1px solid #ccc;
-        width: fit-content;
+        width: auto;
     }
 
     button {
@@ -311,7 +311,7 @@
     button:hover {
         background-color: #0056b3;
     }
-    .desktop-controls {
+.desktop-controls {
     display: flex;
     justify-content: space-around; /* Chia đều không gian cho các phần tử */
     align-items: center; /* Căn giữa theo chiều dọc */
@@ -360,13 +360,13 @@
         margin-right: 0px; /* Giảm khoảng cách bên phải */
         font-size: 16px; /* Giảm kích thước chữ */
     }
-}    
-
     .desktop-controls {
         display: none; /* Ẩn các trường chọn bình thường trên điện thoại */
     }
+}    
 
-  
+   
+
 
 
 
@@ -449,7 +449,7 @@
         </div>
     </div>
 
-    
+
 <!-- Chọn ngày, tuần và tháng vủa mobi -->
 <div class="controls-container">
     <!-- Biểu tượng cho điện thoại -->
@@ -523,18 +523,18 @@
 
         <!-- Khi người dùng thay đổi tháng, tự động gọi hàm displayMonthInfo -->
         <select id="mobileMonthInput" onchange="displayMonthInfo(document.getElementById('mobileMonthInput').value, document.getElementById('mobileYearInput').value)">
-            <option value="1">Thg 1</option>
-            <option value="2">Thg 2</option>
-            <option value="3">Thg 3</option>
-            <option value="4">Thg 4</option>
-            <option value="5">Thg 5</option>
-            <option value="6">Thg 6</option>
-            <option value="7">Thg 7</option>
-            <option value="8">Thg 8</option>
-            <option value="9">Thg 9</option>
-            <option value="10">Thg 10</option>
-            <option value="11">Thg 11</option>
-            <option value="12">Thg 12</option>
+            <option value="1">Tháng 1</option>
+            <option value="2">Tháng 2</option>
+            <option value="3">Tháng 3</option>
+            <option value="4">Tháng 4</option>
+            <option value="5">Tháng 5</option>
+            <option value="6">Tháng 6</option>
+            <option value="7">Tháng 7</option>
+            <option value="8">Tháng 8</option>
+            <option value="9">Tháng 9</option>
+            <option value="10">Tháng 10</option>
+            <option value="11">Tháng 11</option>
+            <option value="12">Tháng 12</option>
         </select>
 
         <!-- Khi người dùng thay đổi năm, tự động gọi hàm displayMonthInfo -->
@@ -544,8 +544,6 @@
         <button onclick="quitModal()">Close</button>
     </div>
 </div>
-
-
 
 
     <!-- Bảng hiển thị thông tin -->
@@ -695,13 +693,23 @@ document.getElementById("current-month-year").textContent = `${monthName} - ${ye
         ? formatFeastName(secondFeast.name)
         : '';
 
-   // Lấy thông tin bài đọc phụ và cập nhật chỉ khi có giá trị
-   const reading1 = showOptionContent(selectedDate);
-    if (reading1 && reading1.trim() !== "") {
-        updateOptionalReadingInfo(reading1, secondFeast);
-    } else {
-        document.getElementById("optional-reading").textContent = ''; // Xóa thông tin bài đọc phụ nếu không có giá trị
-    }
+// Lấy thông tin bài đọc phụ và kiểm tra giá trị trả về
+const reading1 = showOptionContent(selectedDate);
+let feastToUse = secondFeast;  // Biến tạm thời để chứa giá trị sử dụng
+
+if (secondFeast === null) {
+    feastToUse = feast;  // Gán giá trị của reading1 cho feastToUse khi secondFeast là null
+}
+
+console.log("feastToUse:", feastToUse);  // Kiểm tra giá trị sau khi gán
+
+if (reading1 && reading1.trim() !== "") {
+    updateOptionalReadingInfo(reading1, secondFeast||feastToUse);
+} else {
+    console.log("Không có bài đọc phụ hoặc bài đọc là chuỗi rỗng");
+    document.getElementById("optional-reading").textContent = ''; // Xóa thông tin bài đọc phụ nếu không có giá trị
+}
+
 }
 
 
@@ -709,77 +717,86 @@ document.getElementById("current-month-year").textContent = `${monthName} - ${ye
 
 function updateOptionalReadingInfo(reading1, solarDate) {
 
-    // Kiểm tra nếu bài đọc phụ tồn tại và khác "1"
-    if (reading1 && reading1 !== "1") {
+ // Kiểm tra nếu bài đọc phụ tồn tại và khác "1" có 2 trường hợp....... 
+if (reading1 && reading1 !== "1") {
+    // Xác định phần tử HTML cho bài đọc phụ
+    const optionalReadingContainer = document.getElementById("optional-reading");
+    
+    // Kiểm tra xem container có tồn tại không
+    if (!optionalReadingContainer) {
+        console.log("Không tìm thấy phần tử HTML với id 'optional-reading'");
+        return;
+    }
 
-        // Xác định phần tử HTML cho bài đọc phụ
-        const optionalReadingContainer = document.getElementById("optional-reading");
-        if (!optionalReadingContainer) {
+    // Cập nhật nội dung bài đọc phụ
+    optionalReadingContainer.innerHTML = `
+        <div class="readable" id="optional-content">
+            <strong>${reading1 || ''}</strong>
+        </div>`;
+
+    // Gán sự kiện onclick cho phần tử vừa tạo tới đây đúng
+    const optionalContent = document.getElementById("optional-content");
+    if (optionalContent) {
+        optionalContent.addEventListener('click', function() {
+            try {
+                const dateStr = solarDate.date.toISOString();
+                showBibleOptionContent(dateStr); // Truyền chuỗi định dạng ngày
+            } catch (error) {
+                console.error("Lỗi khi xử lý sự kiện click trong optionalContent:", error); // giải thích vì sao lỗi tại đây
+            }  
+        });
+    } else {
+        console.log("Không tìm thấy phần tử với id 'optional-content'");
+    }
+
+    // Nếu reading1 là mảng, xử lý hiển thị thêm nội dung bài đọc
+    if (Array.isArray(reading1)) {
+        const reading1Container = document.getElementById("reading1");
+        if (!reading1Container) {
             return;
         }
-        // Cập nhật nội dung bài đọc phụ
-        optionalReadingContainer.innerHTML = `
-            <div class="readable" id="optional-content">
-                <strong>${reading1 || ''}</strong>
-            </div>`;
 
-        // Gán sự kiện onclick cho phần tử vừa tạo
-        const optionalContent = document.getElementById("optional-content");
-        if (optionalContent) {
-            optionalContent.addEventListener('click', function() {
-                try {
-                    // Lấy thuộc tính `date` từ `solarDate` và chuyển thành chuỗi
-                    const dateStr = solarDate.date.toISOString();
-                    showBibleOptionContent(dateStr); // Truyền chuỗi định dạng ngày
-                } catch (error) {
-                }  
-            });
-        }
-
-        // Nếu reading1 là mảng, xử lý hiển thị thêm nội dung bài đọc
-        if (Array.isArray(reading1)) {
-            const reading1Container = document.getElementById("reading1");
-            if (!reading1Container) {
-                return;
+        if (reading1.length === 4) {
+            reading1Container.innerHTML = `
+                <div class="readable" id="reading1-content">
+                    <strong>${reading1[0] || ''}</strong> ${reading1[1] || ''} 
+                    ${reading1[2] || ''}<strong> ${reading1[3] || ''}
+                </div>`;
+            
+            const reading1Content = document.getElementById("reading1-content");
+            if (reading1Content) {
+                reading1Content.addEventListener('click', function() {
+                    try {
+                        const dateStr = solarDate.date.toISOString(); // Chuyển ngày thành chuỗi
+                        showReadingContent(dateStr); // Truyền chuỗi định dạng ngày
+                    } catch (error) {
+                    }
+                });
             }
+        } else if (reading1.length === 3) {
+            reading1Container.innerHTML = `
+                <div class="readable" id="reading1-content">
+                    <strong>${reading1[0] || ''}</strong> ${reading1[1] || ''} 
+                    <strong>${reading1[2] || ''}
+                </div>`;
 
-            if (reading1.length === 4) {
-                console.log("Bài đọc có độ dài 4:", reading1);
-                reading1Container.innerHTML = `
-                    <div class="readable" id="reading1-content">
-                        <strong>${reading1[0] || ''}</strong> ${reading1[1] || ''} 
-                        ${reading1[2] || ''}<strong> ${reading1[3] || ''}
-                    </div>`;
-                const reading1Content = document.getElementById("reading1-content");
-                if (reading1Content) {
-                    reading1Content.addEventListener('click', function() {
-                        try {
-                            const dateStr = solarDate.date.toISOString(); // Chuyển ngày thành chuỗi
-                            showReadingContent(dateStr); // Truyền chuỗi định dạng ngày
-                        } catch (error) {
-                        }
-                    });
-                }
-            } else if (reading1.length === 3) {
-                reading1Container.innerHTML = `
-                    <div class="readable" id="reading1-content">
-                        <strong>${reading1[0] || ''}</strong> ${reading1[1] || ''} 
-                        <strong>${reading1[2] || ''}
-                    </div>`;
-                const reading1Content = document.getElementById("reading1-content");
-                if (reading1Content) {
-                    reading1Content.addEventListener('click', function() {
-                        try {
-                            const dateStr = solarDate.date.toISOString(); // Chuyển ngày thành chuỗi
-                            showReadingContent(dateStr); // Truyền chuỗi định dạng ngày
-                        } catch (error) {
-                        }
-                    });
-                }
+            const reading1Content = document.getElementById("reading1-content");
+            if (reading1Content) {
+                reading1Content.addEventListener('click', function() {
+                    try {
+                        const dateStr = solarDate.date.toISOString(); // Chuyển ngày thành chuỗi
+                        showReadingContent(dateStr); // Truyền chuỗi định dạng ngày
+                    } catch (error) {
+                    }
+                });
             }
         }
-    } 
+    }
+} else {
+    console.log("Bài đọc không tồn tại hoặc bằng '1'");
 }
+}
+
 
 
 

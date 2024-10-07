@@ -351,13 +351,23 @@
         justify-content: space-around;
         gap: 10px;
     }
+    .weekday {
+        margin-left: 0px; /* Giảm khoảng cách bên trái */
+        font-size: 16px; /* Giảm kích thước chữ */
+    }
+
+    .lunar-date {
+        margin-right: 0px; /* Giảm khoảng cách bên phải */
+        font-size: 16px; /* Giảm kích thước chữ */
+    }
+}    
 
     .desktop-controls {
         display: none; /* Ẩn các trường chọn bình thường trên điện thoại */
     }
 
   
-}
+
 
 
     </style>
@@ -453,12 +463,12 @@
     <div class="desktop-controls">
 
         <button>Ngày : </button>
-        <input type="date" id="inputDate" onchange="getFeastForSelectedDate()">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="date" id="inputDate" onchange="getFeastForSelectedDate()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         
         <!-- Chọn tuần hiện tại, tuần trước, hoặc tuần tới -->
         <button onclick="displayWeekInfo('previous')">⏮</button>
         <button onclick="displayWeekInfo('current')">Tuần Hiện Tại</button>
-        <button onclick="displayWeekInfo('next')">⏭</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button onclick="displayWeekInfo('next')">⏭</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       
 
         <button onclick="displayMonthInfo()">Lịch Tháng : </button>

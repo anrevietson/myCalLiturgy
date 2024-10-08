@@ -1009,6 +1009,33 @@ function displayWeekInfo(weekType) {
 
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    function displayMonthInfo() {
+        let month, year;
+
+        // Kiểm tra và lấy giá trị cho mobi (nếu tồn tại các phần tử mobi)
+        const mobileMonthInput = document.getElementById('mobileMonthInput');
+        const mobileYearInput = document.getElementById('mobileYearInput');
+
+        if (mobileMonthInput && mobileYearInput) {
+            // Nếu là mobi, lấy giá trị từ select và input
+            month = parseInt(mobileMonthInput.value);
+            year = parseInt(mobileYearInput.value);
+        } else {
+            // Nếu là desktop, lấy giá trị từ input dạng month
+            month = parseInt(document.getElementById('monthInput').value);
+            year = parseInt(document.getElementById('yearInput').value);
+        }
+
+        // Kiểm tra giá trị tháng và năm hợp lệ
+        if (!isNaN(month) && !isNaN(year) && month >= 1 && month <= 12) {
+            const daysInMonth = new Date(year, month, 0).getDate();
+            alert("Tháng " + month + " năm " + year + " có " + daysInMonth + " ngày.");
+        } else {
+            alert("Vui lòng nhập tháng và năm hợp lệ.");
+        }
+    }
+});
 
 function displayMonthInfo() {
     // Lấy tháng và năm từ input của người dùng

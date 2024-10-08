@@ -1,0 +1,17 @@
+workflows:
+  simple-web-build:
+    name: "Simple Web Build"
+    environment:
+      node: latest  # Chỉ cần nếu bạn cần môi trường Node.js (nếu bạn có sử dụng package)
+    scripts:
+      - name: "Check HTML and JS files"
+        script: |
+          echo "No dependencies or build steps for static HTML and JS files."
+      - name: "Move files"
+        script: |
+          echo "Deploying static files from /Js and /reading"
+    publishing:
+      email:
+        recipients:
+          - anrevietson@gmail.com  # Đảm bảo định dạng email đúng
+

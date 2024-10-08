@@ -1,15 +1,17 @@
 workflows:
-  simple-web-build:
-    name: "Simple Web Build"
+  ios-workflow:
+    name: "iOS Build Workflow"
     environment:
-      node: latest  # Chỉ cần nếu bạn cần môi trường Node.js (nếu bạn có sử dụng package)
+      xcode: latest
     scripts:
-      - name: "Check HTML and JS files"
+      - name: Install dependencies
         script: |
-          echo "No dependencies or build steps for static HTML and JS files."
-      - name: "Move files"
-        script: |
-          echo "Deploying static files from /Js and /reading"
+          brew install cocoapods
+          pod install
+      - name: Build app
+        script: xcodebuild -workspace MyApp.xcworkspace -scheme MyApp -sdk iphoneos -configuration Release
+    artifacts:
+      - build/ios/ipa/*.ipa
     publishing:
       email:
         recipients:

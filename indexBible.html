@@ -523,12 +523,10 @@
 </div>
 
 <!-- Modal chọn Thánh mobi-->
-<div id="monthPickerModal" class="modal" style="display:none;"> <!-- Thêm style display:none để ẩn modal ban đầu -->
+<div id="monthPickerModal" class="modal" style="display:none;"> <!-- Ẩn modal mặc định -->
     <div class="modal-content">
         <span class="close" onclick="closeMonthPicker()">&times;</span>
         <h3>Chọn tháng và năm</h3>
-
-        <!-- Khi người dùng thay đổi tháng -->
         <select id="mobileMonthInput">
             <option value="1">Tháng 1</option>
             <option value="2">Tháng 2</option>
@@ -538,24 +536,17 @@
             <option value="6">Tháng 6</option>
             <option value="7">Tháng 7</option>
             <option value="8">Tháng 8</option>
-            <option value="9">Tháng 9</option>
+            <option value="9">Tháng9</option>
             <option value="10">Tháng 10</option>
             <option value="11">Tháng 11</option>
             <option value="12">Tháng 12</option>
         </select>
-
-        <!-- Khi người dùng thay đổi năm -->
         <input type="number" id="mobileYearInput" value="2024">
-
-        <!-- Nút xác nhận để gọi hàm displayMonthInfo -->
+        <!-- Gọi trực tiếp hàm displayMonthInfo với các tham số tháng và năm -->
         <button onclick="displayMonthInfo(document.getElementById('mobileMonthInput').value, document.getElementById('mobileYearInput').value)">Xác nhận</button>
-
-        <!-- Nút đóng modal -->
-        <button onclick="quitModal()">Close</button>
+        <button onclick="quitModal()">Close</button> <!-- đóng modal -->
     </div>
 </div>
-
-
 
     <!-- Bảng hiển thị thông tin -->
     <h2>Lịch Phụng Vụ <span id="yearDisplay"></span></h2>

@@ -522,8 +522,8 @@
     </div>
 </div>
 
-<!-- Modal chọn Thánh mobi-->
-<div id="monthPickerModal" class="modal" style="display:none;"> <!-- Ẩn modal mặc định -->
+<!-- Modal chọn Thánh mobi -->
+<div id="monthPickerModal" class="modal" style="display:none;">
     <div class="modal-content">
         <span class="close" onclick="closeMonthPicker()">&times;</span>
         <h3>Chọn tháng và năm</h3>
@@ -536,15 +536,14 @@
             <option value="6">Tháng 6</option>
             <option value="7">Tháng 7</option>
             <option value="8">Tháng 8</option>
-            <option value="9">Tháng9</option>
+            <option value="9">Tháng 9</option>
             <option value="10">Tháng 10</option>
             <option value="11">Tháng 11</option>
             <option value="12">Tháng 12</option>
         </select>
         <input type="number" id="mobileYearInput" value="2024">
-        <!-- Gọi trực tiếp hàm displayMonthInfo với các tham số tháng và năm -->
-        <button onclick="displayMonthInfo(document.getElementById('mobileMonthInput').value, document.getElementById('mobileYearInput').value)">Xác nhận</button>
-        <button onclick="quitModal()">Close</button> <!-- đóng modal -->
+        <button onclick="displayMonthInfo()">Xác nhận</button>
+        <button onclick="quitModal()">Close</button>
     </div>
 </div>
 
@@ -1015,6 +1014,8 @@ function displayMonthInfo() {
     // Lấy tháng và năm từ input của người dùng
     const month = parseInt(document.getElementById('monthInput').value);
     const year = parseInt(document.getElementById('yearInput').value);
+     const mobileMonthInput = document.getElementById('mobileMonthInput');
+    const mobileYearInput = document.getElementById('mobileYearInput');
 
     // Tính số ngày trong tháng được chọn
     const daysInMonth = new Date(year, month, 0).getDate();

@@ -425,21 +425,28 @@
 
     <!-- Thông tin lễ và bài đọc -->
     <div class="details" id="detailsSection">
+           <!-- tên ngày lễ -->
         <div class="feast-info-container">
             <p class="feast-info" id="feast-info"></p>
         </div>
+           <!-- bài đọc chính-->
         <p class="readings">
             <span id="reading1"></span> <span id="psalm"></span>
             <span id="reading2"></span> <span id="gospel"></span>
         </p>
+
         <p class="info">
             <span id="info"></span>
         </p>
+         <!-- tên lễ vọng nếu có-->
         <div>
             <p id="second-feast-info"></p>
         </div>
         <div>
+             <!-- bài đọc phụ -->
             <p id="optional-reading"></p>
+
+            
             <div class="reading-row">
                 <div class="weekday" id="weekday">THỨ HAI</div>
                 <p class="date-large" id="current-date">1</p>
@@ -616,10 +623,6 @@ function closeDatePicker() {
     toggleOverlay('none'); // Ẩn overlay
 }
 
-function closeWeekPicker() {
-    document.getElementById('weekPickerModal').style.display = 'none';
-    toggleOverlay('none'); // Ẩn overlay
-}
 
 function getWeekday(date) {
         const days = ["CHÚA NHẬT", "THỨ HAI", "THỨ BA", "THỨ TƯ", "THỨ NĂM", "THỨ SÁU", "THỨ BẢY"];
@@ -633,32 +636,30 @@ function getWeekday(date) {
         ];
         return months[date.getMonth()];
 }
-// làm sao tôi cập nhật getWeekday(date) và getMonthName(date) vào hàm sau
-
 function displayDateInfo(date) {
     const selectedDate = date ? new Date(date) : new Date(); // Sử dụng ngày đã chọn hoặc ngày hiện tại
     const year = selectedDate.getFullYear();
     const month = selectedDate.getMonth() + 1;
     const day = selectedDate.getDate();
 
-// Sử dụng các hàm getWeekday và getMonthName để lấy thứ và tháng
-const weekday = getWeekday(selectedDate);  // Lấy thứ trong tuần
-const monthName = getMonthName(selectedDate);  // Lấy tên tháng
+    // Sử dụng các hàm getWeekday và getMonthName để lấy thứ và tháng
+    const weekday = getWeekday(selectedDate);  // Lấy thứ trong tuần
+    const monthName = getMonthName(selectedDate);  // Lấy tên tháng
 
-// Lấy ngày Chúa Nhật đầu tiên của Mùa Vọng trong năm hiện tại
-const firstSundayOfAdvent = getFirstSundayOfAdvent(year);
+    // Lấy ngày Chúa Nhật đầu tiên của Mùa Vọng trong năm hiện tại
+    const firstSundayOfAdvent = getFirstSundayOfAdvent(year);
 
-// Kiểm tra xem ngày hiện tại có sau Chúa Nhật đầu tiên của Mùa Vọng không
-let liturgicalYear = getLiturgicalYear(year);
-if (selectedDate >= firstSundayOfAdvent) {
-    // Nếu sau Chúa Nhật đầu tiên của Mùa Vọng, cộng thêm 1 cho năm phụng vụ
-    liturgicalYear = getLiturgicalYear(year + 1);
-}
+    // Kiểm tra xem ngày hiện tại có sau Chúa Nhật đầu tiên của Mùa Vọng không
+    let liturgicalYear = getLiturgicalYear(year);
+    if (selectedDate >= firstSundayOfAdvent) {
+        // Nếu sau Chúa Nhật đầu tiên của Mùa Vọng, cộng thêm 1 cho năm phụng vụ
+        liturgicalYear = getLiturgicalYear(year + 1);
+    }
 
-// Hiển thị thứ trong tuần, ngày và tháng/năm phụng vụ
-document.getElementById("weekday").textContent = weekday; // Hiển thị thứ trong tuần
-document.getElementById("current-date").textContent = day; // Hiển thị ngày
-document.getElementById("current-month-year").textContent = `${monthName} - ${year} NĂM ${liturgicalYear}`; // Hiển thị tháng/năm và năm phụng vụ
+    // Hiển thị thứ trong tuần, ngày và tháng/năm phụng vụ
+    document.getElementById("weekday").textContent = weekday; // Hiển thị thứ trong tuần
+    document.getElementById("current-date").textContent = day; // Hiển thị ngày
+    document.getElementById("current-month-year").textContent = `${monthName} - ${year} NĂM ${liturgicalYear}`; // Hiển thị tháng/năm và năm phụng vụ
 
     // Chuyển đổi ngày âm lịch
     const lunarDate = convertToLunarDate({ day, month, year });
@@ -669,9 +670,7 @@ document.getElementById("current-month-year").textContent = `${monthName} - ${ye
     const canChi = getYearCanChi(lunarNewYear.getFullYear()); // Tính can chi của năm âm lịch
 
     // Hiển thị ngày âm lịch (AL) và can chi trong phần tử `lunarDate`
-
     document.getElementById("lunarDate").innerHTML = `AL: ${lunarDate.day}/${lunarDate.month}<br>${canChi}`;
-
 
     // Lấy thông tin lễ và bài đọc
     const feasts = calculateFeasts(year);
@@ -680,141 +679,161 @@ document.getElementById("current-month-year").textContent = `${monthName} - ${ye
     document.getElementById("feast-info").innerHTML = feast ? formatFeastName(feast.name) : 'Không có lễ đặc biệt';
 
     const readingContent = showfordayContent(selectedDate)?.split('; ') || [];
-    const info = showfordayContentinfo(selectedDate);
 
-    const solarDate = selectedDate.toISOString();
-
-    // Hiển thị thông tin bài đọc
-    updateReadingInfo(info, readingContent, solarDate);
-
-    // Tính toán và thêm lễ vọng (second feast)
-    const secondFeast = getSecondFeastsForDate(selectedDate, secondFeasts); // Trả về một đối tượng hoặc null
-    document.getElementById("second-feast-info").innerHTML = secondFeast
-        ? formatFeastName(secondFeast.name)
-        : '';
-
-// Lấy thông tin bài đọc phụ và kiểm tra giá trị trả về
-const reading1 = showOptionContent(selectedDate);
-let feastToUse = secondFeast;  // Biến tạm thời để chứa giá trị sử dụng
-
-if (secondFeast === null) {
-    feastToUse = feast;  // Gán giá trị của reading1 cho feastToUse khi secondFeast là null
-}
-
-if (reading1 && reading1.trim() !== "") {
-    updateOptionalReadingInfo(reading1, secondFeast||feastToUse,secondFeast );
-} else {
-    document.getElementById("optional-reading").textContent = ''; // Xóa thông tin bài đọc phụ nếu không có giá trị
-}
-
-}
+    // Lấy thông tin bài đọc phụ và kiểm tra giá trị trả về
+    const reading1 = showOptionContent(selectedDate);
+    const secondFeast = getSecondFeastsForDate(selectedDate, secondFeasts);
 
 
+    const Nov2 = new Date(year, 10, 2); // Ngày 2 tháng 11
+    const Dec25 = new Date(year, 11, 25); // Ngày 25 tháng 12
 
+    if (reading1 && reading1 !== "1" && secondFeast === null && (isSameDay(selectedDate, Nov2) && isSameDay(selectedDate, Dec25))) {
+        info = showBibleOptionContentinfo(selectedDate); // Gán giá trị mới cho info
+        
+        const solarDate = selectedDate.toISOString();
+        document.getElementById("info").innerHTML = `<strong><em>${info}</em></strong>`;
+        const optionalReadingContainer = document.getElementById("reading1");
+       // Bài đọc ngày lễ
+        
+       document.getElementById("reading1").innerHTML = `
+                        <div class="readable" id="optional-content">
+                            ${reading1 || ''}
+                        </div>`;
+            const optionalContent = document.getElementById("reading1");
+        if (optionalContent) {
+            optionalContent.addEventListener('click', function () {
+                try {
+                    const dateStr = solarDate;
+                    showBibleOptionContent(dateStr); // Truyền chuỗi định dạng ngày
+                } catch (error) {
+                    console.error("Lỗi khi xử lý sự kiện click trong optionalContent:", error);
+                }
+            });
+        } else {
+            console.log("Không tìm thấy phần tử với id 'optional-content'");
+        }
 
-function updateOptionalReadingInfo(reading1, solarDate, secondFeast) {
+            // Hiển thị tên lễ vọng nếu có
+            document.getElementById("second-feast-info").innerHTML = "Hoặc bài đọc theo mùa";
+                    // Bài đọc theo ngày  
+       document.getElementById("optional-reading").innerHTML =`
+                        <div class="readable" onclick="showReadingContent('${solarDate}')">
+                            <strong>${readingContent[0] || ''}</strong> ${readingContent[1] || ''} 
+                            <strong>${readingContent[2] || ''}
+                        </div>`;
 
- // Kiểm tra nếu bài đọc phụ tồn tại và khác "1" có 2 trường hợp....... 
-if (reading1 && reading1 !== "1") {
-    // Xác định phần tử HTML cho bài đọc phụ
-    const optionalReadingContainer = document.getElementById("optional-reading");
+      } 
     
-    // Kiểm tra xem container có tồn tại không
-    if (!optionalReadingContainer) {
-        console.log("Không tìm thấy phần tử HTML với id 'optional-reading'");
-        return;
-    }
-    // Cập nhật nội dung bài đọc phụ
-    const parts = (reading1 || '').split(';');
+    else 
+    
+    {
 
-// Kiểm tra số lượng phần tử trong mảng và định dạng từng phần tử
-if(secondFeast ===null){
-    if (parts.length === 4) {
-    optionalReadingContainer.innerHTML = `
-        <div class="readable" id="optional-content">
-            Hoặc đọc về lễ nhớ: <strong>${parts[0].trim()}</strong>; <!-- Phần tử 1 in đậm -->
-            <em>${parts[1].trim()}</em>; <!-- Phần tử 2 in nghiêng -->
-            ${parts[2].trim()}; <!-- Phần tử 3 in thường -->
-            <strong>${parts[3].trim()}</strong> <!-- Phần tử 4 in đậm -->
-        </div>`;
-} else if (parts.length === 3) {
-    optionalReadingContainer.innerHTML = `
-        Hoặc đọc về lễ nhớ: <div class="readable" id="optional-content">
-            <strong>${parts[0].trim()}</strong>; <!-- Phần tử 1 in đậm -->
-            <em>${parts[1].trim()}</em>; <!-- Phần tử 2 in nghiêng -->
-            <strong>${parts[2].trim()}</strong> <!-- Phần tử 3 in đậm -->
-        </div>`;
-} else {
-    // Trường hợp không đủ hoặc nhiều hơn 4 phần tử, có thể xử lý khác
-    console.log("Số phần tử không hợp lệ: ", parts.length);
-    optionalReadingContainer.innerHTML = `${reading1 || ''}`;
+                let info = showfordayContentinfo(selectedDate); // Khai báo info ban đầu
+
+                const solarDate = selectedDate.toISOString();
+
+                        
+                // Chèn trực tiếp logic bài đọc chính
+                if (readingContent.length === 4) {
+                    document.getElementById("info").innerHTML = `<strong><em>${info}</em></strong>`;
+                    document.getElementById("reading1").innerHTML = `
+                        <div class="readable" onclick="showReadingContent('${solarDate}')">
+                            <strong>${readingContent[0] || ''}</strong> <em>${readingContent[1] || ''}</em> 
+                            ${readingContent[2] || ''}<strong> ${readingContent[3] || ''}
+                        </div>`;
+                } else if (readingContent.length === 3) {
+                    document.getElementById("info").innerHTML = `<strong><em>${info}</em></strong>`;
+                    document.getElementById("reading1").innerHTML = `
+                        <div class="readable" onclick="showReadingContent('${solarDate}')">
+                            <strong>${readingContent[0] || ''}</strong> ${readingContent[1] || ''} 
+                            <strong>${readingContent[2] || ''}
+                        </div>`;
+                }
+
+                // Hiển thị tên lễ vọng nếu có
+                document.getElementById("second-feast-info").innerHTML = secondFeast
+                    ? formatFeastName(secondFeast.name)
+                    : '';
+
+                // Chèn trực tiếp logic bài đọc phụ
+                if (reading1 && reading1 !== "1") {
+                    const optionalReadingContainer = document.getElementById("optional-reading");
+
+                    if (!optionalReadingContainer) {
+                        console.log("Không tìm thấy phần tử HTML với id 'optional-reading'");
+                        return;
+                    }
+
+                    optionalReadingContainer.innerHTML = `
+                        <div class="readable" id="optional-content">
+                            ${reading1 || ''}
+                        </div>`;
+
+                    const optionalContent = document.getElementById("optional-content");
+                    if (optionalContent) {
+                        optionalContent.addEventListener('click', function () {
+                            try {
+                                const dateStr = solarDate;
+                                showBibleOptionContent(dateStr); // Truyền chuỗi định dạng ngày
+                            } catch (error) {
+                                console.error("Lỗi khi xử lý sự kiện click trong optionalContent:", error);
+                            }
+                        });
+                    } else {
+                        console.log("Không tìm thấy phần tử với id 'optional-content'");
+                    }
+
+                    // Nếu reading1 là mảng, xử lý hiển thị thêm nội dung bài đọc
+                    if (Array.isArray(reading1)) {
+                        const reading1Container = document.getElementById("reading1");
+                        if (!reading1Container) {
+                            return;
+                        }
+
+                        if (reading1.length === 4) {
+                            reading1Container.innerHTML = `
+                                <div class="readable" id="reading1-content">
+                                    <strong>${reading1[0] || ''}</strong> <em>${reading1[1] || ''}</em> 
+                                    ${reading1[2] || ''}<strong> ${reading1[3] || ''}
+                                </div>`;
+                            
+                            const reading1Content = document.getElementById("reading1-content");
+                            if (reading1Content) {
+                                reading1Content.addEventListener('click', function () {
+                                    try {
+                                        const dateStr = solarDate; // Chuyển ngày thành chuỗi
+                                        showReadingContent(dateStr); // Truyền chuỗi định dạng ngày
+                                    } catch (error) {
+                                        console.error("Lỗi khi xử lý sự kiện click trong reading1Content:", error);
+                                    }
+                                });
+                            }
+                        } else if (reading1.length === 3) {
+                            reading1Container.innerHTML = `
+                                <div class="readable" id="reading1-content">
+                                    <strong>${reading1[0] || ''}</strong> <em>${reading1[1] || ''}</em> 
+                                    <strong>${reading1[2] || ''}
+                                </div>`;
+
+                            const reading1Content = document.getElementById("reading1-content");
+                            if (reading1Content) {
+                                reading1Content.addEventListener('click', function () {
+                                    try {
+                                        const dateStr = solarDate; // Chuyển ngày thành chuỗi
+                                        showReadingContent(dateStr); // Truyền chuỗi định dạng ngày
+                                    } catch (error) {
+                                        console.error("Lỗi khi xử lý sự kiện click trong reading1Content:", error);
+                                    }
+                                });
+                            }
+                        }
+                    }
+                } else {
+                   document.getElementById("optional-reading").textContent = ''; // Xóa thông tin bài đọc phụ nếu không có giá trị
+                }
+        }   
 }
-
-}else{
-
-
-if (parts.length === 4) {
-    optionalReadingContainer.innerHTML = `
-        <div class="readable" id="optional-content">
-            <strong>${parts[0].trim()}</strong>; <!-- Phần tử 1 in đậm -->
-            <em>${parts[1].trim()}</em>; <!-- Phần tử 2 in nghiêng -->
-            ${parts[2].trim()}; <!-- Phần tử 3 in thường -->
-            <strong>${parts[3].trim()}</strong> <!-- Phần tử 4 in đậm -->
-        </div>`;
-} else if (parts.length === 3) {
-    optionalReadingContainer.innerHTML = `
-        <div class="readable" id="optional-content">
-            <strong>${parts[0].trim()}</strong>; <!-- Phần tử 1 in đậm -->
-            <em>${parts[1].trim()}</em>; <!-- Phần tử 2 in nghiêng -->
-            <strong>${parts[2].trim()}</strong> <!-- Phần tử 3 in đậm -->
-        </div>`;
-} else {
-    // Trường hợp không đủ hoặc nhiều hơn 4 phần tử, có thể xử lý khác
-    console.log("Số phần tử không hợp lệ: ", parts.length);
-    optionalReadingContainer.innerHTML = `${reading1 || ''}`;
-}
-
-}
-    // Gán sự kiện onclick cho phần tử vừa tạo tới đây đúng
-    const optionalContent = document.getElementById("optional-content");
-    if (optionalContent) {
-        optionalContent.addEventListener('click', function() {
-            try {
-                const dateStr = solarDate.date.toISOString();
-                showBibleOptionContent(dateStr); // Truyền chuỗi định dạng ngày
-            } catch (error) {
-                console.error("Lỗi khi xử lý sự kiện click trong optionalContent:", error); // giải thích vì sao lỗi tại đây
-            }  
-        });
-    } else {
-        console.log("Không tìm thấy phần tử với id 'optional-content'");
-    }
-
-    }
-}
-
-
-
-
-// Hàm để cập nhật thông tin bài đọc 
-function updateReadingInfo(info, readingContent, solarDate) {
-    if (readingContent.length === 4) {
-        document.getElementById("info").innerHTML = `<strong><em>${info}</em></strong>`;
-        document.getElementById("reading1").innerHTML = `
-            <div class="readable" onclick="showReadingContent('${solarDate}')">
-                <strong>${readingContent[0] || ''}</strong> <em>${readingContent[1] || ''}</em> 
-                ${readingContent[2] || ''}<strong> ${readingContent[3] || ''}
-            </div>`;
-    } else if (readingContent.length === 3) {
-        document.getElementById("info").innerHTML = `<strong><em>${info}</em></strong>`;
-        document.getElementById("reading1").innerHTML = `
-            <div class="readable" onclick="showReadingContent('${solarDate}')">
-                <strong>${readingContent[0] || ''}</strong> ${readingContent[1] || ''} 
-                <strong>${readingContent[2] || ''}
-            </div>`;
-    }
-}
-
 
 // Khi trang được tải, hiển thị thông tin ngày hôm nay
 window.onload = function() {
@@ -886,28 +905,74 @@ function displayWeekInfo(weekType) {
         }
 
         // Thêm bài đọc vào sau thông tin lễ
-        const readingContent = showfordayContent(currentDay); // Gọi hàm showfordayContent để lấy nội dung bài đọc
-        if (readingContent) {
-            feastAndReadingContent += `<div class="readable" onclick="showReadingContent('${currentDay.toISOString()}')">${readingContent}</div>`;
-        } else {
-            feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc
-        }
+
+        // Thêm bài đọc vào sau thông tin lễ
+        const Nov2 = new Date(year, 10, 2); // Ngày 2 tháng 11
+        const Dec25 = new Date(year, 11, 25); // Ngày 25 tháng 12
+
+                // Gọi hàm showfordayContent để lấy nội dung bài đọc
+                const readingContent = showfordayContent(currentDay); 
+                // Thêm bài đọc phụ vào sau phần ngày lễ
+                const reading1 = showOptionContent(currentDay); // Gọi hàm showOptionContent để lấy bài đọc phụ  
+                // Tính toán và thêm lễ vọng (second feast)
+                const secondFeast = getSecondFeastsForDate(currentDay, secondFeasts);
+
+
+                // Kiểm tra xem có phải ngày 25/12 hay không (ưu tiên xử lý trước)
+                if (isSameDay(currentDay, Dec25)) {
+                    if (readingContent) {
+                        feastAndReadingContent += `Rạng Đông: <span class="readable" onclick="showReadingContent('${currentDay.toISOString()}')">${readingContent}</span>`;
+                        feastAndReadingContent += `<br>Ban Ngày: <span class="readable" onclick="showBibleOptionContent('${currentDay.toISOString()}')"> ${reading1} </span>`;
+                    } else {
+                        feastAndReadingContent += 'Rạng Đông: Không có bài đọc';  // Nếu không có bài đọc cho ngày 25/12
+                    }
+                } 
+                // Kiểm tra xem có phải ngày 2/11 hay không
+                else if (isSameDay(currentDay, Nov2)) {
+                    if (readingContent) {
+                        feastAndReadingContent += `Lễ I: <span class="readable" onclick="showReadingContent('${currentDay.toISOString()}')">${readingContent}</span>`;
+                        feastAndReadingContent += `<br>Lễ II: <span class="readable" onclick="showBibleOptionContent('${currentDay.toISOString()}')"> ${reading1} </span>`;
+                    } else {
+                        feastAndReadingContent += 'Lễ I: Không có bài đọc';  // Nếu không có bài đọc cho ngày 2/11
+                    }
+                } 
+                // Kiểm tra bài đọc phụ và không phải là ngày 2/11
+                else if (reading1 && reading1 !== "1" && secondFeast === null && !isSameDay(currentDay, Nov2)) {
+                    feastAndReadingContent += `<span class="readable" onclick="showBibleOptionContent('${currentDay.toISOString()}')"> ${reading1} </span>`;
+                    feastAndReadingContent += `<br> Hoặc đọc theo mùa: <span class="readable" onclick="showReadingContent('${currentDay.toISOString()}')">${readingContent}</span>`;
+                } 
+                // Mặc định cho các ngày khác
+                else {
+                    if (readingContent) {
+                        feastAndReadingContent += `<span class="readable" onclick="showReadingContent('${currentDay.toISOString()}')">${readingContent}</span>`;
+                    } else {
+                        feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc cho ngày không đặc biệt
+                    }
+                }
+
+     
 
         // Tính toán và thêm lễ vọng (second feast)
-        const secondFeast = getSecondFeastsForDate(currentDay, secondFeasts);
+       // const secondFeast = getSecondFeastsForDate(currentDay, secondFeasts);
         if (secondFeast) {
             feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>';
         }
 
+       
+
         // Thêm bài đọc phụ vào sau phần ngày lễ
-        const reading1 = showOptionContent(currentDay); // Gọi hàm showOptionContent để lấy tên bài đọc
+       // const reading1 = showOptionContent(currentDay); // Gọi hàm showOptionContent để lấy tên bài đọc
+        
 
         if (reading1 && reading1 !== "1") {
+            if(secondFeast){
             feastAndReadingContent += `
                 <div class="readable" onclick="showBibleOptionContent('${currentDay.toISOString()}')">
                     ${reading1}
                 </div>
             `;
+    
+        }
         }
 
         // Tạo hàng mới trong bảng
@@ -947,6 +1012,7 @@ function displayWeekInfo(weekType) {
         // Chuyển sang ngày tiếp theo
         currentDay.setDate(currentDay.getDate() + 1);
     }
+
 }
 
 
@@ -1004,28 +1070,70 @@ function displayMonthInfo() {
             feastAndReadingContent += 'Không có lễ đặc biệt<br>';
         }
 
-        // Thêm bài đọc vào sau thông tin lễ
-        const readingContent = showfordayContent(currentDate); // Gọi hàm showfordayContent để lấy nội dung bài đọc
-        if (readingContent) {
-            feastAndReadingContent += `<div class="readable" onclick="showReadingContent('${currentDate.toISOString()}')">${readingContent}</div>`;
-        } else {
-            feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc
-        }
+            // Thêm bài đọc vào sau thông tin lễ
+            const Nov2 = new Date(year, 10, 2); // Ngày 2 tháng 11
+            const Dec25 = new Date(year, 11, 25); // Ngày 25 tháng 12
 
-        // Tính toán và thêm lễ vọng (second feast)
-        const secondFeast = getSecondFeastsForDate(currentDate, secondFeasts);
+                // Gọi hàm showfordayContent để lấy nội dung bài đọc
+                const readingContent = showfordayContent(currentDate); 
+                // Thêm bài đọc phụ vào sau phần ngày lễ
+                const reading1 = showOptionContent(currentDate); // Gọi hàm showOptionContent để lấy bài đọc phụ  
+                // Tính toán và thêm lễ vọng (second feast)
+                const secondFeast = getSecondFeastsForDate(currentDate, secondFeasts);
+
+
+                // Kiểm tra xem có phải ngày 25/12 hay không (ưu tiên xử lý trước)
+                if (isSameDay(currentDate, Dec25)) {
+                    if (readingContent) {
+                        feastAndReadingContent += `Rạng Đông: <span class="readable" onclick="showReadingContent('${currentDate.toISOString()}')">${readingContent}</span>`;
+                        feastAndReadingContent += `<br>Ban Ngày: <span class="readable" onclick="showBibleOptionContent('${currentDate.toISOString()}')"> ${reading1} </span>`;
+                    } else {
+                        feastAndReadingContent += 'Rạng Đông: Không có bài đọc';  // Nếu không có bài đọc cho ngày 25/12
+                    }
+                } 
+                // Kiểm tra xem có phải ngày 2/11 hay không
+                else if (isSameDay(currentDate, Nov2)) {
+                    if (readingContent) {
+                        feastAndReadingContent += `Lễ I: <span class="readable" onclick="showReadingContent('${currentDate.toISOString()}')">${readingContent}</span>`;
+                        feastAndReadingContent += `<br>Lễ II: <span class="readable" onclick="showBibleOptionContent('${currentDate.toISOString()}')"> ${reading1} </span>`;
+                    } else {
+                        feastAndReadingContent += 'Lễ I: Không có bài đọc';  // Nếu không có bài đọc cho ngày 2/11
+                    }
+                } 
+                // Kiểm tra bài đọc phụ và không phải là ngày 2/11
+                else if (reading1 && reading1 !== "1" && secondFeast === null && !isSameDay(currentDate, Nov2)) {
+                    feastAndReadingContent += `<span class="readable" onclick="showBibleOptionContent('${currentDate.toISOString()}')"> ${reading1} </span>`;
+                    feastAndReadingContent += `<br> Hoặc đọc theo mùa: <span class="readable" onclick="showReadingContent('${currentDate.toISOString()}')">${readingContent}</span>`;
+                } 
+                // Mặc định cho các ngày khác
+                else {
+                    if (readingContent) {
+                        feastAndReadingContent += `<span class="readable" onclick="showReadingContent('${currentDate.toISOString()}')">${readingContent}</span>`;
+                    } else {
+                        feastAndReadingContent += 'Không có bài đọc';  // Nếu không có bài đọc cho ngày không đặc biệt
+                    }
+                }
+
+
+   
         if (secondFeast) {
             feastAndReadingContent += '<br>' + formatFeastName(secondFeast.name) + '<br>';
         }
 
         // Thêm bài đọc phụ vào sau phần ngày lễ
-        const reading1 = showOptionContent(currentDate); // Gọi hàm showOptionContent để lấy bài đọc phụ
-        if (reading1 && reading1 !== "1") {
-            feastAndReadingContent += `
-                <div class="readable" onclick="showBibleOptionContent('${currentDate.toISOString()}')">
-                    ${reading1}
-                </div>`;
-        }
+        //const reading1 = showOptionContent(currentDate); // Gọi hàm showOptionContent để lấy bài đọc phụ        
+
+        if ((reading1 && reading1 !== "1")) {
+    if (secondFeast) {
+        feastAndReadingContent += `
+            <div class="readable" onclick="showBibleOptionContent('${currentDate.toISOString()}')">
+                ${reading1}
+            </div>
+        `;
+    }
+    }
+
+
 
         // Ngày dương lịch và âm lịch được hiển thị trong cùng một ô
         const solarDateCell = document.createElement('td');
@@ -1065,7 +1173,12 @@ function displayMonthInfo() {
     }
 }
 
-
+// Hàm so sánh ngày, tháng, năm của hai đối tượng Date
+function isSameDay(date1, date2) {
+    return date1.getFullYear() === date2.getFullYear() &&
+           date1.getMonth() === date2.getMonth() &&
+           date1.getDate() === date2.getDate();
+}
 
 // các hàm phụ trợ cho hiển thị
     // xuống 1.5 hàng khi gặp ký tự trong bài đọc
@@ -1161,6 +1274,20 @@ function displayMonthInfo() {
     }
       // Các hàm liên quan bài đọc phụ
           // Hàm hiển thị nội dung bài đọc phụ
+
+ // câu thánh kinh info cho ngày hiển thị
+ function showBibleOptionContentinfo(date) {
+    const reading = getBibleByOptionDigitCode(date); // Gọi hàm để lấy bài đọc
+            if (reading) {
+            
+                const Infogospel = reading.gospel ? `${reading.gospel.info}` : '';
+                // Trả về chuỗi nội dung bài đọc
+                return Infogospel;
+            } else {
+                return; // Trả về chuỗi thông báo
+            }
+        }
+
             function showBibleOptionContent(dateString) {
                 const date = new Date(dateString);
                 const reading = getBibleByOptionDigitCode(date);  // Lấy bài đọc
@@ -1207,7 +1334,7 @@ function displayMonthInfo() {
                 }
             }
 
-
+   
 
         // câu thánh kinh info cho ngày hiển thị
         function showfordayContentinfo(date) {
@@ -1329,7 +1456,9 @@ function displayMonthInfo() {
                         feastName = feastName.replace(/Thứ Hai\.|Thứ Ba\.|Thứ Tư\.|Thứ Năm\.|Thứ Sáu\.|Thứ Bảy\./g, '').trim();
 
                         // Thêm chuỗi "Về vị thánh" vào trước tên lễ chính
-                        feastName = "Về Lễ " + feastName;
+                        feastName = "Lễ " +feastName ;
+
+
                     }
 
                     // Cập nhật thẻ <h3> trong modal

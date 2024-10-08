@@ -522,7 +522,7 @@
     </div>
 </div>
 
-<!-- Modal chọn Thánh mobi -->
+<!-- Modal chọn tháng mobile -->
 <div id="monthPickerModal" class="modal" style="display:none;">
     <div class="modal-content">
         <h3>Chọn tháng và năm</h3>
@@ -540,11 +540,18 @@
             <option value="11">Tháng 11</option>
             <option value="12">Tháng 12</option>
         </select>
+
         <input type="number" id="mobileYearInput" value="2024">
-        <button onclick="displayMonthInfo()">Xác nhận</button>
-        <button onclick="quitModal()">Close</button>
+
+        <button onclick="copyMobileToDesktop(); displayMonthInfo();">Xác nhận</button>
+        <button onclick="quitModal()">Đóng</button>
     </div>
 </div>
+
+<!-- Các thẻ input của desktop mà hàm displayMonthInfo() đang dùng -->
+<input type="hidden" id="monthInput">
+<input type="hidden" id="yearInput">
+
 
     <!-- Bảng hiển thị thông tin -->
     <h2>Lịch Phụng Vụ <span id="yearDisplay"></span></h2>

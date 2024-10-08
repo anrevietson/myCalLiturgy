@@ -540,11 +540,12 @@
             <option value="11">Tháng 11</option>
             <option value="12">Tháng 12</option>
         </select>
-        <input type="number" id="mobileYearInput" value="2024">
-        <button onclick="modiDisplayMonth()">Xác nhận</button>
-        <button onclick="quitModal()">Close</button>
+        <input type="number" id="mobileYearInput" value="2024" min="1900" max="2100">
+        <button onclick="displayMonthInfoMobile()">Xác nhận</button>
+        <button onclick="quitModal()">Đóng</button>
     </div>
 </div>
+
 
 
 
@@ -1062,7 +1063,9 @@ function displayWeekInfo(weekType) {
 
 }
 // Hàm để lấy tháng và năm từ modal trên mobile và cập nhật cho displayMonthInfo()
-function modiDisplayMonth() {
+
+// Hàm dành cho mobile
+function displayMonthInfoMobile() {
     // Lấy tháng và năm từ modal trên mobile
     const month = parseInt(document.getElementById('mobileMonthInput').value);
     const year = parseInt(document.getElementById('mobileYearInput').value);
@@ -1072,12 +1075,8 @@ function modiDisplayMonth() {
         return;
     }
 
-    // Cập nhật các giá trị tháng và năm vào input của desktop (giả định có các input với id là monthInput và yearInput)
-    document.getElementById('monthInput').value = month;
-    document.getElementById('yearInput').value = year;
-
-    // Gọi hàm displayMonthInfo() với giá trị mới
-    displayMonthInfo();
+    // Gọi hàm chung để hiển thị thông tin với tháng và năm được chọn
+    displayMonth(month, year);
 }
 
 function displayMonthInfo() {
@@ -1086,6 +1085,10 @@ function displayMonthInfo() {
     const month = parseInt(document.getElementById('monthInput').value);
     const year = parseInt(document.getElementById('yearInput').value);
 
+    displayMonth(month, year);
+}
+
+function displayMonth(month, year) {
     // Tính số ngày trong tháng được chọn
     const daysInMonth = new Date(year, month, 0).getDate();
 

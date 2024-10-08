@@ -522,10 +522,9 @@
     </div>
 </div>
 
-<!-- Modal chọn Thánh mobi -->
+<!-- Modal chọn Tháng mobi -->
 <div id="monthPickerModal" class="modal" style="display:none;">
     <div class="modal-content">
-       
         <h3>Chọn tháng và năm</h3>
         <select id="mobileMonthInput">
             <option value="1">Tháng 1</option>
@@ -542,10 +541,11 @@
             <option value="12">Tháng 12</option>
         </select>
         <input type="number" id="mobileYearInput" value="2024">
-        <button onclick="displayMonthInfo()">Xác nhận</button>
+        <button onclick="modiDisplayMonth()">Xác nhận</button>
         <button onclick="quitModal()">Close</button>
     </div>
 </div>
+
 
 
     <!-- Bảng hiển thị thông tin -->
@@ -1061,15 +1061,30 @@ function displayWeekInfo(weekType) {
     }
 
 }
+// Hàm để lấy tháng và năm từ modal trên mobile và cập nhật cho displayMonthInfo()
+function modiDisplayMonth() {
+    // Lấy tháng và năm từ modal trên mobile
+    const month = parseInt(document.getElementById('mobileMonthInput').value);
+    const year = parseInt(document.getElementById('mobileYearInput').value);
 
+    if (isNaN(month) || isNaN(year)) {
+        console.error("Tháng hoặc năm không hợp lệ.");
+        return;
+    }
+
+    // Cập nhật các giá trị tháng và năm vào input của desktop (giả định có các input với id là monthInput và yearInput)
+    document.getElementById('monthInput').value = month;
+    document.getElementById('yearInput').value = year;
+
+    // Gọi hàm displayMonthInfo() với giá trị mới
+    displayMonthInfo();
+}
 
 function displayMonthInfo() {
     // Lấy tháng và năm từ input của người dùng
    
     const month = parseInt(document.getElementById('monthInput').value);
     const year = parseInt(document.getElementById('yearInput').value);
-    const mobileMonthInput = document.getElementById('mobileMonthInput');
-    const mobileYearInput = document.getElementById('mobileYearInput');
 
     // Tính số ngày trong tháng được chọn
     const daysInMonth = new Date(year, month, 0).getDate();

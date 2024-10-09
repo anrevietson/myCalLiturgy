@@ -6,10 +6,11 @@ workflows:
     scripts:
       - name: Install dependencies
         script: |
-          brew install cocoapods
-          pod install
+          brew install cocoapods || echo "CocoaPods already installed"
+          pod install --repo-update
       - name: Build app
-        script: xcodebuild -workspace MyApp.xcworkspace -scheme MyApp -sdk iphoneos -configuration Release
+        script: |
+          xcodebuild -workspace MyApp.xcworkspace -scheme MyApp -sdk iphoneos -configuration Release
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:

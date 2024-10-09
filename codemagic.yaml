@@ -1,20 +1,23 @@
 workflows:
   ios-workflow:
-    name: "iOS Build Workflow"
+    name: "Build iOS App"
     environment:
       xcode: latest
+      node: latest
     scripts:
       - name: Install dependencies
         script: |
-          brew install cocoapods || echo "CocoaPods already installed"
-          pod install --repo-update
-      - name: Build app
+          npm install -g cordova
+          npm install
+      - name: Add iOS platform
         script: |
-          xcodebuild -workspace MyApp.xcworkspace -scheme MyApp -sdk iphoneos -configuration Release
+          cordova platform add ios
+      - name: Build iOS app
+        script: |
+          cordova build ios --release
     artifacts:
-      - build/ios/ipa/*.ipa
+      - build/ios/Release-iphoneos/*.ipa
     publishing:
       email:
         recipients:
-          - anrevietson@gmail.com  # Đảm bảo định dạng email đúng
-
+          - anrevietson@gmail.com

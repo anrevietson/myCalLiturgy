@@ -1398,7 +1398,7 @@ function formatReadingPart(title, reading) {
     if (!reading || typeof reading !== 'object') return '';
 
     // Định dạng các phần của bài đọc
-    const excerpt = reading.excerpt ? `<span style="font-family: Arial;">${reading.excerpt}</span>` : '';
+    const excerpt = reading.excerpt ? `<span style="font-family: Arial;  font-size: 18px;">${reading.excerpt}</span>` : '';
     const info = reading.info ? `<p style="font-family: Arial;"><em>${reading.info}</em></p>` : '';
     const readingTitle = reading.title ? `<h4 style="font-family: Arial;">${reading.title}</h4>` : '';
     const content = reading.content ? `<p style="font-family: Arial;">${reading.content}</p>` : '';
@@ -1419,7 +1419,8 @@ function formatPsalms(psalms) {
     if (!psalms || typeof psalms !== 'object') return '';
 
     // Định dạng phần trích đoạn (excerpt) trên cùng dòng với Đáp Ca
-    const excerpt = psalms.excerpt ? `<span style="color: black; font-weight: normal; font-family: Arial;">: ${psalms.excerpt}</span>` : '';
+    const excerpt = psalms.excerpt ? `<span style="color: black; font-weight: normal; font-family: Arial; font-size: 18px;">: ${psalms.excerpt}</span>` : '';
+
 
     // Định dạng phần đáp ca (response), làm nổi bật từ "Ðáp:"
     const response = psalms.response 
@@ -1447,7 +1448,7 @@ function formatAlleluia(alleluia) {
 
     // Định dạng các phần của Alleluia
     const verse = alleluia.verse 
-        ? `<h4 style="font-family: Arial; "><span style="font-weight: bold; color: red;">Xướng trước Tin Mừng:</span> <span>${alleluia.verse}</span></h4>` 
+        ? `<h4 style="font-family: Arial; "><span style="font-weight: bold; color: red;">Xướng trước Tin Mừng:</span> <span style="font-weight: normal; font-size: 18px">${alleluia.verse}</span></h4>` 
         : '';
 
     // Định dạng nội dung của Alleluia, chỉ thay thế từ "alleluia" ở đầu câu nếu có

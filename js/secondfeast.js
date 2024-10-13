@@ -23,7 +23,7 @@
         secondFeasts.push({ name: 'Chiều: LỄ VỌNG ĐỨC MẸ HỒN XÁC LÊN TRỜI (Tr)', date: new Date(year, 7, 14) });
         secondFeasts.push({ name: 'Chiều: LỄ VỌNG GIÁNG SINH', date: new Date(year, 11, 24) });
         secondFeasts.push({ name: 'Được kính trọng thể lễ Đức Mẹ Mân Côi (Tr).', date: new Date(BfirstSunday.getTime()) });
-        secondFeasts.push({ name: 'Chúa nhật Truyền giáo (Tr). Được cử hành thánh lễ cầu nguyện cho việc rao giảng Tin mừng cho các dân tộc.', date: new Date(BfirstSunday.getTime() + 21 * 24 * 60 * 60 * 1000) });
+        secondFeasts.push({ name: 'Chúa nhật Truyền giáo (Tr). Được cử hành thánh lễ cầu nguyện cho việc rao giảng Tin mừng cho các dân tộc.', date: new Date(BfirstSunday.getTime() + 14 * 24 * 60 * 60 * 1000) });
 
         const lunarNewYearArray = getSolarDate(1, 1, year); // Lấy mảng trả về (ngày, tháng)
         const lunarNewYear = new Date(year, lunarNewYearArray[1] - 1, lunarNewYearArray[0]); // Sử dụng ngày và tháng từ mảng, thêm năm

@@ -1029,25 +1029,6 @@ function isSameDay(date1, date2) {
     document.getElementById("modalOverlay").style.display = "block";
 }
 
-function formatReadingPart(title, reading) {
-    if (!reading || typeof reading !== 'object') return '';
-
-    // Định dạng các phần của bài đọc
-    const excerpt = reading.excerpt ? `<span style="font-family: Arial;  font-size: 18px;">${reading.excerpt}</span>` : '';
-    const info = reading.info ? `<p style="font-family: Arial;"><em>${reading.info}</em></p>` : '';
-    const readingTitle = reading.title ? `<h4 style="font-family: Arial;">${reading.title}</h4>` : '';
-    const content = reading.content ? `<p style="font-family: Arial;">${reading.content}</p>` : '';
-    const end = reading.end ? `<p style="font-weight: bold; font-family: Arial;">${reading.end}</p>` : '';
-
-    // Kết hợp tiêu đề và excerpt trên cùng một hàng với tiêu đề màu đỏ
-    return `
-        <h3 style="display: inline; color: red; font-family: Arial;">${title}</h3> ${excerpt}
-        ${info}
-        ${readingTitle}
-        ${content}
-        ${end}
-    `;
-}
 
 function formatPsalms(psalms) {
     // Kiểm tra nếu psalms tồn tại
@@ -1104,13 +1085,6 @@ function formatAlleluia(alleluia) {
         ${content}
     `;
 }
-
-
-
-
-
-
-
 
                 // Hàm hiển thị tên bài đọc phụ
             function showOptionContent(date) {

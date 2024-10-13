@@ -177,7 +177,7 @@ th {
 
 /* Modal (hộp thoại) */
 .modal {
-    display: none;
+    display: none; /* Ẩn modal khi chưa có lớp 'show' */
     position: fixed;
     top: 50%;
     left: 50%;
@@ -194,12 +194,84 @@ th {
 }
 
 .modal.show {
+    display: block; /* Hiển thị modal khi thêm lớp 'show' */
+}
+
+.modal-content {
+    padding: 20px;
+    text-align: left;
+}
+
+/* Định dạng cho các phần tử bài đọc bên trong #readingContent */
+.reading-section {
+    display: none; /* Ẩn tất cả các phần tử bài đọc ban đầu */
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.reading-section.show {
+    display: block; /* Chỉ hiển thị phần tử được yêu cầu */
+}
+
+.vertical-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.icon-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    color: #d18a78;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+.modal.show {
     display: block;
 }
 /* Ẩn dấu X trong modal */
 .modal .close {
     display: none;
 }
+
+.reading-section {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+/* Cụ thể hóa từng phần */
+#reading01, #psalm01, #reading02, #alleluia01, #gospel01 {
+    display: none; /* Mặc định ẩn từng phần */
+}
+
+.reading-section.show {
+    display: block !important; /* Hiển thị phần tử khi có lớp 'show' */
+}
+#readingContent {
+    transition: font-size 0.3s ease; /* Thêm hiệu ứng mượt */
+}
+
+#readingContent .reading-section {
+    font-size: inherit; /* Sử dụng kích thước phông chữ kế thừa từ phần tử cha */
+}
+
+
+.no-reading-message {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+}
+
 .overlay {
     display: none;
     position: fixed;
@@ -348,3 +420,4 @@ button:hover {
         font-size: 16px;
     }
 }
+

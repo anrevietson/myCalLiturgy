@@ -46,7 +46,9 @@ function addFeastend1(name, date) {
     if (date.getTime() >= ashWednesday.getTime() && date.getTime() <= saturdayAfterAshWednesday.getTime()) {
         return; // Bỏ qua từ Thứ Tư Lễ Tro đến Thứ Bảy
     }
-
+    if (date.getMonth() === 10 && date.getDate() === 25 && date.getDay() === 1) { 
+    return; // Bỏ qua ngày 25/11 nếu là Thứ Hai
+    }
     // Tính ngày Mồng 1, Mồng 2, Mồng 3 Tết
     const lunarNewYearArray = getSolarDate(1, 1, date.getFullYear()); // Lấy ngày Mồng 1 Tết
     const lunarNewYear = new Date(date.getFullYear(), lunarNewYearArray[1] - 1, lunarNewYearArray[0]);

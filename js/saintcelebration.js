@@ -170,7 +170,7 @@ window.celebrations = [
         { date: '02/11', type: 'S', feast: 'CẦU CHO CÁC TÍN HỮU ĐÃ QUA ĐỜI.', chasuble: 'Tm' },
         { date: '03/11', type: 'O', feast: 'Thánh Martinô Porres, tu sĩ (Tr).' },
         { date: '04/11', type: 'M', feast: 'Thánh Carlô Borômêô, giám mục.', chasuble: 'Tr' },
-        { date: '09/11', type: 'F', feast: 'CUNG HIẾN THÁNH ĐƯỜNG LATÊRANÔ.', chasuble: 'Tr' },
+        { date: '09/11', type: 'S', feast: 'CUNG HIẾN THÁNH ĐƯỜNG LATÊRANÔ.', chasuble: 'Tr' },
         { date: '10/11', type: 'M', feast: 'Thánh Lêô Cả. giáo hoàng, tiến sĩ Hội Thánh.', chasuble: 'Tr' },
         { date: '11/11', type: 'M', feast: 'Thánh Martinô, giám mục.', chasuble: 'Tr' },
         { date: '12/11', type: 'M', feast: 'Thánh Jôsaphát, giám mục, tử đạo.', chasuble: 'Đ' },

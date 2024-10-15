@@ -69,7 +69,6 @@
         heartOfJesus.setDate(easterDate.getDate() + 68);
         const immaculateHeartOfMary = new Date(heartOfJesus);
         immaculateHeartOfMary.setDate(heartOfJesus.getDate() + 1);
-        const novemberSecond = new Date(date.getFullYear(), 10, 2); 
 
         if (date.getTime() === pentecost.getTime()) return 'Đ';
         if (date.getTime() === motherOfTheChurch.getTime()) return 'Tr';
@@ -77,8 +76,6 @@
         if (date.getTime() === corpusChristi.getTime()) return 'Tr';
         if (date.getTime() === heartOfJesus.getTime()) return 'Đ';
         if (date.getTime() === immaculateHeartOfMary.getTime()) return 'Tr';
-         if (novemberSecond.getDay() === 0) {return 'Tm'; 
-                                            }
 
         return null; 
     }

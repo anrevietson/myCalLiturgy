@@ -157,7 +157,7 @@ function addFeastend1(name, date) {
 
         const specialFeastCodes = new Map([
             ["70812", "ĐỨC MẸ VÔ NHIỄM NGUYÊN TỘI. Lễ trọng. Lễ cầu cho giáo dân (Lễ họ)."],          
-	    ["3005", "Thứ Năm sau Lễ Tro."], ["3006", "Thứ Sáu sau Lễ Tro."], ["3007", "Thứ Bảy sau Lễ Tro."],
+	        ["3005", "Thứ Năm sau Lễ Tro."], ["3006", "Thứ Sáu sau Lễ Tro."], ["3007", "Thứ Bảy sau Lễ Tro."],
             ["3060", "CHÚA NHẬT LỄ LÁ. TƯỞNG NIỆM CUỘC THƯƠNG KHÓ CỦA CHÚA."],
             ["3061", "Thứ Hai Tuần Thánh."], ["3062", "Thứ Ba Tuần Thánh."], ["3063", "Thứ Tư Tuần Thánh."],
             ["4011", "THỨ HAI TRONG TUẦN BÁT NHẬT PHỤC SINH."], ["4012", "THỨ BA TRONG TUẦN BÁT NHẬT PHỤC SINH."], ["4013", "THỨ TƯ TRONG TUẦN BÁT NHẬT PHỤC SINH."],
@@ -182,8 +182,8 @@ function addFeastend1(name, date) {
             ["72906", "THÁNH PHÊRÔ VÀ THÁNH PHAOLÔ TÔNG ĐỒ. Lễ trọng. Lễ cầu cho giáo dân (Lễ họ)."],
             ["5450", "CHÚA HIỂN DUNG. Lễ kính."],
             ["71508", "ĐỨC MẸ LÊN TRỜI. Lễ trọng. Lễ cầu cho giáo dân (Lễ họ)."],
-	    ["70211", "CẦU CHO CÁC TÍN HỮU ĐÃ QUA ĐỜI."],
-	    ["70911", "CUNG HIẾN THÁNH ĐƯỜNG LATÊRANÔ. Lễ kính."],
+            ["70211", "CẦU CHO CÁC TÍN HỮU ĐÃ QUA ĐỜI."],
+            ["70911", "CUNG HIẾN THÁNH ĐƯỜNG LATÊRANÔ. Lễ kính."],
         ]);
 
    

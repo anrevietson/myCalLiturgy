@@ -184,6 +184,7 @@ function addFeastend1(name, date) {
             ["71508", "ĐỨC MẸ LÊN TRỜI. Lễ trọng. Lễ cầu cho giáo dân (Lễ họ)."],
             ["70211", "CẦU CHO CÁC TÍN HỮU ĐÃ QUA ĐỜI."],
             ["70911", "CUNG HIẾN THÁNH ĐƯỜNG LATÊRANÔ. Lễ kính."],
+	    ["72411", "CÁC THÁNH TỬ ĐẠO VIỆT NAM. Bổn mạng Hội Thánh Việt Nam. Lễ Trọng."],
         ]);
 
    

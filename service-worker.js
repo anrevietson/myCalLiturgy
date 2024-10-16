@@ -24,6 +24,7 @@ self.addEventListener('install', event => {
         './indexBible.html',
         './style.css',
         './01.webp',
+           './02.webp',
       ]);
     })
   );

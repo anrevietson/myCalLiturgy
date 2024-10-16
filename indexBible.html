@@ -12,11 +12,11 @@
 
     <!-- Tích hợp các tệp JS -->
     <script src="js/saintcelebration.js"></script>
-    <script src="js/calculateLunarSolar.js"></script>
+    <script src="js/calculateLunarSolar1.js"></script>
     <script src="js/calculateChasuble.js"></script>
     <script src="js/calculateFeasts.js"></script>
-    <script src="js/calculateBasic.js"></script>
-    <script src="js/calculatenumberSunday.js"></script>
+    <script src="js/calculateBasic1.js"></script>
+    <script src="js/calculatenumberSunday1.js"></script>
     <script src="js/calculatenumberSecondary.js"></script>
     <script src="js/calculateReading.js"></script>
     <script src="Reading/Sunday.js"></script>
@@ -37,31 +37,28 @@
     LỊCH PHỤNG VỤ CÔNG GIÁO
 </header>
 
-<!-- Modal -->
-<div id="readingModal" class="modal">
+<div class="modal reading-modal" id="readingModal">
     <div class="modal-content">
         <div class="modal-header">
             <h3>Bài Đọc Ngày Lễ</h3>
-            <span class="close" onclick="quitModal()">&times;</span>
+            <span class="close" onclick="quitModal('readingModal')">&times;</span>
         </div>
-        
         <div class="vertical-buttons">
             <button class="icon-button" onclick="increaseFontSize()">+</button>
             <button class="icon-button" onclick="decreaseFontSize()">-</button>
             <button class="icon-button" onclick="boldText()">B</button>
-            <button class="icon-button" onclick="quitModal()">Đóng</button>
+            <button class="icon-button" onclick="quitModal('readingModal')">Đóng</button>
         </div>
-        
-        <!-- Khu vực nội dung của từng bài đọc -->
         <div id="readingContent">
-            <div id="reading01" class="reading-section" style="display: none;"></div>
-            <div id="psalm01" class="reading-section" style="display: none;"></div>
-            <div id="reading02" class="reading-section" style="display: none;"></div>
-            <div id="alleluia01" class="reading-section" style="display: none;"></div>
-            <div id="gospel01" class="reading-section" style="display: none;"></div>
+            <div id="reading01" class="reading-section"></div>
+            <div id="psalm01" class="reading-section"></div>
+            <div id="reading02" class="reading-section"></div>
+            <div id="alleluia01" class="reading-section"></div>
+            <div id="gospel01" class="reading-section"></div>
         </div>
     </div>
 </div>
+
 
 
 <!-- Overlay -->
@@ -71,41 +68,46 @@
 <div class="calendar-content">
     <div class="image-container">
         <img src="01.webp" alt="Maria và Chúa Giêsu">
-         <div class="note">
+        <div class="note">
             <p style="color: red; font-weight: bold;">
-               Lời Chúa: UBPV/HĐGMVN(1973)
+               Bài đọc: UBPV/HĐGMVN(1973)
             </p>
+            </div>
     </div>
 
     <!-- Thông tin lễ và bài đọc -->
     <div class="details" id="detailsSection">
-           <!-- tên ngày lễ -->
+        <!-- Tên ngày lễ -->
         <div class="feast-info-container">
             <p class="feast-info" id="feast-info"></p>
         </div>
-           <!-- bài đọc chính-->
+
+        <!-- Bài đọc chính -->
         <p class="readings">
-            <span id="reading1"></span> <span id="psalm"></span> <span id="reading2"></span> <span id="gospel"></span>
+            <span id="reading1"></span> <span id="psalm"></span>
+            <span id="reading2"></span> <span id="gospel"></span>
         </p>
 
-        <p class="info"> <span id="info"></span> </p>
-         <!-- tên lễ vọng nếu có-->
-        <div> <p id="second-feast-info"></p>
-        </div>
+        <p class="info"><span id="info"></span></p>
+
+        <!-- Tên lễ vọng nếu có -->
         <div>
-             <!-- bài đọc phụ -->
+            <p id="second-feast-info"></p>
+        </div>
+
+        <!-- Bài đọc phụ -->
+        <div>
             <p id="optional-reading"></p>
 
-            
             <div class="reading-row">
                 <div class="weekday" id="weekday">THỨ HAI</div>
                 <p class="date-large" id="current-date">1</p>
                 <div class="lunar-date" id="lunarDate">AL: 1/2</div>
             </div>
+
             <p class="date-small" id="current-month-year"></p>
         </div>
-    </div>
-
+  
 
 <!-- Chọn ngày, tuần và tháng vủa mobi -->
 <div class="controls-container">
@@ -216,6 +218,62 @@
 </html>
 
 <script>
+
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    const overlay = document.querySelector(".overlay");
+    if (modal && overlay) {
+        modal.classList.add("show");
+        overlay.classList.add("show");
+    }
+}
+
+function quitModal(modalId) {
+    const modal = document.getElementById(modalId);
+    const overlay = document.querySelector(".overlay");
+    if (modal && overlay) {
+        modal.classList.remove("show");
+        overlay.classList.remove("show");
+    }
+}
+
+function increaseFontSize() {
+    const content = document.getElementById("readingContent");
+    let currentSize = parseFloat(window.getComputedStyle(content).fontSize);
+    content.style.fontSize = (currentSize + 2) + "px";
+}
+
+function decreaseFontSize() {
+    const content = document.getElementById("readingContent");
+    let currentSize = parseFloat(window.getComputedStyle(content).fontSize);
+    if (currentSize > 10) {
+        content.style.fontSize = (currentSize - 2) + "px";
+    }
+}
+
+function boldText() {
+    const content = document.getElementById("readingContent");
+    if (content.style.fontWeight === "bold") {
+        content.style.fontWeight = "normal";
+    } else {
+        content.style.fontWeight = "bold";
+    }
+}
+
+    const appBar = document.getElementById('appBar');
+
+// Theo dõi sự kiện cuộn của trang
+window.addEventListener('scroll', () => {
+    const offsetTop = window.scrollY; // Lấy vị trí cuộn hiện tại
+
+    // Khi cuộn vượt quá 100px, làm cho App Bar hiển thị
+    if (offsetTop > 100) {
+        appBar.style.top = '20px'; // Đưa vào vùng hiển thị
+    } else {
+        appBar.style.top = '-100px'; // Đẩy ra khỏi vùng hiển thị
+    }
+});
+
 
 // Hàm mở/đóng modal chọn ngày
 function toggleDatePicker() {
@@ -420,7 +478,7 @@ function displayDateInfo(date) {
         document.getElementById("second-feast-info").innerHTML = "Hoặc bài đọc theo mùa";
         document.getElementById("optional-reading").innerHTML = `
             <div class="readable" onclick="showReadingContent('${solarDate}')">
-                <strong>${readingContent[0] || ''}</strong> ${readingContent[1] || ''} 
+                <strong>${readingContent[0] || ''}</strong> <em>${readingContent[1] || ''}</em>  
                 <strong>${readingContent[2] || ''}
             </div>`;
     } else {
@@ -442,7 +500,7 @@ function displayDateInfo(date) {
             document.getElementById("info").innerHTML = `<strong><em>${info}</em></strong>`;
             document.getElementById("reading1").innerHTML = `
                 <div class="readable" onclick="showReadingContent('${solarDate}')">
-                    <strong>${readingContent[0] || ''}</strong> ${readingContent[1] || ''} 
+                    <strong>${readingContent[0] || ''}</strong> <em>${readingContent[1] || ''} </em>
                     <strong>${readingContent[2] || ''}
                 </div>`;
         }
@@ -877,8 +935,8 @@ yearDisplayElement.textContent = `Tháng ${month} - Năm ${year} : (${liturgical
 
         // Thông tin lễ và bài đọc
         const feastAndReadingCell = document.createElement('td');
-        feastAndReadingCell.innerHTML = feastAndReadingContent;
-        row.appendChild(feastAndReadingCell);
+feastAndReadingCell.innerHTML = updateFeastAndReadingContent(currentDate, feastAndReadingContent);
+row.appendChild(feastAndReadingCell);
 
 
         // Nếu là Chủ Nhật, thêm hiệu ứng 3D
@@ -951,7 +1009,6 @@ function isSameDay(date1, date2) {
     }
       
       // Các Hàm liên quan bài đọc chính
-        // Hàm hiển thị nội dung bài đọc chính
         function showReadingContent(dateString) {
             const date = new Date(dateString);  // Chuyển đổi chuỗi thành đối tượng Date
             const reading = getBibleByFourDigitCode(date);  // Lấy bài đọc
@@ -1063,165 +1120,165 @@ function isSameDay(date1, date2) {
                     }
 
               // Hàm hiển thị nội dung bài đọc tùy chọn
-function showBibleOptionContent(dateString) {
-    const date = new Date(dateString);  // Chuyển đổi chuỗi thành đối tượng Date
-    const reading = getBibleByOptionDigitCode(date);  // Lấy bài đọc từ mã tùy chọn
-    const year = date.getFullYear();
-    const feasts = calculateFeasts(year); // Lấy danh sách lễ
-    updateModalTitle1(date, feasts); // Cập nhật tiêu đề modal
+            function showBibleOptionContent(dateString) {
+                const date = new Date(dateString);  // Chuyển đổi chuỗi thành đối tượng Date
+                const reading = getBibleByOptionDigitCode(date);  // Lấy bài đọc từ mã tùy chọn
+                const year = date.getFullYear();
+                const feasts = calculateFeasts(year); // Lấy danh sách lễ
+                updateModalTitle1(date, feasts); // Cập nhật tiêu đề modal
 
-    if (reading) {
-        // Cập nhật nội dung cho Bài Đọc I
-        const reading01Element = document.getElementById("reading01");
-        if (reading01Element) {
-            reading01Element.innerHTML = formatReadingPart('Bài Đọc I', reading.firstReading);
-            reading01Element.classList.add("show");
-        }
+                if (reading) {
+                    // Cập nhật nội dung cho Bài Đọc I
+                    const reading01Element = document.getElementById("reading01");
+                    if (reading01Element) {
+                        reading01Element.innerHTML = formatReadingPart('Bài Đọc I', reading.firstReading);
+                        reading01Element.classList.add("show");
+                    }
 
-        // Cập nhật nội dung cho Thánh Vịnh nếu có
-        const psalmElement = document.getElementById("psalm01");
-        if (psalmElement) {
-            psalmElement.innerHTML = formatPsalms(reading.psalms);
-            if (reading.psalms) {
-                psalmElement.classList.add("show");
-            } else {
-                psalmElement.classList.remove("show");
+                    // Cập nhật nội dung cho Thánh Vịnh nếu có
+                    const psalmElement = document.getElementById("psalm01");
+                    if (psalmElement) {
+                        psalmElement.innerHTML = formatPsalms(reading.psalms);
+                        if (reading.psalms) {
+                            psalmElement.classList.add("show");
+                        } else {
+                            psalmElement.classList.remove("show");
+                        }
+                    }
+
+                    // Cập nhật nội dung cho Bài Đọc II nếu có
+                    const reading02Element = document.getElementById("reading02");
+                    if (reading02Element) {
+                        reading02Element.innerHTML = reading.secondReading 
+                            ? formatReadingPart('Bài Đọc II', reading.secondReading) 
+                            : "";
+                        if (reading.secondReading) {
+                            reading02Element.classList.add("show");
+                        } else {
+                            reading02Element.classList.remove("show");
+                        }
+                    }
+
+                    // Cập nhật nội dung cho Alleluia nếu có
+                    const alleluiaElement = document.getElementById("alleluia01");
+                    if (alleluiaElement) {
+                        alleluiaElement.innerHTML = reading.alleluia 
+                            ? formatAlleluia(reading.alleluia) 
+                            : "";
+                        if (reading.alleluia) {
+                            alleluiaElement.classList.add("show");
+                        } else {
+                            alleluiaElement.classList.remove("show");
+                        }
+                    }
+
+                    // Cập nhật nội dung cho Tin Mừng
+                    const gospelElement = document.getElementById("gospel01");
+                    if (gospelElement) {
+                        gospelElement.innerHTML = formatReadingPart('Tin Mừng', reading.gospel);
+                        gospelElement.classList.add("show");
+                    }
+                } else {
+                    // Nếu không có bài đọc, hiển thị thông báo thân thiện hơn
+                    document.getElementById("readingContent").innerHTML = 
+                        "<p class='no-reading-message'>Không có bài đọc nào cho ngày này.</p>";
+                }
+
+                // Hiển thị modal và overlay
+                document.getElementById("readingModal").style.display = "block";
+                document.getElementById("modalOverlay").style.display = "block";
             }
-        }
 
-        // Cập nhật nội dung cho Bài Đọc II nếu có
-        const reading02Element = document.getElementById("reading02");
-        if (reading02Element) {
-            reading02Element.innerHTML = reading.secondReading 
-                ? formatReadingPart('Bài Đọc II', reading.secondReading) 
-                : "";
-            if (reading.secondReading) {
-                reading02Element.classList.add("show");
-            } else {
-                reading02Element.classList.remove("show");
+
+
+            function formatReadingPart(title, reading) {
+                if (!reading || typeof reading !== 'object') return '';
+
+                // Định dạng các phần của bài đọc
+                const excerpt = reading.excerpt 
+                    ? `<span style="font-family: Arial; font-size: 18px;">${reading.excerpt}</span>` 
+                    : '';
+                const info = reading.info 
+                    ? `<p style="font-family: Arial;"><em>${reading.info}</em></p>` 
+                    : '';
+                const readingTitle = reading.title 
+                    ? `<h4 style="font-family: Arial;">${reading.title}</h4>` 
+                    : '';
+                
+                // Gọi hàm formatWithLineBreaks để định dạng nội dung
+                const content = reading.content 
+                    ? `<p style="font-family: Arial;">${formatWithLineBreaks(reading.content)}</p>` 
+                    : '';
+                
+                const end = reading.end 
+                    ? `<p style="font-weight: bold; font-family: Arial;">${reading.end}</p>` 
+                    : '';
+
+                // Kết hợp tiêu đề và excerpt trên cùng một hàng với tiêu đề màu đỏ
+                return `
+                    <h3 style="display: inline; color: red; font-family: Arial;">${title}</h3> ${excerpt}
+                    ${info}
+                    ${readingTitle}
+                    ${content}  <!-- Nội dung được định dạng với dòng ngắt -->
+                    ${end}
+                `;
             }
-        }
 
-        // Cập nhật nội dung cho Alleluia nếu có
-        const alleluiaElement = document.getElementById("alleluia01");
-        if (alleluiaElement) {
-            alleluiaElement.innerHTML = reading.alleluia 
-                ? formatAlleluia(reading.alleluia) 
-                : "";
-            if (reading.alleluia) {
-                alleluiaElement.classList.add("show");
-            } else {
-                alleluiaElement.classList.remove("show");
+            function formatPsalms(psalms) {
+                // Kiểm tra nếu psalms tồn tại
+                if (!psalms || typeof psalms !== 'object') return '';
+
+                // Định dạng phần trích đoạn (excerpt) trên cùng dòng với Đáp Ca
+                const excerpt = psalms.excerpt ? `<span style="color: black; font-weight: normal; font-family: Arial; font-size: 18px;">: ${psalms.excerpt}</span>` : '';
+
+
+                // Định dạng phần đáp ca (response), làm nổi bật từ "Ðáp:"
+                const response = psalms.response 
+                    ? `<h4 style="font-family: Arial;">${psalms.response.replace(/(Ðáp:)/g, '<span style="font-weight: bold; color: blue; font-family: Arial;">$1</span>')}</h4>`
+                    : '';
+
+                // Định dạng các câu (verses)
+                const verses = psalms.verses && Array.isArray(psalms.verses)
+                    ? psalms.verses.map(verse => {
+                        const formattedVerse = verse.replace(/(Xướng:)/g, '<span style="font-weight: bold; color: blue; font-family: Arial;">$1</span>');
+                        return `<p style="font-family: Arial;"><em>${formattedVerse}</em></p>`;
+                    }).join('')
+                    : '';
+
+                // Kết hợp tất cả các phần lại với nhau
+                return `
+                    <h3 style="color: red; font-family: Arial;">Đáp Ca${excerpt}</h3>
+                    ${response}
+                    ${verses}
+                `;
             }
-        }
 
-        // Cập nhật nội dung cho Tin Mừng
-        const gospelElement = document.getElementById("gospel01");
-        if (gospelElement) {
-            gospelElement.innerHTML = formatReadingPart('Tin Mừng', reading.gospel);
-            gospelElement.classList.add("show");
-        }
-    } else {
-        // Nếu không có bài đọc, hiển thị thông báo thân thiện hơn
-        document.getElementById("readingContent").innerHTML = 
-            "<p class='no-reading-message'>Không có bài đọc nào cho ngày này.</p>";
-    }
+                function formatAlleluia(alleluia) {
+                    if (!alleluia || typeof alleluia !== 'object') return '';
 
-    // Hiển thị modal và overlay
-    document.getElementById("readingModal").style.display = "block";
-    document.getElementById("modalOverlay").style.display = "block";
-}
+                    // Định dạng các phần của Alleluia
+                    const verse = alleluia.verse 
+                        ? `<h4 style="font-family: Arial; "><span style="font-weight: bold; color: red;">Xướng trước Tin Mừng:</span> <span style="font-weight: normal; font-size: 18px">${alleluia.verse}</span></h4>` 
+                        : '';
 
+                    // Định dạng nội dung của Alleluia, chỉ thay thế từ "alleluia" ở đầu câu nếu có
+                    let content = alleluia.content || 'Alleluia, Alleluia';
 
+                    // Kiểm tra nếu nội dung bắt đầu bằng "alleluia", thay thế nó bằng "Alleluia, Alleluia"
+                    content = content.replace(/^\s*alleluia\s*[\.,-]*/i, 'Alleluia, Alleluia');
 
-function formatReadingPart(title, reading) {
-    if (!reading || typeof reading !== 'object') return '';
+                    // Kiểm tra nếu nội dung có quá nhiều cụm "Alleluia, Alleluia" và xóa bớt nếu cần
+                    content = content.replace(/(Alleluia, Alleluia)(\s*[,.-]*\s*Alleluia)*/gi, 'Alleluia, Alleluia');
 
-    // Định dạng các phần của bài đọc
-    const excerpt = reading.excerpt 
-        ? `<span style="font-family: Arial; font-size: 18px;">${reading.excerpt}</span>` 
-        : '';
-    const info = reading.info 
-        ? `<p style="font-family: Arial;"><em>${reading.info}</em></p>` 
-        : '';
-    const readingTitle = reading.title 
-        ? `<h4 style="font-family: Arial;">${reading.title}</h4>` 
-        : '';
-    
-    // Gọi hàm formatWithLineBreaks để định dạng nội dung
-    const content = reading.content 
-        ? `<p style="font-family: Arial;">${formatWithLineBreaks(reading.content)}</p>` 
-        : '';
-    
-    const end = reading.end 
-        ? `<p style="font-weight: bold; font-family: Arial;">${reading.end}</p>` 
-        : '';
+                    // Định dạng lại thành thẻ HTML
+                    content = `<p style="font-family: Arial;">${content}</p>`;
 
-    // Kết hợp tiêu đề và excerpt trên cùng một hàng với tiêu đề màu đỏ
-    return `
-        <h3 style="display: inline; color: red; font-family: Arial;">${title}</h3> ${excerpt}
-        ${info}
-        ${readingTitle}
-        ${content}  <!-- Nội dung được định dạng với dòng ngắt -->
-        ${end}
-    `;
-}
-
-function formatPsalms(psalms) {
-    // Kiểm tra nếu psalms tồn tại
-    if (!psalms || typeof psalms !== 'object') return '';
-
-    // Định dạng phần trích đoạn (excerpt) trên cùng dòng với Đáp Ca
-    const excerpt = psalms.excerpt ? `<span style="color: black; font-weight: normal; font-family: Arial; font-size: 18px;">: ${psalms.excerpt}</span>` : '';
-
-
-    // Định dạng phần đáp ca (response), làm nổi bật từ "Ðáp:"
-    const response = psalms.response 
-        ? `<h4 style="font-family: Arial;">${psalms.response.replace(/(Ðáp:)/g, '<span style="font-weight: bold; color: blue; font-family: Arial;">$1</span>')}</h4>`
-        : '';
-
-    // Định dạng các câu (verses)
-    const verses = psalms.verses && Array.isArray(psalms.verses)
-        ? psalms.verses.map(verse => {
-            const formattedVerse = verse.replace(/(Xướng:)/g, '<span style="font-weight: bold; color: blue; font-family: Arial;">$1</span>');
-            return `<p style="font-family: Arial;"><em>${formattedVerse}</em></p>`;
-        }).join('')
-        : '';
-
-    // Kết hợp tất cả các phần lại với nhau
-    return `
-        <h3 style="color: red; font-family: Arial;">Đáp Ca${excerpt}</h3>
-        ${response}
-        ${verses}
-    `;
-}
-
-function formatAlleluia(alleluia) {
-    if (!alleluia || typeof alleluia !== 'object') return '';
-
-    // Định dạng các phần của Alleluia
-    const verse = alleluia.verse 
-        ? `<h4 style="font-family: Arial; "><span style="font-weight: bold; color: red;">Xướng trước Tin Mừng:</span> <span style="font-weight: normal; font-size: 18px">${alleluia.verse}</span></h4>` 
-        : '';
-
-    // Định dạng nội dung của Alleluia, chỉ thay thế từ "alleluia" ở đầu câu nếu có
-    let content = alleluia.content || 'Alleluia, Alleluia';
-
-    // Kiểm tra nếu nội dung bắt đầu bằng "alleluia", thay thế nó bằng "Alleluia, Alleluia"
-    content = content.replace(/^\s*alleluia\s*[\.,-]*/i, 'Alleluia, Alleluia');
-
-    // Kiểm tra nếu nội dung có quá nhiều cụm "Alleluia, Alleluia" và xóa bớt nếu cần
-    content = content.replace(/(Alleluia, Alleluia)(\s*[,.-]*\s*Alleluia)*/gi, 'Alleluia, Alleluia');
-
-    // Định dạng lại thành thẻ HTML
-    content = `<p style="font-family: Arial;">${content}</p>`;
-
-    // Kết hợp tất cả các phần lại với nhau
-    return `
-        ${verse}
-        ${content}
-    `;
-}
+                    // Kết hợp tất cả các phần lại với nhau
+                    return `
+                        ${verse}
+                        ${content}
+                    `;
+                }
 
 
 
@@ -1415,6 +1472,77 @@ document.addEventListener('DOMContentLoaded', function() {
         setFontSize(parseFloat(savedSize));
     }
 });
+
+// Hàm lấy tên ngày trong tuần bằng tiếng Việt
+function getDayOfWeekInVietnamese(date) {
+    const days = [
+        'CHÚA NHẬT', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư',
+        'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'
+    ];
+    return days[date.getDay()];
+}
+
+// Hàm kiểm tra Thứ Năm, Thứ Sáu, Thứ Bảy đầu tháng
+function isFirstThursdayFridaySaturdayOfMonth(date) {
+    const dayOfWeek = date.getDay(); // Lấy thứ trong tuần (0-6)
+    const dayOfMonth = date.getDate(); // Lấy ngày trong tháng (1-31)
+
+    // Kiểm tra nếu là Thứ Năm, Thứ Sáu, Thứ Bảy và nằm trong 7 ngày đầu tháng
+    return (dayOfWeek === 4 || dayOfWeek === 5 || dayOfWeek === 6) && dayOfMonth <= 7;
+}
+
+// Hàm cập nhật nội dung với tên ngày, đảm bảo không bị lặp
+// Hàm cập nhật nội dung với xử lý cho Thứ Năm, Thứ Sáu, Thứ Bảy đầu tháng và CHÚA NHẬT
+function updateFeastAndReadingContent(date, feastAndReadingContent, options = {}) {
+    let dayName = getDayOfWeekInVietnamese(date);
+    let firstOfMonthName = `${dayName} đầu tháng`;
+
+    // Kiểm tra và xử lý cho Thứ Năm, Thứ Sáu, Thứ Bảy đầu tháng
+    if (isFirstThursdayFridaySaturdayOfMonth(date)) {
+        const regexReplace = new RegExp(`\\b${dayName}\\b`, 'gi'); // Tìm "Thứ Năm", "Thứ Sáu", "Thứ Bảy"
+
+        // Nếu tìm thấy "Thứ Năm/Sáu/Bảy", thay thế bằng phiên bản "đầu tháng"
+        if (regexReplace.test(feastAndReadingContent)) {
+            feastAndReadingContent = feastAndReadingContent.replace(regexReplace, `<b>${firstOfMonthName}</b>`);
+            dayName = ''; // Sau khi thay thế, không cần thêm lại
+        } else {
+            // Nếu chưa có, thêm "Thứ Năm/Sáu/Bảy đầu tháng"
+            dayName = `<b>${firstOfMonthName}</b>`;
+        }
+    }
+
+    // Kiểm tra và xử lý CHÚA NHẬT
+    if (dayName === 'CHÚA NHẬT') {
+        const regexCheckSunday = new RegExp(`\\bCHÚA NHẬT\\b`, 'i');
+        if (!regexCheckSunday.test(feastAndReadingContent)) {
+            dayName = `<b>${dayName}</b>`;
+        } else {
+            dayName = ''; // Nếu đã có, bỏ qua để tránh lặp
+        }
+    }
+
+    // Áp dụng các tùy chọn định dạng từ options
+    const { uppercase = false, italic = false } = options;
+
+    // Chuyển thành chữ hoa nếu cần
+    if (uppercase) {
+        dayName = dayName.toUpperCase();
+    }
+
+    // Thêm thẻ in nghiêng nếu cần
+    if (italic) {
+        dayName = `<i>${dayName}</i>`;
+    }
+
+   // Kiểm tra nếu tên ngày đã có ở đầu chuỗi, không thêm lại
+   const regexCheckAtStart = new RegExp(`^${dayName}`, 'i'); // Kiểm tra xem đã có ở đầu chuỗi chưa
+    if (dayName && !regexCheckAtStart.test(feastAndReadingContent)) {
+        feastAndReadingContent = `${dayName}, ${feastAndReadingContent}`;
+    }
+
+
+    return feastAndReadingContent;
+}
 
 
 // Hàm bôi đậm nội dung (Bold)

@@ -426,7 +426,7 @@ button:hover {
         transform: translate(-50%, -50%);
         z-index: 1000;
         background-color: #f5f7b3;
-        padding: 15px; /* Giảm padding để tiết kiệm không gian */
+        padding: 5px; /* Giảm padding để tiết kiệm không gian */
         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2); /* Giảm độ dày của bóng */
         width: 90%; /* Tăng chiều rộng để sử dụng tối đa không gian màn hình */
         max-width: 600px; /* Giảm max-width để phù hợp với mobile */

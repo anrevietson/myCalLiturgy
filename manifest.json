@@ -1,14 +1,19 @@
 {
   "name": "Lịch Công Giáo",
-  "short_name": "Lịch",
+  "short_name": "LịchCG",
   "start_url": "./indexBible.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2196f3",
   "icons": [
     {
-      "src": "/01.webp",
+      "src": "./01.webp",
       "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "./02.webp",
+      "sizes": "512x512",
       "type": "image/webp"
     }
   ]

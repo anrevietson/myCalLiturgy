@@ -1,7 +1,7 @@
 {
   "name": "Lịch Công Giáo",
   "short_name": "Lịch",
-  "start_url": "/indexBible.html",
+  "start_url": "./indexBible.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2196f3",

@@ -403,52 +403,51 @@ button:hover {
     .mobile-controls {
         display: flex;
         justify-content: space-around;
-        gap: 10px;
+        gap: 5px; /* Giảm khoảng cách giữa các nút để tiết kiệm không gian */
     }
-    @media (max-width: 768px) {
-    .mobile-controls {
-        display: flex;
-        justify-content: space-around;
-        gap: 10px;
+    
+    /* Container chính */
+    .calendar-content {
+        background-color: rgb(250, 250, 211);
+        border-radius: 10px; /* Giảm độ bo viền để tiết kiệm không gian */
+        margin: 2px auto; /* Giảm khoảng cách bên ngoài */
+        padding: 10px; /* Giảm padding để có thêm không gian hiển thị */
+        max-width: 100%; /* Đảm bảo container chính sử dụng tối đa chiều rộng màn hình */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Giảm kích thước bóng để trông nhẹ nhàng hơn */
+        text-align: center;
     }
-.calendar-content {
-    background-color: rgb(250, 250, 211);
-    border-radius: 15px;
-    margin: 5px auto;
-    padding: 5px;
-    max-width: 900px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
+
+    /* Modal (hộp thoại) */
+    .modal {
+        display: none; /* Ẩn modal khi chưa có lớp 'show' */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        background-color: #f5f7b3;
+        padding: 15px; /* Giảm padding để tiết kiệm không gian */
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2); /* Giảm độ dày của bóng */
+        width: 90%; /* Tăng chiều rộng để sử dụng tối đa không gian màn hình */
+        max-width: 600px; /* Giảm max-width để phù hợp với mobile */
+        max-height: 85%; /* Tăng max-height để tận dụng chiều cao màn hình */
+        overflow-y: auto;
+        border-radius: 8px; /* Giảm độ bo góc để tiết kiệm không gian */
+    }
 
     .desktop-controls {
-        display: none;
+        display: none; /* Ẩn các điều khiển desktop trên mobile */
     }
 
     .weekday {
         margin-left: 0;
-        font-size: 16px;
+        font-size: 14px; /* Giảm font-size để vừa với màn hình nhỏ */
     }
 
     .lunar-date {
         margin-right: 0;
-        font-size: 16px;
+        font-size: 14px; /* Giảm font-size để vừa với màn hình nhỏ */
     }
 }
 
-
-    .desktop-controls {
-        display: none;
-    }
-
-    .weekday {
-        margin-left: 0;
-        font-size: 16px;
-    }
-
-    .lunar-date {
-        margin-right: 0;
-        font-size: 16px;
-    }
-}
 

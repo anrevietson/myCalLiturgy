@@ -43,7 +43,6 @@ window.celebrations = [
         { date: '13/04', type: 'O', feast: 'Thánh Martinô I, giáo hoàng, tử đạo (Đ).' },
         { date: '21/04', type: 'O', feast: 'Thánh Anselmô, giám mục, tiến sĩ Hội Thánh (Tr).' },
         { date: '23/04', type: 'O', feast: 'Thánh Giorgiô, tử đạo (Đ). Thánh Ađalbertô, giám mục, tử đạo (Đ).' },
-        { date: '24/04', type: 'F', feast: 'Kỷ Niệm cung hiến Nhà thờ Chính Tòa Đà Lạt', chasuble: 'Tr' },
         { date: '25/04', type: 'F', feast: 'THÁNH MARCÔ, TÁC GIẢ SÁCH TIN MỪNG.', chasuble: 'Đ' },
         { date: '28/04', type: 'O', feast: 'Thánh Phêrô Chanel, linh mục, tử đạo (Đ). Thánh Luy Grignion Montfort, linh mục (Tr).' },
         { date: '29/04', type: 'M', feast: 'Thánh Catarina Siêna, trinh nữ, tiến sĩ Hội Thánh.', chasuble: 'Tr' },

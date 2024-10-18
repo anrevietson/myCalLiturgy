@@ -2724,7 +2724,7 @@ window.bibledailyOrdinary1Readings =
       "end": "Ðó là lời Chúa"
     }
   },
-  "5163": {
+  "5164": {
     "firstReading": {
       "excerpt": "(Năm I) Xh 19, 1-2. 9-11. 16-20b",
       "info": "“Chúa ngự xuống trên núi Sinai trước mặt toàn dân”.",
@@ -2755,7 +2755,7 @@ window.bibledailyOrdinary1Readings =
       "end": "Ðó là lời Chúa"
     }
   },
-  "5164": {
+  "5163": {
     "firstReading": {
       "excerpt": "(Năm I) Xh 16, 1-5. 9-15",
       "info": "“Ta sẽ cho mưa bánh từ trời rơi xuống”.",

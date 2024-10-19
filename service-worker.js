@@ -23,7 +23,7 @@ self.addEventListener('install', event => {
         './js/secondfeast.js',
         './js/calculateOptionbibleReads.js',
         './js/calculateEucharisticAdoration.js',
-        './CalendarGPDalat.html',
+        './indexBible.html',
         './style.css',
         './01.webp',
         './02.webp',  // Có vẻ bạn đã nhầm khi viết hai lần './01.webp', thay vào đó, mình để './02.webp'.

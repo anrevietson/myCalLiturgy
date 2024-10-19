@@ -405,15 +405,6 @@ button:hover {
         justify-content: space-around;
         gap: 5px; /* Giảm khoảng cách giữa các nút để tiết kiệm không gian */
     }
-    /* Header */
-.calendar-header {
-    background-color: #007bff;
-    color: white;
-    padding: 7px;
-    text-align: center;
-    font-size: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
     
     /* Container chính */
     .calendar-content {
@@ -435,7 +426,7 @@ button:hover {
         transform: translate(-50%, -50%);
         z-index: 1000;
         background-color: #f5f7b3;
-        padding: 5px; /* Giảm padding để tiết kiệm không gian */
+        padding: 15px; /* Giảm padding để tiết kiệm không gian */
         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2); /* Giảm độ dày của bóng */
         width: 90%; /* Tăng chiều rộng để sử dụng tối đa không gian màn hình */
         max-width: 600px; /* Giảm max-width để phù hợp với mobile */
@@ -450,14 +441,14 @@ button:hover {
 
     .weekday {
         margin-left: 0;
-        font-size: 14px; /* Giảm font-size để vừa với màn hình nhỏ */
+        font-size: 20px; /* Giảm font-size để vừa với màn hình nhỏ */
     }
 
     .lunar-date {
         margin-right: 0;
-        font-size: 14px; /* Giảm font-size để vừa với màn hình nhỏ */
+        font-size: 20px; /* Giảm font-size để vừa với màn hình nhỏ */
     }
-     .mobile-footer {
+  .mobile-footer {
     position: fixed;
     bottom: 0;
     left: 0px;

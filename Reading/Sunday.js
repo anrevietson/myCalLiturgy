@@ -441,7 +441,6 @@
         "content": "Ngày ấy, Maria chỗi dậy, vội vã ra đi tiến lên miền núi, đến một thành xứ Giuđêa. Bà vào nhà ông Dacaria và chào bà Isave. Và khi bà Isave nghe lời chào của Maria, thì hài nhi nhảy mừng trong lòng bà, và bà Isave được đầy Chúa Thánh Thần, bà kêu lớn tiếng rằng: “Bà được chúc phúc giữa các người phụ nữ, và Con lòng Bà được chúc phúc! Bởi đâu tôi được Mẹ Chúa tôi đến viếng thăm tôi? Vì này, tai tôi vừa nghe lời Bà chào, hài nhi liền nhảy mừng trong lòng tôi. Phúc cho Bà là kẻ đã tin rằng lời Chúa phán cùng Bà sẽ được thực hiện”.",
         "end": "Ðó là lời Chúa"
       }
-    }
   },
   "2010": {
     "A": {

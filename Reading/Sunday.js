@@ -536,7 +536,7 @@
       },
       "secondReading": {
         "excerpt": "Cl 3, 12-21",
-        "info": "\"Về đời sống gia đình trong Chúa\".",
+        "info": "Về đời sống gia đình trong Chúa.",
         "title": "Trích thư Thánh Phaolô Tông đồ gửi tín hữu Côlôxê.",
         "content": "Anh em thân mến, như những người được chọn của Thiên Chúa, những người thánh thiện và được yêu thương, anh em hãy mặc lấy những tâm tình từ bi, nhân hậu, khiêm cung, ôn hoà, nhẫn nại, chịu đựng lẫn nhau, và hãy tha thứ cho nhau nếu người này có chuyện phải oán trách người kia. Như Chúa đã tha thứ cho anh em, anh em cũng hãy tha thứ cho nhau. Và trên hết mọi sự, anh em hãy có đức yêu thương, đó là dây ràng buộc điều toàn thiện. Nguyện cho bình an của Chúa Kitô làm chủ trong lòng anh em, sự bình an mà anh em đã được kêu gọi tới để làm nên một thân thể. Anh em hãy cảm tạ Thiên Chúa. Nguyện cho lời Chúa Kitô cư ngụ dồi dào trong anh em. Với tất cả sự khôn ngoan, anh em hãy học hỏi và nhủ bảo lẫn nhau. Hãy dùng những bài thánh vịnh, thánh thi và thánh ca của Thần khí, cùng với lòng tri ân, để hát mừng Thiên Chúa trong lòng anh em. Và tất cả những gì anh em làm, trong lời nói cũng như trong hành động, tất cả mọi chuyện, anh em hãy làm vì danh Chúa Giêsu Kitô, nhờ Người mà tạ ơn Thiên Chúa Cha.\rHỡi các bà vợ, hãy phục tùng chồng trong Chúa cho phải phép. Hỡi những người chồng, hãy yêu thương vợ mình, đừng đay nghiến nó. Hỡi những người con, hãy vâng lời cha mẹ trong mọi sự, vì đó là đẹp lòng Chúa. Hỡi những người cha, đừng nổi cơn phẫn nộ với con cái, kẻo chúng nên nhát đảm sợ sệt.",
         "end": "Ðó là lời Chúa"
@@ -546,11 +546,12 @@
         "content": "Alleluia, Alleluia – Nguyện cho bình an của Chúa Kitô làm chủ trong lòng anh em. Nguyện cho lời Chúa Kitô cư ngụ dồi dào trong anh em. – Alleluia."
       },
       "gospel": {
-        "excerpt": "Mt 2, 13-15. 19-23",
-        "info": "“Hãy đem Con Trẻ và mẹ Người trốn sang Ai-cập”.",
-        "title": "Tin Mừng Chúa Giêsu Kitô theo Thánh Matthêu.",
-        "content": "Khi các đạo sĩ đã đi rồi, thiên thần Chúa hiện ra với ông Giuse trong lúc ngủ và bảo ông: “Hãy thức dậy, đem Hài Nhi và mẹ Người trốn sang Ai-cập, và ở đó cho tới khi tôi báo lại ông, vì Hêrôđê sắp sửa tìm kiếm Hài Nhi để sát hại Người”. Ông thức dậy, đem Hài Nhi và mẹ Người lên đường trốn sang Ai-cập đang lúc ban đêm. Ông ở lại đó cho tới khi Hêrôđê băng hà, hầu làm cho trọn điều Chúa dùng miệng tiên tri mà phán rằng: “Ta gọi con Ta ra khỏi Ai-cập”.\rBấy giờ Hêrôđê thấy mình bị các đạo sĩ đánh lừa, nên nổi cơn thịnh nộ và sai quân đi giết tất cả con trẻ ở Bêlem và vùng phụ cận, từ hai tuổi trở xuống, tính theo thời gian vua đã cặn kẽ hỏi các đạo sĩ. Thế là ứng nghiệm lời tiên tri Giêrêmia đã nói: Tại Rama, người ta nghe những tiếng khóc than nức nở, đó là tiếng bà Rakhel than khóc con mình, bà không chịu cho người ta an ủi bà, vì các con bà không còn nữa.\rKhi Hêrôđê băng hà, thì đây thiên thần Chúa hiện ra cùng Giuse trong giấc mơ bên Ai-cập và bảo: “Hãy chỗi dậy, đem Con Trẻ và mẹ Người về đất Israel, vì những kẻ tìm hại mạng sống Người đã chết”. Ông liền chỗi dậy, đem Con Trẻ và mẹ Người về đất Israel. Nhưng nghe rằng Arkhêlao làm vua xứ Giuđa thay cho Hêrôđê là cha mình, thì Giuse sợ không dám về đó. Ðược báo trong giấc mộng, ông lánh sang địa phận xứ Galilêa, và lập cư trong thành gọi là Nadarét, để ứng nghiệm lời đã phán qua các tiên tri rằng: “Người sẽ được gọi là Nadarêô”.",
+     "excerpt": "Lc 2, 41-52",
+        "info": "“Hai Ông Bà gặp Chúa Giêsu đang ngồi giữa các thầy tiến sĩ”.",
+        "title": "Tin Mừng Chúa Giêsu Kitô theo Thánh Luca.",
+        "content": "Hằng năm cha mẹ Chúa Giêsu có thói quen lên Giêrusalem để mừng lễ Vượt Qua. Lúc bấy giờ Chúa Giêsu lên mười hai tuổi, cha mẹ Người đã lên Giêrusalem, theo tục lệ mừng ngày lễ Vượt Qua. Và khi những ngày lễ đã hoàn tất, hai ông bà ra về, trẻ Giêsu đã ở lại Giêrusalem mà cha mẹ Người không hay biết. Tưởng rằng Người ở trong nhóm các khách đồng hành, hai ông bà đi được một ngày đàng, mới tìm kiếm Người trong nhóm bà con và những kẻ quen biết.\rNhưng không gặp thấy Người, nên hai ông bà trở lại Giêrusalem để tìm Người. Sau ba ngày, hai ông bà gặp thấy Người trong đền thờ đang ngồi giữa các thầy tiến sĩ, nghe và hỏi các ông. Tất cả những ai nghe Người nói đều ngạc nhiên trước sự hiểu biết và những câu Người đáp lại.\rNhìn thấy Người, hai ông bà đã ngạc nhiên, và mẹ Người bảo Người rằng: “Con ơi, sao Con làm cho chúng ta như thế? Kìa cha Con và mẹ đây đã đau khổ tìm Con”. Người thưa với hai ông bà rằng: “Mà tại sao cha mẹ tìm Con? Cha mẹ không biết rằng Con phải lo công việc của Cha Con ư?” Nhưng hai ông bà không hiểu lời Người nói.\r Bấy giờ Người theo hai ông bà trở về Nadarét, và Người vâng phục hai ông bà. Maria mẹ Người ghi nhớ những việc đó trong lòng. Còn Chúa Giêsu thì tiến tới trong sự khôn ngoan, tuổi tác và ân sủng, trước mặt Thiên Chúa và người ta.",
         "end": "Ðó là lời Chúa"
+      }
       }
     }
   },

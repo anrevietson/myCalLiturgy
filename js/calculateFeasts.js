@@ -116,7 +116,7 @@ function addFeastend1(name, date) {
         addFeast(`MỒNG MỘT TẾT. CẦU BÌNH AN NĂM MỚI. (${canChi})`, lunarNewYear);
         addFeast(`MỒNG HAI TẾT. KÍNH NHỚ ÔNG BÀ TỔ TIÊN. (${canChi})`, new Date(lunarNewYear.getTime() + 1 * 24 * 60 * 60 * 1000)); // Ngày tiếp theo
         addFeast(`MỒNG BA TẾT.THÁNH HÓA CÔNG ĂN VIỆC LÀM.  (${canChi})`, new Date(lunarNewYear.getTime() + 2 * 24 * 60 * 60 * 1000)); // Ngày tiếp theo
-        addFeast("TRUNG THU, tết thiếu nhi.", midAutumnFestival);
+        //addFeast("TRUNG THU, tết thiếu nhi.", midAutumnFestival);
   // Hàm để kiểm tra nếu Ash Wednesday trùng với các ngày từ lunarNewYear - 1 đến lunarNewYear + 2
         const lunarNewYearMinus1 = new Date(lunarNewYear.getTime() - 1 * 24 * 60 * 60 * 1000);
         const lunarNewYearPlus2 = new Date(lunarNewYear.getTime() + 2 * 24 * 60 * 60 * 1000);

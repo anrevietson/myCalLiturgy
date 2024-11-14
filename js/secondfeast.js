@@ -15,6 +15,8 @@
         let BfirstSunday = parseDate(getFirstSundayOfOctober(year));
 
         // Tính các ngày lễ vọng
+        const christTheKing = parseDate(getChristTheKing(year));
+        secondFeasts.push({name: 'KÍNH TRỌNG THỂ CÁC THÁNH TỬ ĐẠO VIỆT NAM. (Đ)', date: new Date(christTheKing.getTime() - 7 * 24 * 60 * 60 * 1000)}); // One week before Christ the King
         secondFeasts.push({ name: 'Bắt đầu tuần cầu nguyện cho các kitô hữu hợp nhất.', date: new Date(year, 0, 18) });
         secondFeasts.push({ name: 'Kết thúc tuần cầu nguyện cho các kitô hữu hợp nhất.', date: new Date(year, 0, 25) });
         secondFeasts.push({ name: 'Chiều: LỄ VỌNG CHÚA THĂNG THIÊN (Tr). Bài đọc như lễ Chính ngày', date: new Date(easterDate.getTime() + 41 * 24 * 60 * 60 * 1000) });
